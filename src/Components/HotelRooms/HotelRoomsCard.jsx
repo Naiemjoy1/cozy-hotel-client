@@ -1,18 +1,22 @@
+import { GoPeople } from "react-icons/go";
+import { IoBedOutline } from "react-icons/io5";
+import { MdKeyboardDoubleArrowRight } from "react-icons/md";
+import { SlSizeFullscreen } from "react-icons/sl";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+
 const HotelRoomsCard = ({ room }) => {
   const {
+    _id,
     type,
     pricePerNight,
     roomSize,
-    availability,
-    roomImages,
-    specialOffers,
     image,
     description,
     guests,
     beds,
   } = room;
 
-  // Function to truncate the description to 20 words
   const truncateDescription = (description) => {
     const words = description.split(" ");
     if (words.length > 15) {
@@ -23,20 +27,63 @@ const HotelRoomsCard = ({ room }) => {
 
   return (
     <div>
-      <div className="card card-compact bg-base-100 shadow-xl">
-        <figure>
+      <div className="card card-compact bg-primary text-white shadow-xl">
+        <figure className=" relative">
           <img src={image} alt="Room" />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title">{type}</h2>
-          <p>{truncateDescription(description)}</p>
-          <div className="card-actions justify-end">
-            <button className="btn btn-primary">Buy Now</button>
+          <div className="absolute left-6 top-6 bg-primary p-2">
+            <p className=" text-sm">${pricePerNight} / NIGHT</p>
           </div>
+        </figure>
+        <div className="card-body space-y-4">
+          <h2 className="card-title font-marcellus text-2xl font-light">
+            {type}
+          </h2>
+          <div className=" flex font-roboto">
+            <p className="flex items-center gap-4">
+              <span className=" text-lg">
+                <SlSizeFullscreen />
+              </span>
+              {roomSize}
+            </p>
+            <p className="flex items-center gap-4">
+              <span className=" text-xl">
+                <GoPeople />
+              </span>
+              {guests} Guests
+            </p>
+            <p className="flex items-center gap-4">
+              <span className=" text-xl">
+                <IoBedOutline />
+              </span>
+              {beds} Beds
+            </p>
+          </div>
+          <p>{truncateDescription(description)}</p>
+          <Link to={`/roomdetails/${_id}`}>
+            <button className="btn btn-secondary  text-white">
+              Book Now{" "}
+              <span className=" text-xl">
+                <MdKeyboardDoubleArrowRight />
+              </span>
+            </button>
+          </Link>
         </div>
       </div>
     </div>
   );
+};
+
+HotelRoomsCard.propTypes = {
+  room: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    pricePerNight: PropTypes.number.isRequired,
+    roomSize: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    guests: PropTypes.number.isRequired,
+    beds: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default HotelRoomsCard;

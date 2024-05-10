@@ -10,6 +10,7 @@ export default {
         robotoslab: "'Roboto Slab', serif",
         belle: "'La Belle Aurore', cursive",
         marcellus: "'Marcellus', serif",
+        jost: "'Jost', sans-serif",
       },
     },
   },

@@ -6,12 +6,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyA-nuu_HT1P8oV7TWbTLSQNmd_Hau3yymg",
-  authDomain: "cozystay-hotel-booking.firebaseapp.com",
-  projectId: "cozystay-hotel-booking",
-  storageBucket: "cozystay-hotel-booking.appspot.com",
-  messagingSenderId: "464727757095",
-  appId: "1:464727757095:web:af65c95751a40530c7d902",
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId,
 };
 
 // Initialize Firebase
