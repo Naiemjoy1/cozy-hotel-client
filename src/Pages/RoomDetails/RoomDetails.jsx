@@ -11,6 +11,7 @@ import { RiSafe2Fill } from "react-icons/ri";
 import { SlSizeFullscreen } from "react-icons/sl";
 import { TbAirConditioning } from "react-icons/tb";
 import { useLoaderData } from "react-router-dom";
+import RoomReservation from "../../Shared/RoomReservation/RoomReservation";
 
 const RoomDetails = () => {
   const roomDetails = useLoaderData();
@@ -267,14 +268,17 @@ const RoomDetails = () => {
           </div>
         </div>
         <div className="w-2/5  font-marcellus">
-          <div className=" bg-primary rounded-lg shadow-xl text-white px-10 py-14">
+          <div className=" bg-primary rounded-lg shadow-xl px-10 py-14">
             <div className="flex justify-between items-center">
-              <p className=" font-marcellus text-2xl font-light">RESERVE:</p>
-              <p className=" font-jost">
-                From <span className=" font-sm text-lg">${pricePerNight}</span>{" "}
+              <p className=" font-marcellus text-2xl font-light text-white">
+                RESERVE:
+              </p>
+              <p className=" font-jost text-white">
+                From <span className=" font-sm text-lg ">${pricePerNight}</span>{" "}
                 /night
               </p>
             </div>
+            <RoomReservation pricePerNight={pricePerNight}></RoomReservation>
           </div>
         </div>
       </div>
