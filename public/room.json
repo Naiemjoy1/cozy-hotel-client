@@ -1,0 +1,92 @@
+[
+  {
+    "type": "Standard Room",
+    "pricePerNight": 100,
+    "roomSize": "300 sqft",
+    "availability": true,
+    "image": "https://i.ibb.co/gDpSTqK/pexels-pixabay-210604.jpg",
+    "roomImages": [
+      "https://example.com/standard-room-image1.jpg",
+      "https://example.com/standard-room-image2.jpg"
+    ],
+    "specialOffers": null,
+    "description": "Step into comfort and relaxation with our Standard Room. Designed with your comfort in mind, this room offers a tranquil retreat after a day of exploration. With a spacious layout of 300 sqft, it provides ample space to unwind and rejuvenate. The room is equipped with modern amenities to ensure a comfortable stay, including a cozy bed, a work desk, and a private bathroom. Whether you're traveling for business or leisure, our Standard Room is the perfect choice for a restful night's sleep. Wake up refreshed and ready to start your day, and enjoy the convenience of complimentary Wi-Fi access and room service. Our friendly staff is always on hand to assist you with any requests or inquiries. Experience comfort, convenience, and affordability all in one place with our Standard Room.",
+    "guests": 2,
+    "beds": 1
+  },
+  {
+    "type": "Deluxe Room",
+    "pricePerNight": 150,
+    "roomSize": "400 sqft",
+    "availability": true,
+    "image": "https://i.ibb.co/gDpSTqK/pexels-pixabay-210604.jpg",
+    "roomImages": [
+      "https://example.com/deluxe-room-image1.jpg",
+      "https://example.com/deluxe-room-image2.jpg"
+    ],
+    "specialOffers": "Free breakfast included",
+    "description": "Indulge in luxury and comfort with our Deluxe Room. Designed for discerning travelers, this room offers a spacious and elegant retreat. With a generous size of 400 sqft, it provides ample space to relax and unwind. The room features upscale amenities and stylish decor, creating a welcoming ambiance for your stay. Enjoy the convenience of a plush king-size bed, a modern ensuite bathroom, and a cozy seating area. Start your day right with a complimentary breakfast served in the comfort of your room. Our Deluxe Room is perfect for both business and leisure travelers seeking a memorable experience. Whether you're visiting for work or relaxation, our attentive staff is dedicated to ensuring your comfort and satisfaction. Experience luxury, convenience, and exceptional service with our Deluxe Room.",
+    "guests": 2,
+    "beds": 1
+  },
+  {
+    "type": "Suite",
+    "pricePerNight": 250,
+    "roomSize": "600 sqft",
+    "availability": true,
+    "image": "https://i.ibb.co/gDpSTqK/pexels-pixabay-210604.jpg",
+    "roomImages": [
+      "https://example.com/suite-image1.jpg",
+      "https://example.com/suite-image2.jpg"
+    ],
+    "specialOffers": "50% off on extended stays",
+    "description": "Experience luxury and sophistication in our Suite. Designed for the discerning traveler, this expansive suite offers unparalleled comfort and style. With a generous size of 600 sqft, it provides ample space to relax and unwind in style. The suite features upscale amenities and elegant furnishings, creating a refined ambiance for your stay. Enjoy the convenience of a separate living area, a luxurious king-size bed, and a modern ensuite bathroom with premium toiletries. Indulge in our special offer with 50% off on extended stays, allowing you to enjoy the ultimate luxury experience for less. Whether you're traveling for business or leisure, our Suite is the perfect choice for a memorable stay. Our dedicated staff is committed to ensuring your comfort and satisfaction throughout your visit. Experience luxury, comfort, and exceptional service with our Suite.",
+    "guests": 4,
+    "beds": 2
+  },
+  {
+    "type": "Family Room",
+    "pricePerNight": 200,
+    "roomSize": "500 sqft",
+    "availability": true,
+    "image": "https://i.ibb.co/gDpSTqK/pexels-pixabay-210604.jpg",
+    "roomImages": [
+      "https://example.com/family-room-image1.jpg",
+      "https://example.com/family-room-image2.jpg"
+    ],
+    "specialOffers": "Kids stay free",
+    "description": "Our Family Room is designed to provide comfort and convenience for the whole family. With a spacious layout of 500 sqft, it offers ample space for relaxation and enjoyment. The room features modern amenities and thoughtful touches to ensure a memorable stay for guests of all ages. Enjoy the convenience of a king-size bed for the adults and bunk beds for the kids, creating a fun and comfortable sleeping arrangement for the whole family. Our Family Room also includes a separate living area, perfect for spending quality time together. Take advantage of our special offer where kids stay free, allowing you to enjoy a family getaway without breaking the bank. Whether you're visiting for a weekend retreat or an extended vacation, our Family Room offers everything you need for a comfortable and enjoyable stay. Our friendly staff is always on hand to assist you with any requests or inquiries, ensuring a stress-free experience for the whole family.",
+    "guests": 4,
+    "beds": 2
+  },
+  {
+    "type": "Executive Suite",
+    "pricePerNight": 350,
+    "roomSize": "700 sqft",
+    "availability": true,
+    "image": "https://i.ibb.co/gDpSTqK/pexels-pixabay-210604.jpg",
+    "roomImages": [
+      "https://example.com/executive-suite-image1.jpg",
+      "https://example.com/executive-suite-image2.jpg"
+    ],
+    "specialOffers": "Complimentary spa treatment",
+    "description": "Indulge in luxury and relaxation with our Executive Suite. Designed for the discerning traveler, this spacious suite offers a refined and elegant retreat. With a generous size of 700 sqft, it provides ample space to unwind and rejuvenate in style. The suite features upscale amenities and luxurious furnishings, creating a serene ambiance for your stay. Enjoy the convenience of a separate living area, a plush king-size bed, and a modern ensuite bathroom with a deep soaking tub. Pamper yourself with a complimentary spa treatment, ensuring a rejuvenating experience during your visit. Whether you're traveling for business or leisure, our Executive Suite offers the perfect blend of comfort and sophistication. Our dedicated staff is committed to ensuring your comfort and satisfaction throughout your stay. Experience luxury, relaxation, and exceptional service with our Executive Suite.",
+    "guests": 2,
+    "beds": 1
+  },
+  {
+    "type": "Penthouse",
+    "pricePerNight": 500,
+    "roomSize": "1000 sqft",
+    "availability": true,
+    "image": "https://i.ibb.co/gDpSTqK/pexels-pixabay-210604.jpg",
+    "roomImages": [
+      "https://example.com/penthouse-image1.jpg",
+      "https://example.com/penthouse-image2.jpg"
+    ],
+    "specialOffers": "Private butler service",
+    "description": "Experience the pinnacle of luxury and exclusivity in our Penthouse suite. Perched atop the hotel, this expansive suite offers breathtaking views and unparalleled comfort. With an impressive size of 1000 sqft, it provides ample space for relaxation and entertainment. The suite features upscale amenities and opulent furnishings, creating an unforgettable ambiance for your stay. Enjoy the convenience of a private elevator, a spacious living area, and a luxurious master bedroom with a king-size bed. Indulge in personalized service with a dedicated butler, ensuring a truly luxurious experience throughout your visit. Whether you're celebrating a special occasion or simply seeking a luxurious retreat, our Penthouse suite offers everything you need and more. Our attentive staff is committed to ensuring your comfort and satisfaction, providing personalized service and attention to detail at every turn. Experience luxury, exclusivity, and unparalleled service with our Penthouse suite.",
+    "guests": 6,
+    "beds": 3
+  }
+]
