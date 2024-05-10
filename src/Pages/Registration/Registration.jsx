@@ -2,7 +2,8 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { IoIosEyeOff, IoMdEye } from "react-icons/io";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../Components/FirebaseProvider/FirebaseProvider";
 
 const Registration = () => {
@@ -34,7 +35,9 @@ const Registration = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
+
   const onSubmit = (data) => {
     const { email, password, name, image } = data;
 
@@ -42,8 +45,13 @@ const Registration = () => {
       .then((result) => {
         console.log("User created successfully:", result);
         updateUserProfile(name, image).then(() => {
-          navigate(from);
-          window.location.reload();
+          reset();
+          toast.success("Registration Successful", {
+            onClose: () => {
+              navigate(from);
+            },
+          });
+          // window.location.reload();
         });
       })
       .catch((error) => {

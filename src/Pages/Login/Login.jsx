@@ -2,7 +2,9 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { IoIosEyeOff, IoMdEye } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 import useAuth from "../../Components/hooks/useAuth";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 
@@ -23,15 +25,19 @@ const Login = () => {
     signInUser(email, password)
       .then((result) => {
         console.log(result.user);
-        // toast.success("Login Successfully");
-        reset();
-        navigate("/");
+        toast.success("Login Successfully", {
+          onClose: () => {
+            reset();
+            navigate("/");
+          },
+        });
       })
       .catch((error) => {
         console.error("Error creating user:", error);
-        // toast.error("Login Failed Try Again");
+        toast.error("Login Failed Try Again");
       });
   };
+
   return (
     <div className="min-h-[calc(100vh-246px)] flex justify-center items-center my-10 container mx-auto">
       <div className="w-1/2 ">

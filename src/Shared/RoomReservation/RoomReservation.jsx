@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 const RoomReservation = ({ pricePerNight }) => {
   const [checkInDate, setCheckInDate] = useState("");
@@ -134,4 +135,7 @@ const RoomReservation = ({ pricePerNight }) => {
   );
 };
 
+RoomReservation.propTypes = {
+  pricePerNight: PropTypes.number.isRequired,
+};
 export default RoomReservation;
