@@ -25,10 +25,16 @@ const Navbar = () => {
       <li>
         <NavLink to="/booking">My Booking</NavLink>
       </li>
+      <li>
+        <NavLink to="/about">About Us</NavLink>
+      </li>
+      <li>
+        <NavLink to="/contact">Contact Us</NavLink>
+      </li>
     </>
   );
   return (
-    <div>
+    <div className=" container mx-auto">
       <div className="navbar bg-base-100">
         <div className="navbar-start">
           <div className="dropdown">
@@ -57,7 +63,7 @@ const Navbar = () => {
           </div>
           <Link
             to="/"
-            className=" lg:text-xl font-robotoslab font-light md:text-lg"
+            className=" lg:text-xl font-marcellus font-light md:text-lg"
           >
             COZYSTAY
           </Link>

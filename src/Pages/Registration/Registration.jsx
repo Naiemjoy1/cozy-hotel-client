@@ -53,13 +53,13 @@ const Registration = () => {
 
   return (
     <div className="min-h-[calc(100vh-246px)] flex justify-center items-center my-10 container mx-auto">
-      <div className="w-full">
+      <div className="w-1/2">
         <img
           src="https://i.ibb.co/yfnsfFy/pexels-nguyendesigner-244133.jpg"
           alt=""
         />
       </div>
-      <div className=" w-full">
+      <div className="w-1/2">
         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
           <div className=" text-center">
             <p className=" font-robotoslab text-5xl font-light">Welcome To</p>

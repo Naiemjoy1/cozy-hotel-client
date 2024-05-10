@@ -34,13 +34,13 @@ const Login = () => {
   };
   return (
     <div className="min-h-[calc(100vh-246px)] flex justify-center items-center my-10 container mx-auto">
-      <div className="w-full ">
+      <div className="w-1/2 ">
         <img
           src="https://i.ibb.co/0BsT0Fy/pexels-vaishnav-devadas-415764-2086676.jpg"
           alt=""
         />
       </div>
-      <div className=" w-full">
+      <div className="w-1/2">
         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
           <div className=" text-center">
             <p className=" font-robotoslab text-5xl font-light">Welcome Back</p>
@@ -92,7 +92,7 @@ const Login = () => {
             <button className="btn btn-primary text-white">Login</button>
           </div>
           <p className=" text-center mt-5">
-            Don't have and account?{" "}
+            Don&apos;t have and account?{" "}
             <Link className=" text-primary font-semibold" to="/register">
               Registration
             </Link>

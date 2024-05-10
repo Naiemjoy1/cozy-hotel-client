@@ -1,5 +1,4 @@
-import { FaGithub, FaTwitter } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
+import { FaGithub, FaGoogle, FaTwitter } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
@@ -25,19 +24,28 @@ const SocialLogin = () => {
   return (
     <div>
       <div className="flex gap-4 justify-center items-center">
-        <button onClick={() => handleSocialLogin(googleLogin)} className="btn">
+        <button
+          onClick={() => handleSocialLogin(googleLogin)}
+          className="btn bg-primary hover:bg-secondary text-white"
+        >
           <span>
-            <FcGoogle />
+            <FaGoogle />
           </span>{" "}
           Google
         </button>
-        <button onClick={() => handleSocialLogin(githubLogin)} className="btn">
+        <button
+          onClick={() => handleSocialLogin(githubLogin)}
+          className="btn bg-primary hover:bg-secondary text-white"
+        >
           <span>
             <FaGithub />
           </span>{" "}
           Github
         </button>
-        <button onClick={() => handleSocialLogin(twitterLogin)} className="btn">
+        <button
+          onClick={() => handleSocialLogin(twitterLogin)}
+          className="btn bg-primary hover:bg-secondary text-white"
+        >
           <span>
             <FaTwitter />
           </span>{" "}

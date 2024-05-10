@@ -8,6 +8,8 @@ export default {
         reenie: "'Reenie Beanie', cursive",
         roboto: "'Roboto', sans-serif",
         robotoslab: "'Roboto Slab', serif",
+        belle: "'La Belle Aurore', cursive",
+        marcellus: "'Marcellus', serif",
       },
     },
   },
@@ -16,8 +18,8 @@ export default {
     themes: [
       {
         mytheme: {
-          primary: "#17b9d4",
-          secondary: "#19bc9b",
+          primary: "#53624e",
+          secondary: "#b99d75",
           accent: "#dc2625",
           neutral: "#343434",
           "base-100": "#ffffff",
