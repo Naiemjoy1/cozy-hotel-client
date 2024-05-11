@@ -18,7 +18,7 @@ const Slider = () => {
   return (
     <div>
       <Swiper
-        spaceBetween={10}
+        spaceBetween={20}
         slidesPerView={2}
         navigation={true}
         autoplay={{ delay: 2000 }}

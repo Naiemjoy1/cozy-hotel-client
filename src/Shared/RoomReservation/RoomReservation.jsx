@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-const RoomReservation = ({ pricePerNight }) => {
+const RoomReservation = ({ pricePerNight, roomId }) => {
   const [checkInDate, setCheckInDate] = useState("");
   const [checkOutDate, setCheckOutDate] = useState("");
   const [numRooms, setNumRooms] = useState(1);
@@ -37,6 +37,7 @@ const RoomReservation = ({ pricePerNight }) => {
       numAdults,
       numChildren,
       totalCost,
+      roomId,
     };
     console.log("Reservation Details:", reservationDetails);
   };
@@ -45,6 +46,7 @@ const RoomReservation = ({ pricePerNight }) => {
 
   return (
     <div>
+      {/* <p>{roomId}</p> */}
       <form onSubmit={handleSubmit} className="card-body">
         <div className="form-control">
           <label className="label">

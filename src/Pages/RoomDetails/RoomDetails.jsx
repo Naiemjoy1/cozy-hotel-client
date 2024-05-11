@@ -278,7 +278,10 @@ const RoomDetails = () => {
                 /night
               </p>
             </div>
-            <RoomReservation pricePerNight={pricePerNight}></RoomReservation>
+            <RoomReservation
+              pricePerNight={pricePerNight}
+              roomId={_id}
+            ></RoomReservation>
           </div>
         </div>
       </div>

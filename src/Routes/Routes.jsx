@@ -9,6 +9,7 @@ import ContactUs from "../Pages/ContactUs/ContactUs";
 import Room from "../Pages/Room/Room";
 import Bookings from "../Pages/Bookings/Bookings";
 import RoomDetails from "../Pages/RoomDetails/RoomDetails";
+import PrivateRoute from "../Components/PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -23,10 +24,15 @@ const router = createBrowserRouter([
       {
         path: "/room",
         element: <Room></Room>,
+        loader: () => fetch("http://localhost:3000/rooms"),
       },
       {
         path: "/booking",
-        element: <Bookings></Bookings>,
+        element: (
+          <PrivateRoute>
+            <Bookings></Bookings>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",
