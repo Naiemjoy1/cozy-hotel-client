@@ -36,6 +36,10 @@ const RoomDetails = () => {
       <div className=" container mx-auto flex justify-between my-10">
         <div className="w-3/5 space-y-10 mr-24">
           <p className=" text-4xl font-marcellus font-light">{type}</p>
+          <p className=" text-secondary text-xl">
+            Special Offer:{" "}
+            <span>{specialOffers ? specialOffers : "No Offers"}</span>
+          </p>
           <div className=" flex justify-between">
             <div className=" flex justify-start items-center gap-5 font-roboto">
               <p className="flex items-center gap-4">
@@ -57,10 +61,6 @@ const RoomDetails = () => {
                 {beds} Beds
               </p>
             </div>
-            <p className=" text-secondary text-xl">
-              Special Offer:{" "}
-              <span>{specialOffers ? specialOffers : "No Offers"}</span>
-            </p>
           </div>
 
           <div className=" space-y-5 font-roboto">

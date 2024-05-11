@@ -1,0 +1,95 @@
+[
+  {
+    "type": "Standard Room",
+    "pricePerNight": 100,
+    "roomSize": "300 sqft",
+    "roomImages": [
+      "https://i.ibb.co/X4LbJ8y/pexels-pixabay-271624.jpg",
+      "https://i.ibb.co/gDpSTqK/pexels-pixabay-210604.jpg",
+      "https://i.ibb.co/FwrrV3D/pexels-jvdm-1457842.jpg"
+    ],
+    "description": "Comfortable room with modern amenities for a relaxing stay. Ideal for business or leisure travelers.",
+    "roomFacility": ["Work Desk", "Private Bathroom", "Complimentary Wi-Fi"],
+    "availability": true,
+    "image": "https://i.ibb.co/gDpSTqK/pexels-pixabay-210604.jpg",
+    "specialOffers": "10% off for bookings of 3 nights or more",
+    "guests": 2,
+    "beds": 1
+  },
+  {
+    "type": "Deluxe Room",
+    "pricePerNight": 150,
+    "roomSize": "350 sqft",
+    "roomImages": [
+      "https://i.ibb.co/X4LbJ8y/pexels-pixabay-271624.jpg",
+      "https://i.ibb.co/gDpSTqK/pexels-pixabay-210604.jpg",
+      "https://i.ibb.co/FwrrV3D/pexels-jvdm-1457842.jpg"
+    ],
+    "description": "Spacious room with elegant decor and luxurious amenities. Perfect for a memorable stay experience.",
+    "roomFacility": ["King-sized Bed", "Jacuzzi Tub", "Private Balcony"],
+    "availability": true,
+    "image": "https://i.ibb.co/gDpSTqK/pexels-pixabay-210604.jpg",
+    "specialOffers": null,
+    "guests": 2,
+    "beds": 1
+  },
+  {
+    "type": "Executive Suite",
+    "pricePerNight": 200,
+    "roomSize": "450 sqft",
+    "roomImages": [
+      "https://i.ibb.co/X4LbJ8y/pexels-pixabay-271624.jpg",
+      "https://i.ibb.co/gDpSTqK/pexels-pixabay-210604.jpg",
+      "https://i.ibb.co/FwrrV3D/pexels-jvdm-1457842.jpg"
+    ],
+    "description": "Luxurious suite with separate living area, ideal for business travelers or families seeking extra space.",
+    "roomFacility": [
+      "Separate Living Area",
+      "Work Desk",
+      "Complimentary Breakfast"
+    ],
+    "availability": true,
+    "image": "https://i.ibb.co/gDpSTqK/pexels-pixabay-210604.jpg",
+    "specialOffers": "Free breakfast for bookings made in advance",
+    "guests": 4,
+    "beds": 2
+  },
+  {
+    "type": "Family Room",
+    "pricePerNight": 180,
+    "roomSize": "400 sqft",
+    "roomImages": [
+      "https://i.ibb.co/X4LbJ8y/pexels-pixabay-271624.jpg",
+      "https://i.ibb.co/gDpSTqK/pexels-pixabay-210604.jpg",
+      "https://i.ibb.co/FwrrV3D/pexels-jvdm-1457842.jpg"
+    ],
+    "description": "Spacious room with extra beds, perfect for families traveling together. Enjoy a comfortable stay with all essential amenities.",
+    "roomFacility": [
+      "Extra Beds",
+      "Children's Play Area",
+      "Family-friendly Services"
+    ],
+    "availability": true,
+    "image": "https://i.ibb.co/gDpSTqK/pexels-pixabay-210604.jpg",
+    "specialOffers": null,
+    "guests": 4,
+    "beds": 2
+  },
+  {
+    "type": "Luxury Suite",
+    "pricePerNight": 300,
+    "roomSize": "600 sqft",
+    "roomImages": [
+      "https://i.ibb.co/X4LbJ8y/pexels-pixabay-271624.jpg",
+      "https://i.ibb.co/gDpSTqK/pexels-pixabay-210604.jpg",
+      "https://i.ibb.co/FwrrV3D/pexels-jvdm-1457842.jpg"
+    ],
+    "description": "Opulent suite with premium amenities and stunning views. Indulge in luxury and comfort during your stay.",
+    "roomFacility": ["Panoramic Views", "Mini Bar", "Spa Services"],
+    "availability": true,
+    "image": "https://i.ibb.co/gDpSTqK/pexels-pixabay-210604.jpg",
+    "specialOffers": "20% off for honeymoon packages",
+    "guests": 2,
+    "beds": 1
+  }
+]
