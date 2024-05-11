@@ -17,7 +17,7 @@ const ReviewForm = ({ roomDetails }) => {
     e.preventDefault();
     const timestamp = new Date().toISOString();
     const review = {
-      review: reviewContent,
+      comment: reviewContent,
       rating: rating,
       name: user ? user.displayName : "Guest",
       timestamp: timestamp,
