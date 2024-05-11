@@ -269,7 +269,7 @@ const RoomDetails = () => {
             </ul>
           </div>
           <div>
-            <ReviewForm></ReviewForm>
+            <ReviewForm roomDetails={roomDetails}></ReviewForm>
           </div>
         </div>
         <div className="w-2/5  font-marcellus">
