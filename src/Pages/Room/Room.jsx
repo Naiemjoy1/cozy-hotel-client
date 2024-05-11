@@ -1,5 +1,4 @@
 import { FaCircle, FaRegClock } from "react-icons/fa";
-import { useLoaderData } from "react-router-dom";
 import RoomCard from "./RoomCard";
 import { TiPlus } from "react-icons/ti";
 import PriceFilter from "./PriceFilter";

@@ -281,6 +281,7 @@ const RoomDetails = () => {
             <RoomReservation
               pricePerNight={pricePerNight}
               roomId={_id}
+              roomDetails={roomDetails}
             ></RoomReservation>
           </div>
         </div>

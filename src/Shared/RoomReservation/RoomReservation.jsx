@@ -1,20 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import PropTypes from "prop-types";
+import { AuthContext } from "../../Components/FirebaseProvider/FirebaseProvider";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-const RoomReservation = ({ pricePerNight, roomId }) => {
-  const [checkInDate, setCheckInDate] = useState("");
-  const [checkOutDate, setCheckOutDate] = useState("");
+const RoomReservation = ({ roomDetails }) => {
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
   const [numRooms, setNumRooms] = useState(1);
   const [numAdults, setNumAdults] = useState(1);
   const [numChildren, setNumChildren] = useState(0);
-
-  const handleCheckInDateChange = (e) => {
-    setCheckInDate(e.target.value);
-  };
-
-  const handleCheckOutDateChange = (e) => {
-    setCheckOutDate(e.target.value);
-  };
+  const { user } = useContext(AuthContext);
 
   const handleNumRoomsChange = (e) => {
     setNumRooms(parseInt(e.target.value));
@@ -31,47 +27,68 @@ const RoomReservation = ({ pricePerNight, roomId }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const reservationDetails = {
-      checkInDate,
-      checkOutDate,
+      checkInDate: startDate,
+      checkOutDate: endDate,
       numRooms,
       numAdults,
       numChildren,
       totalCost,
-      roomId,
+      type: roomDetails.type,
+      image: roomDetails.image,
+      description: roomDetails.description,
+      roomImages: roomDetails.roomImages,
+      room_id: roomDetails._id,
+      email: user?.email,
+      user: user?.displayName,
+      pricePerNight: roomDetails.pricePerNight,
     };
     console.log("Reservation Details:", reservationDetails);
+
+    fetch("http://localhost:3000/bookings", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(reservationDetails),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          alert("room booked successfully");
+        }
+      });
   };
 
-  const totalCost = pricePerNight * numRooms;
+  const totalCost = roomDetails.pricePerNight * numRooms;
 
   return (
     <div>
-      {/* <p>{roomId}</p> */}
       <form onSubmit={handleSubmit} className="card-body">
         <div className="form-control">
           <label className="label">
             <span className="label-text text-white">Check-in Date:</span>
           </label>
-          <input
-            type="date"
-            value={checkInDate}
-            onChange={handleCheckInDateChange}
-            className="input input-bordered mt-1"
+          <DatePicker
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+            className="input input-bordered mt-1 w-full"
             required
           />
         </div>
+
         <div className="form-control">
           <label className="label">
             <span className="label-text text-white">Check-out Date:</span>
           </label>
-          <input
-            type="date"
-            value={checkOutDate}
-            onChange={handleCheckOutDateChange}
-            className="input input-bordered mt-1"
+          <DatePicker
+            selected={endDate}
+            onChange={(date) => setEndDate(date)}
+            className="input input-bordered mt-1 w-full"
             required
           />
         </div>
+
         <div className="form-control">
           <label className="label">
             <span className="label-text text-white">Rooms:</span>
@@ -123,14 +140,38 @@ const RoomReservation = ({ pricePerNight, roomId }) => {
             ))}
           </select>
         </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text text-white">Email</span>
+          </label>
+          <input
+            type="email"
+            placeholder="email"
+            defaultValue={user?.email}
+            className="input input-bordered"
+            readOnly
+          />
+        </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text text-white">User Name</span>
+          </label>
+          <input
+            type="text"
+            defaultValue={user?.displayName}
+            placeholder="user name"
+            className="input input-bordered"
+            readOnly
+          />
+        </div>
         <div className="divider divider-secondary"></div>
         <div className=" flex justify-between items-center text-2xl text-white">
           <p>Total Cost:</p>
-          <p className=" text-right">{totalCost}</p>
+          <p className=" text-right">${totalCost}</p>
         </div>
 
         <div className="form-control mt-6">
-          <button className="btn btn-secondary text-white">Reserve Now</button>
+          <button className="btn btn-secondary text-white">Book Now</button>
         </div>
       </form>
     </div>
@@ -138,6 +179,6 @@ const RoomReservation = ({ pricePerNight, roomId }) => {
 };
 
 RoomReservation.propTypes = {
-  pricePerNight: PropTypes.number.isRequired,
+  roomDetails: PropTypes.object.isRequired,
 };
 export default RoomReservation;
