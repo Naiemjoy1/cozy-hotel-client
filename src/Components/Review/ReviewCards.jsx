@@ -1,8 +1,8 @@
+import PropTypes from "prop-types";
 import { GoStarFill } from "react-icons/go";
 
 const ReviewCards = ({ review }) => {
-  const { _id, comment, rating, name, timestamp, review_id, image, email } =
-    review;
+  const { comment, rating, name, timestamp, image } = review;
 
   // Convert timestamp to Date object
   const date = new Date(timestamp);
@@ -14,7 +14,7 @@ const ReviewCards = ({ review }) => {
 
   return (
     <div>
-      <div className="container flex flex-col w-full py-14 px-6 mx-auto divide-y rounded-md bg-white">
+      <div className="container flex flex-col w-full py-14 px-6 mx-auto divide-y rounded-md bg-secondary">
         <div className="flex justify-between p-4">
           <div className="flex space-x-4">
             <div>
@@ -40,6 +40,16 @@ const ReviewCards = ({ review }) => {
       </div>
     </div>
   );
+};
+
+ReviewCards.propTypes = {
+  review: PropTypes.shape({
+    comment: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    timestamp: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default ReviewCards;

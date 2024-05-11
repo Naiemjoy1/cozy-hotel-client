@@ -85,6 +85,8 @@ const RoomReservation = ({ roomDetails }) => {
         console.log(data);
         if (data.insertedId) {
           alert("room booked successfully");
+          setModalIsOpen(false); // Close the modal
+          window.location.reload(); // Reload the page
         }
       });
   };

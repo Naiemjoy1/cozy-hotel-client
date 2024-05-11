@@ -13,9 +13,29 @@ import { TbAirConditioning } from "react-icons/tb";
 import { useLoaderData } from "react-router-dom";
 import RoomReservation from "../../Shared/RoomReservation/RoomReservation";
 import ReviewForm from "../../Shared/ReviewForm/ReviewForm";
+import { useContext, useEffect, useState } from "react";
+import {
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  Autoplay,
+} from "swiper/modules";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import "swiper/css/autoplay";
+import ReviewCards from "../../Components/Review/ReviewCards";
+import { AuthContext } from "../../Components/FirebaseProvider/FirebaseProvider";
 
 const RoomDetails = () => {
   const roomDetails = useLoaderData();
+  const { user } = useContext(AuthContext);
+
   const {
     _id,
     type,
@@ -29,6 +49,37 @@ const RoomDetails = () => {
     guests,
     beds,
   } = roomDetails;
+
+  const [reviews, setReviews] = useState([]);
+  const [bookings, setBookings] = useState([]);
+
+  useEffect(() => {
+    // Fetch reviews when component mounts
+    fetch("http://localhost:3000/reviews")
+      .then((response) => response.json())
+      .then((data) => {
+        const filteredReviews = data.filter(
+          (review) => review.review_id === _id
+        );
+        setReviews(filteredReviews);
+      })
+      .catch((error) => {
+        console.error("Error fetching reviews:", error);
+      });
+  }, [_id]);
+
+  // Fetch bookings for the current room
+  useEffect(() => {
+    fetch("http://localhost:3000/bookings")
+      .then((response) => response.json())
+      .then((data) => {
+        const submitReview = data.filter((roomID) => roomID.room_id === _id);
+        setBookings(submitReview);
+      })
+      .catch((error) => {
+        console.error("Error fetching bookings:", error);
+      });
+  }, []);
 
   return (
     <div className="">
@@ -268,8 +319,37 @@ const RoomDetails = () => {
               </li>
             </ul>
           </div>
+          <div className=" space-y-5">
+            <h3 className="text-4xl font-marcellus">
+              Feedback from our Guests
+            </h3>
+            {reviews.length > 0 ? (
+              <Swiper
+                spaceBetween={20}
+                slidesPerView={1}
+                autoplay={{ delay: 6000 }}
+                loop={true}
+                modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+                className="mySwiper"
+              >
+                {reviews.map((review) => (
+                  <SwiperSlide key={review._id}>
+                    <ReviewCards key={review._id} review={review}></ReviewCards>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            ) : (
+              <p>No reviews yet</p>
+            )}
+          </div>
           <div>
-            <ReviewForm roomDetails={roomDetails}></ReviewForm>
+            {bookings.length > 0 ? (
+              <ReviewForm roomDetails={roomDetails} />
+            ) : (
+              <p className=" font-marcellus text-4xl">
+                For Submit Review You Need To Book Room
+              </p>
+            )}
           </div>
         </div>
         <div className="w-2/5  font-marcellus">
