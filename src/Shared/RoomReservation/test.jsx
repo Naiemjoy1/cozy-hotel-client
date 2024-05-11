@@ -13,7 +13,6 @@ const RoomReservation = ({ roomDetails }) => {
   const [numAdults, setNumAdults] = useState(1);
   const [numChildren, setNumChildren] = useState(0);
   const { user } = useContext(AuthContext);
-  const [reservationDetails, setReservationDetails] = useState(null);
 
   const handleNumRoomsChange = (e) => {
     setNumRooms(parseInt(e.target.value));
@@ -27,33 +26,7 @@ const RoomReservation = ({ roomDetails }) => {
     setNumChildren(parseInt(e.target.value));
   };
 
-  const { type, image, roomSize } = roomDetails;
-
   const handleSubmit = (e) => {
-    e.preventDefault();
-    const details = {
-      checkInDate: startDate,
-      checkOutDate: endDate,
-      numRooms,
-      numAdults,
-      numChildren,
-      totalCost: roomDetails.pricePerNight * numRooms,
-      type: roomDetails.type,
-      image: roomDetails.image,
-      description: roomDetails.description,
-      roomImages: roomDetails.roomImages,
-      room_id: roomDetails._id,
-      email: user?.email,
-      user: user?.displayName,
-      pricePerNight: roomDetails.pricePerNight,
-    };
-    setReservationDetails(details);
-    setModalIsOpen(true);
-  };
-
-  const totalCost = roomDetails.pricePerNight * numRooms;
-
-  const handleConfirm = (e) => {
     e.preventDefault();
     const reservationDetails = {
       checkInDate: startDate,
@@ -88,6 +61,8 @@ const RoomReservation = ({ roomDetails }) => {
         }
       });
   };
+
+  const totalCost = roomDetails.pricePerNight * numRooms;
 
   return (
     <div>
@@ -200,59 +175,30 @@ const RoomReservation = ({ roomDetails }) => {
         <div className="form-control mt-6">
           <button className="btn btn-secondary text-white">Book Now</button>
         </div>
-        <Modal
-          isOpen={modalIsOpen}
-          shouldCloseOnOverlayClick={false}
-          onRequestClose={() => setModalIsOpen(false)}
-          style={{
-            content: {
-              padding: "60px",
-              // background: "#425340",
-            },
-          }}
-        >
-          {reservationDetails && (
-            <div className="flex">
-              <div className="w-1/2 ">
-                <img src={image} alt="" />
-              </div>
-              <div className="w-1/2  p-10 grid grid-cols-2">
-                <h2>Room Type: {type}</h2>
-                <p>Total Cost: ${reservationDetails.totalCost}</p>
-                <p>
-                  Check-in Date:{" "}
-                  {reservationDetails.checkInDate.toLocaleDateString()}
-                </p>
-                <p>
-                  Check-out Date:{" "}
-                  {reservationDetails.checkOutDate.toLocaleDateString()}
-                </p>
-
-                <p>Number of Rooms: {reservationDetails.numRooms}</p>
-                <p>Number of Adults: {reservationDetails.numAdults}</p>
-                <p>Number of Children: {reservationDetails.numChildren}</p>
-
-                <p>Email: {reservationDetails.email}</p>
-                <p>User Name: {reservationDetails.user}</p>
-                <p>Room Size: {roomSize}</p>
-              </div>
+        <div className="my-20">
+          <button
+            className="btn btn-secondary text-white"
+            onClick={() => setModalIsOpen(true)}
+          >
+            open modal
+          </button>
+          <Modal
+            isOpen={modalIsOpen}
+            shouldCloseOnOverlayClick={false}
+            onRequestClose={() => setModalIsOpen(false)}
+          >
+            <h2>title</h2>
+            <h2>body</h2>
+            <div>
+              <button
+                onClick={() => setModalIsOpen(false)}
+                className="btn btn-error"
+              >
+                close
+              </button>
             </div>
-          )}
-          <div className="flex justify-between mt-10">
-            <button
-              className="btn bg-red-600 text-white"
-              onClick={() => setModalIsOpen(false)}
-            >
-              Close
-            </button>
-            <button
-              onClick={handleConfirm}
-              className=" btn btn-primary text-white"
-            >
-              Confirm
-            </button>
-          </div>
-        </Modal>
+          </Modal>
+        </div>
       </form>
     </div>
   );

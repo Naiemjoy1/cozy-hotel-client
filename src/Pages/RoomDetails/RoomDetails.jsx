@@ -12,6 +12,7 @@ import { SlSizeFullscreen } from "react-icons/sl";
 import { TbAirConditioning } from "react-icons/tb";
 import { useLoaderData } from "react-router-dom";
 import RoomReservation from "../../Shared/RoomReservation/RoomReservation";
+import ReviewForm from "../../Shared/ReviewForm/ReviewForm";
 
 const RoomDetails = () => {
   const roomDetails = useLoaderData();
@@ -28,6 +29,7 @@ const RoomDetails = () => {
     guests,
     beds,
   } = roomDetails;
+
   return (
     <div className="">
       <div>
@@ -265,6 +267,9 @@ const RoomDetails = () => {
                 Comfortable terry towels and bathrobes
               </li>
             </ul>
+          </div>
+          <div>
+            <ReviewForm></ReviewForm>
           </div>
         </div>
         <div className="w-2/5  font-marcellus">
