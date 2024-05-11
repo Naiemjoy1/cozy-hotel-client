@@ -15,9 +15,7 @@ const LeafletMap = () => {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
       <Marker position={center}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
+        <Popup>cozystay</Popup>
       </Marker>
     </MapContainer>
   );

@@ -2,9 +2,39 @@ import { FaCircle, FaRegClock } from "react-icons/fa";
 import { useLoaderData } from "react-router-dom";
 import RoomCard from "./RoomCard";
 import { TiPlus } from "react-icons/ti";
+import PriceFilter from "./PriceFilter";
+import { useEffect, useState } from "react";
 
 const Room = () => {
-  const rooms = useLoaderData();
+  // const rooms = useLoaderData();
+  const [rooms, setRooms] = useState([]);
+
+  useEffect(() => {
+    fetchRooms(); // Fetch all rooms initially
+  }, []);
+
+  const fetchRooms = async (minPrice, maxPrice) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/rooms?minPrice=${minPrice || ""}&maxPrice=${
+          maxPrice || ""
+        }`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setRooms(data);
+      } else {
+        console.error("Failed to fetch rooms:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error fetching rooms:", error);
+    }
+  };
+
+  const handleFilterChange = async (minPrice, maxPrice) => {
+    fetchRooms(minPrice, maxPrice); // Fetch rooms with filter
+  };
+
   return (
     <div className="mb-14">
       <div
@@ -54,6 +84,7 @@ const Room = () => {
         </div>
       </div>
       <div className="container mx-auto grid grid-cols-1 gap-10 my-10">
+        <PriceFilter onFilterChange={handleFilterChange}></PriceFilter>
         {rooms.map((room, index) => {
           const alternateLayout = index % 2 === 0;
           console.log("Alternate Layout:", alternateLayout);
