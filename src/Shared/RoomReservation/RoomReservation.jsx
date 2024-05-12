@@ -5,7 +5,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Modal from "react-modal";
 
-const RoomReservation = ({ roomDetails }) => {
+const RoomReservation = ({ roomDetails, bookings, reviews }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -90,6 +90,12 @@ const RoomReservation = ({ roomDetails }) => {
         }
       });
   };
+
+  const isRoomBooked = bookings.some(
+    (booking) => booking.room_id === roomDetails._id
+  );
+
+  const isAuthenticated = !!user;
 
   return (
     <div>
@@ -200,61 +206,71 @@ const RoomReservation = ({ roomDetails }) => {
         </div>
 
         <div className="form-control mt-6">
-          <button className="btn btn-secondary text-white">Book Now</button>
-        </div>
-        <Modal
-          isOpen={modalIsOpen}
-          shouldCloseOnOverlayClick={false}
-          onRequestClose={() => setModalIsOpen(false)}
-          style={{
-            content: {
-              padding: "60px",
-              // background: "#425340",
-            },
-          }}
-        >
-          {reservationDetails && (
-            <div className="flex">
-              <div className="w-1/2 ">
-                <img src={image} alt="" />
-              </div>
-              <div className="w-1/2  p-10 grid grid-cols-2">
-                <h2>Room Type: {type}</h2>
-                <p>Total Cost: ${reservationDetails.totalCost}</p>
-                <p>
-                  Check-in Date:{" "}
-                  {reservationDetails.checkInDate.toLocaleDateString()}
-                </p>
-                <p>
-                  Check-out Date:{" "}
-                  {reservationDetails.checkOutDate.toLocaleDateString()}
-                </p>
-
-                <p>Number of Rooms: {reservationDetails.numRooms}</p>
-                <p>Number of Adults: {reservationDetails.numAdults}</p>
-                <p>Number of Children: {reservationDetails.numChildren}</p>
-
-                <p>Email: {reservationDetails.email}</p>
-                <p>User Name: {reservationDetails.user}</p>
-                <p>Room Size: {roomSize}</p>
-              </div>
-            </div>
+          {isRoomBooked ? (
+            <p className=" bg-red-600 text-center text-white py-2 rounded-lg">
+              unavailable
+            </p>
+          ) : (
+            <button className="btn btn-secondary text-white" type="submit">
+              Book Now
+            </button>
           )}
-          <div className="flex justify-between mt-10">
-            <button
-              className="btn bg-red-600 text-white"
-              onClick={() => setModalIsOpen(false)}
-            >
-              Close
-            </button>
-            <button
-              onClick={handleConfirm}
-              className=" btn btn-primary text-white"
-            >
-              Confirm
-            </button>
-          </div>
-        </Modal>
+        </div>
+        {isAuthenticated && (
+          <Modal
+            isOpen={modalIsOpen}
+            shouldCloseOnOverlayClick={false}
+            onRequestClose={() => setModalIsOpen(false)}
+            style={{
+              content: {
+                padding: "60px",
+                // background: "#425340",
+              },
+            }}
+          >
+            {reservationDetails && (
+              <div className="flex">
+                <div className="w-1/2 ">
+                  <img src={image} alt="" />
+                </div>
+                <div className="w-1/2  p-10 grid grid-cols-2">
+                  <h2>Room Type: {type}</h2>
+                  <p>Total Cost: ${reservationDetails.totalCost}</p>
+                  <p>
+                    Check-in Date:{" "}
+                    {reservationDetails.checkInDate.toLocaleDateString()}
+                  </p>
+                  <p>
+                    Check-out Date:{" "}
+                    {reservationDetails.checkOutDate.toLocaleDateString()}
+                  </p>
+
+                  <p>Number of Rooms: {reservationDetails.numRooms}</p>
+                  <p>Number of Adults: {reservationDetails.numAdults}</p>
+                  <p>Number of Children: {reservationDetails.numChildren}</p>
+
+                  <p>Email: {reservationDetails.email}</p>
+                  <p>User Name: {reservationDetails.user}</p>
+                  <p>Room Size: {roomSize}</p>
+                </div>
+              </div>
+            )}
+            <div className="flex justify-between mt-10">
+              <button
+                className="btn bg-red-600 text-white"
+                onClick={() => setModalIsOpen(false)}
+              >
+                Close
+              </button>
+              <button
+                onClick={handleConfirm}
+                className=" btn btn-primary text-white"
+              >
+                Confirm
+              </button>
+            </div>
+          </Modal>
+        )}
       </form>
     </div>
   );

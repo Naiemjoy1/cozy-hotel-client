@@ -81,6 +81,12 @@ const RoomDetails = () => {
       });
   }, []);
 
+  const isRoomBooked = bookings.some(
+    (booking) => booking.room_id === roomDetails._id
+  );
+
+  const isAuthenticated = !!user;
+
   return (
     <div className="">
       <div>
@@ -324,6 +330,13 @@ const RoomDetails = () => {
               Feedback from our Guests
             </h3>
             {reviews.length > 0 ? (
+              <p>Total Reviews: {reviews.length}</p>
+            ) : (
+              <p>
+                <progress className="progress w-56"></progress>
+              </p>
+            )}
+            {reviews.length > 0 ? (
               <Swiper
                 spaceBetween={20}
                 slidesPerView={1}
@@ -343,13 +356,20 @@ const RoomDetails = () => {
             )}
           </div>
           <div>
-            {bookings.length > 0 ? (
+            {isAuthenticated && isRoomBooked ? (
+              <ReviewForm roomDetails={roomDetails} />
+            ) : (
+              <p className="font-marcellus text-4xl">
+                For Submit Review You Need To Book Room
+              </p>
+            )}
+            {/* {bookings.length > 0 ? (
               <ReviewForm roomDetails={roomDetails} />
             ) : (
               <p className=" font-marcellus text-4xl">
                 For Submit Review You Need To Book Room
               </p>
-            )}
+            )} */}
           </div>
         </div>
         <div className="w-2/5  font-marcellus">
@@ -367,6 +387,8 @@ const RoomDetails = () => {
               pricePerNight={pricePerNight}
               roomId={_id}
               roomDetails={roomDetails}
+              reviews={reviews}
+              bookings={bookings}
             ></RoomReservation>
           </div>
         </div>
