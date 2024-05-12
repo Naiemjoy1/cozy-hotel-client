@@ -4,8 +4,12 @@ import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { SlSizeFullscreen } from "react-icons/sl";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { useContext } from "react";
+import { AuthContext } from "../FirebaseProvider/FirebaseProvider";
 
 const HotelRoomsCard = ({ room }) => {
+  const { user } = useContext(AuthContext);
+
   const {
     _id,
     type,
@@ -61,7 +65,7 @@ const HotelRoomsCard = ({ room }) => {
           <p>{truncateDescription(description)}</p>
           <Link to={`/roomdetails/${_id}`}>
             <button className="btn btn-secondary  text-white">
-              Book Now{" "}
+              Book Now
               <span className=" text-xl">
                 <MdKeyboardDoubleArrowRight />
               </span>

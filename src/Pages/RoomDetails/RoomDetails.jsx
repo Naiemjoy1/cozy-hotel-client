@@ -85,6 +85,10 @@ const RoomDetails = () => {
     (booking) => booking.room_id === roomDetails._id
   );
 
+  const isFeedback = reviews.some(
+    (review) => review.review_id === roomDetails._id
+  );
+
   const isAuthenticated = !!user;
 
   return (
@@ -332,9 +336,7 @@ const RoomDetails = () => {
             {reviews.length > 0 ? (
               <p>Total Reviews: {reviews.length}</p>
             ) : (
-              <p>
-                <progress className="progress w-56"></progress>
-              </p>
+              <p>No Review Yet!!</p>
             )}
             {reviews.length > 0 ? (
               <Swiper
@@ -357,7 +359,13 @@ const RoomDetails = () => {
           </div>
           <div>
             {isAuthenticated && isRoomBooked ? (
-              <ReviewForm roomDetails={roomDetails} />
+              isFeedback ? (
+                <p className="font-marcellus text-4xl">
+                  Your Feedback Submitted
+                </p>
+              ) : (
+                <ReviewForm roomDetails={roomDetails} />
+              )
             ) : (
               <p className="font-marcellus text-4xl">
                 For Submit Review You Need To Book Room

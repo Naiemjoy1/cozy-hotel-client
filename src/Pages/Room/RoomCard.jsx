@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { TiPlus } from "react-icons/ti";
 import {
   Navigation,
@@ -17,8 +17,10 @@ import "swiper/css/scrollbar";
 import "swiper/css/autoplay";
 import { Link } from "react-router-dom";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
+import { AuthContext } from "../../Components/FirebaseProvider/FirebaseProvider";
 
 const RoomCard = ({ room, alternateLayout }) => {
+  const { user } = useContext(AuthContext);
   const {
     _id,
     type,
@@ -63,15 +65,25 @@ const RoomCard = ({ room, alternateLayout }) => {
             )}
           </div>
           <div className="flex items-center gap-6">
-            <Link to={`/roomdetails/${_id}`}>
-              <button className="btn btn-primary text-white font-marcellus">
-                Room Details{" "}
-                <span className=" text-xl">
-                  <MdKeyboardDoubleArrowRight />
-                </span>
-              </button>
-            </Link>
-
+            {user ? (
+              <Link to={`/roomdetails/${_id}`}>
+                <button className="btn btn-primary text-white font-marcellus">
+                  Room Details
+                  <span className=" text-xl">
+                    <MdKeyboardDoubleArrowRight />
+                  </span>
+                </button>
+              </Link>
+            ) : (
+              <Link to={`/details/${_id}`}>
+                <button className="btn btn-primary text-white font-marcellus">
+                  Room Details
+                  <span className=" text-xl">
+                    <MdKeyboardDoubleArrowRight />
+                  </span>
+                </button>
+              </Link>
+            )}
             <p className=" font-marcellus text-secondary text-xl">
               From ${pricePerNight}/Night
             </p>
@@ -93,13 +105,23 @@ const RoomCard = ({ room, alternateLayout }) => {
           >
             {roomImages.map((imageUrl, index) => (
               <SwiperSlide key={index}>
-                <Link to={`/roomdetails/${_id}`}>
-                  <img
-                    src={imageUrl}
-                    alt={`Room ${index + 1}`}
-                    className="w-full h-[450px]"
-                  />
-                </Link>
+                {user ? (
+                  <Link to={`/roomdetails/${_id}`}>
+                    <img
+                      src={imageUrl}
+                      alt={`Room ${index + 1}`}
+                      className="w-full h-[450px]"
+                    />
+                  </Link>
+                ) : (
+                  <Link to={`/details/${_id}`}>
+                    <img
+                      src={imageUrl}
+                      alt={`Room ${index + 1}`}
+                      className="w-full h-[450px]"
+                    />
+                  </Link>
+                )}
               </SwiperSlide>
             ))}
           </Swiper>

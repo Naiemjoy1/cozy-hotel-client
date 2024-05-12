@@ -14,7 +14,7 @@ const ReviewCards = ({ review }) => {
 
   return (
     <div>
-      <div className="container flex flex-col w-full py-14 px-6 mx-auto divide-y rounded-md bg-secondary">
+      <div className="container flex flex-col w-full py-14 px-6 mx-auto divide-y rounded-md bg-secondary h-[300px]">
         <div className="flex justify-between p-4">
           <div className="flex space-x-4">
             <div>

@@ -5,7 +5,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Modal from "react-modal";
 
-const RoomReservation = ({ roomDetails, bookings, reviews }) => {
+const RoomReservation = ({ roomDetails, bookings }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -278,5 +278,6 @@ const RoomReservation = ({ roomDetails, bookings, reviews }) => {
 
 RoomReservation.propTypes = {
   roomDetails: PropTypes.object.isRequired,
+  bookings: PropTypes.array.isRequired,
 };
 export default RoomReservation;

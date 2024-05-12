@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import HotelRoomsCard from "./HotelRoomsCard";
 import {
   Navigation,
@@ -15,9 +15,12 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/autoplay";
+import { AuthContext } from "../FirebaseProvider/FirebaseProvider";
 
 const HotelRooms = () => {
   const [rooms, setRooms] = useState([]);
+
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     fetch("http://localhost:3000/rooms")
