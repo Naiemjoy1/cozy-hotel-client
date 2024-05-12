@@ -18,10 +18,13 @@ import ReviewCards from "./ReviewCards";
 
 const Review = () => {
   const [reviews, setReviews] = useState([]);
+  const [selectedRating, setSelectedRating] = useState(5);
 
   useEffect(() => {
     // Fetch reviews when component mounts
-    fetch("http://localhost:3000/reviews")
+    fetch(
+      `http://localhost:3000/reviews?minRating=${selectedRating}&maxRating=${selectedRating}`
+    )
       .then((response) => response.json())
       .then((data) => {
         setReviews(data);
@@ -29,7 +32,12 @@ const Review = () => {
       .catch((error) => {
         console.error("Error fetching reviews:", error);
       });
-  }, []);
+  }, [selectedRating]);
+
+  const handleRatingChange = (e) => {
+    const rating = parseInt(e.target.value);
+    setSelectedRating(rating);
+  };
 
   return (
     <div className="space-y-10 my-10">
@@ -45,20 +53,30 @@ const Review = () => {
               commodi id officiis itaque esse adipisci, necessitatibus
               asperiores, illo odio.
             </p>
+            <div className="flex justify-center mt-5">
+              <label className="mr-3">Select Rating:</label>
+              <select
+                className=" bg-secondary px-5 py-1 rounded-lg"
+                onChange={handleRatingChange}
+                value={selectedRating}
+              >
+                {[1, 2, 3, 4, 5].map((rating) => (
+                  <option key={rating} value={rating}>
+                    {rating}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
           <div>
             <Swiper
               spaceBetween={20}
               slidesPerView={2}
               navigation={true}
-              autoplay={{ delay: 6000 }}
+              // autoplay={{ delay: 6000 }}
               loop={true}
-              // pagination={{ clickable: true }}
-              // scrollbar={{ draggable: true }}
               modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
               className="mySwiper"
-              // onSwiper={(swiper) => console.log(swiper)}
-              // onSlideChange={() => console.log("slide change")}
             >
               {reviews.map((review) => (
                 <SwiperSlide key={review._id}>
@@ -67,32 +85,6 @@ const Review = () => {
               ))}
             </Swiper>
           </div>
-        </div>
-      </div>
-      <div className="text-center space-y-5">
-        <p className="font-marcellus text-5xl text-primary">
-          Sign up for our newsletter
-        </p>
-        <div className="flex justify-center">
-          <form>
-            <fieldset className="form-control w-80">
-              <label className="label">
-                <span className="label-text">Enter your email address</span>
-              </label>
-              <div className="join">
-                <input
-                  type="email"
-                  placeholder="Your Email"
-                  className="input input-bordered join-item"
-                  // value={email}
-                  // onChange={handleEmailChange}
-                />
-                <button type="submit" className="btn btn-primary join-item">
-                  Subscribe
-                </button>
-              </div>
-            </fieldset>
-          </form>
         </div>
       </div>
     </div>
