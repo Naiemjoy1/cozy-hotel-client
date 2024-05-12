@@ -15,34 +15,33 @@ const Bookings = () => {
   }, [url]);
 
   const handleDelete = (id) => {
-    const proceed = confirm("are you sure want to delete");
-    if (proceed) {
-      fetch(`http://localhost:3000/bookings/${id}`, {
-        method: "DELETE",
-        headers: {
-          "content-type": "applicaion/json",
-        },
-        body: JSON.stringify({ status: "confirm" }),
+    // Proceed with deletion directly
+    fetch(`http://localhost:3000/bookings/${id}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ status: "confirm" }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.deletedCount > 0) {
+          // alert("Deleted successfully");
+          // Remove the deleted booking from the state
+          const remaining = bookings.filter((booking) => booking._id !== id);
+          setBookings(remaining);
+        }
       })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          if (data.deletedCount > 0) {
-            alert("Deleted successfully");
-            const remaining = bookings.filter((booking) => booking._id !== id);
-            setBookings(remaining);
-          }
-        })
-        .catch((error) => {
-          console.error("Error deleting booking:", error);
-          alert("An error occurred while deleting the booking.");
-        });
-    }
+      .catch((error) => {
+        console.error("Error deleting booking:", error);
+        alert("An error occurred while deleting the booking.");
+      });
   };
 
   return (
-    <div className="min-h-[calc(100vh-327px)] flex gap-10 my-20">
-      <div className=" w-3/5">
+    <div className="min-h-[calc(100vh-327px)] flex justify-center gap-10 my-20">
+      <div className="">
         <div className=" relative mb-10">
           <img className="w-full" src="" alt="" />
           <div className="absolute rounded-lg h-full flex items-center left-0 top-0 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0)]"></div>
@@ -64,6 +63,7 @@ const Bookings = () => {
                 <th>QUANTITY</th>
                 <th>SUBTOTAL</th>
                 <th></th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -78,7 +78,7 @@ const Bookings = () => {
           </table>
         </div>
       </div>
-      <div className="w-1/4 bg-primary text-white  p-10">
+      {/* <div className="w-1/4 bg-primary text-white  p-10">
         <p className=" font-marcellus text-2xl">Cart totals</p>
         <div className="divider divider-secondary"></div>
         <div className="flex justify-between items-center">
@@ -91,7 +91,7 @@ const Bookings = () => {
           <p>Subtotal</p>
         </div>
         <div className="divider divider-secondary"></div>
-      </div>
+      </div> */}
     </div>
   );
 };

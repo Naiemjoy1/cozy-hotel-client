@@ -1,4 +1,8 @@
 import PropTypes from "prop-types";
+import CartModal from "./cartModal";
+import ReviewModal from "./reviewModal";
+import { Link } from "react-router-dom";
+import UpdateModal from "../../Components/update/UpdateModal";
 
 const Cart = ({ booking, handleDelete }) => {
   const {
@@ -13,28 +17,16 @@ const Cart = ({ booking, handleDelete }) => {
     pricePerNight,
   } = booking;
 
+  // Function to format ISO date string into readable date
+  const formatDate = (isoDate) => {
+    const date = new Date(isoDate);
+    return date.toLocaleDateString(); // Formats date in user's local time zone
+  };
+
   return (
     <tr>
       <th>
-        <button
-          onClick={() => handleDelete(_id)}
-          className="btn btn-circle btn-outline hover:bg-red-600 hover:border-none"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-        </button>
+        <CartModal booking={booking} handleDelete={handleDelete}></CartModal>
       </th>
       <td>
         <div className="flex items-center gap-3">
@@ -48,8 +40,8 @@ const Cart = ({ booking, handleDelete }) => {
       <td className=" space-y-2">
         <p className=" font-marcellus text-2xl">{type}</p>
         <p>
-          <span className=" font-roboto font-medium">Date:</span> {checkInDate}{" "}
-          - {checkOutDate}
+          <span className=" font-roboto font-medium">Date:</span>{" "}
+          {formatDate(checkInDate)} - {formatDate(checkOutDate)}
         </p>
         <p>
           <span className="font-roboto font-medium">Details:</span> Rooms:{" "}
@@ -59,7 +51,15 @@ const Cart = ({ booking, handleDelete }) => {
       <td>${pricePerNight}</td>
       <td>{numRooms}</td>
       <th>${totalCost}</th>
-      <th>Confirm</th>
+      <th>
+        <ReviewModal booking={booking}></ReviewModal>
+      </th>
+      <th>
+        {/* <UpdateModal booking={booking}></UpdateModal> */}
+        <Link to={`/update/${_id}`}>
+          <button className="btn btn-sm bg-secondary text-white">update</button>
+        </Link>
+      </th>
     </tr>
   );
 };

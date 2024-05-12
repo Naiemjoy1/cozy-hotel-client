@@ -4,42 +4,17 @@ import PropTypes from "prop-types";
 import { AuthContext } from "../../Components/FirebaseProvider/FirebaseProvider";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const BookingsUpdate = () => {
+  const roomDetails = useLoaderData();
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+  const [numRooms, setNumRooms] = useState(1);
+  const [numAdults, setNumAdults] = useState(1);
+  const [numChildren, setNumChildren] = useState(0);
   const { user } = useContext(AuthContext);
-  const roomDetails = useLoaderData();
-
-  const {
-    numRooms: initialNumRooms,
-    numAdults: initialNumAdults,
-    numChildren: initialNumChildren,
-  } = roomDetails;
-
-  // Setting initial states
-  const [numRooms, setNumRooms] = useState(initialNumRooms || 1);
-  const [numAdults, setNumAdults] = useState(initialNumAdults || 1);
-  const [numChildren, setNumChildren] = useState(initialNumChildren || 0);
-
-  const {
-    _id,
-    checkInDate,
-    checkOutDate,
-    numChildrentotalCost,
-    type,
-    room_id,
-    email,
-    pricePerNight,
-  } = roomDetails;
-
-  const handleStartDateChange = (date) => {
-    setStartDate(date);
-  };
-
-  const handleEndDateChange = (date) => {
-    setEndDate(date);
-  };
 
   const handleNumRoomsChange = (e) => {
     setNumRooms(parseInt(e.target.value));
@@ -52,6 +27,18 @@ const BookingsUpdate = () => {
   const handleNumChildrenChange = (e) => {
     setNumChildren(parseInt(e.target.value));
   };
+
+  const handleStartDateChange = (date) => {
+    setStartDate(date);
+  };
+
+  const handleEndDateChange = (date) => {
+    setEndDate(date);
+  };
+
+  const { pricePerNight, _id } = roomDetails;
+
+  const totalCost = roomDetails.pricePerNight * numRooms;
 
   const handleUpdate = (e) => {
     e.preventDefault();
@@ -91,22 +78,20 @@ const BookingsUpdate = () => {
       })
       .then((data) => {
         console.log(data);
-        alert("Update booked successfully");
+        // alert("Update booked successfully");
+        toast.success("Update booking successfully");
       })
       .catch((error) => {
         console.error("Error updating booking:", error.message);
-        alert("Failed to update booking");
+        // alert("Failed to update booking");
+        toast.warn("Update booking successfully");
       });
   };
-  console.log("Price Per Night:", pricePerNight);
-  console.log("Number of Rooms:", numRooms);
-
-  const totalCost = pricePerNight * numRooms;
 
   return (
     <div className="min-h-[calc(100vh-246px)] container mx-auto">
       <h2 className="text-4xl font-marcellus text-center">Update Booking</h2>
-      <p>{pricePerNight}</p>
+      {/* <p>{type}</p> */}
       <form onSubmit={handleUpdate} className="card-body">
         <div className="form-control">
           <label className="label">
@@ -196,6 +181,7 @@ const BookingsUpdate = () => {
           </button>
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 };
