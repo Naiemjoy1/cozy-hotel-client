@@ -15,6 +15,8 @@ const RoomReservation = ({ roomDetails, bookings }) => {
   const { user } = useContext(AuthContext);
   const [reservationDetails, setReservationDetails] = useState(null);
 
+  console.log(bookings.length);
+
   const handleNumRoomsChange = (e) => {
     setNumRooms(parseInt(e.target.value));
   };
@@ -91,15 +93,31 @@ const RoomReservation = ({ roomDetails, bookings }) => {
       });
   };
 
+  // const isRoomBooked = bookings.some(
+  //   (booking) => booking.room_id === roomDetails._id
+  // );
+
+  const isAuthenticated = !!user;
+
   const isRoomBooked = bookings.some(
     (booking) => booking.room_id === roomDetails._id
   );
 
-  const isAuthenticated = !!user;
+  // Determine button color based on booking status
+  const buttonColor = isRoomBooked ? "bg-red-600" : "bg-green-600";
 
   return (
     <div>
       <form onSubmit={handleSubmit} className="card-body">
+        <div className="form-control mt-6">
+          <button
+            className={`btn text-white ${buttonColor}`}
+            type="submit"
+            disabled={isRoomBooked} // Disable button if room is already booked
+          >
+            {isRoomBooked ? "Room Booked" : "Book Now"}
+          </button>
+        </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text text-white">Check-in Date:</span>
