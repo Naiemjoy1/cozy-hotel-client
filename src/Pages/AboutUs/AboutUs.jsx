@@ -1,47 +1,63 @@
-import { useState } from "react";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
+import Benefits from "../../Components/Benefits/Benefits";
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
-
-const BasicModal = () => {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
+const AboutUs = () => {
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
-
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+      <div
+        className="hero h-[450px]"
+        style={{
+          backgroundImage:
+            "url(https://i.ibb.co/Kzmm40K/pexels-quang-nguyen-vinh-222549-14036250.jpg)",
+        }}
       >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
-        </Box>
-      </Modal>
+        <div className="hero-overlay bg-opacity-60"></div>
+        <div className="hero-content text-center text-neutral-content">
+          <div className="max-w-md">
+            <h1 className="mb-5 text-5xl font-bold text-white font-marcellus">
+              About The Hotel
+            </h1>
+            <p className="mb-5 text-white font-jost">
+              A luxury boutique hotel in the heart of wine country
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="container mx-auto">
+        <div className="text-center w-1/2 mx-auto space-y-5 my-14">
+          <p>WELCOME TO COZYSTAY LODGE</p>
+          <p className=" font-marcellus text-4xl ">
+            Exceptional Chalets, tailored services and the experience of unique
+            holidays
+          </p>
+          <p>
+            The CozyStay Lodge consists of exceptional hotels chalets forming a
+            harmonious and refined environment. Each room is unique, with
+            colourful décor, Victorian furniture and claw-foot bathtubs. We
+            welcome guests with authentic wine country hospitality. Stay, sip,
+            and savor the best of Napa wine country at CozyStay.
+          </p>
+        </div>
+        <div className="grid grid-cols-3 h-[550px] items-center justify-center gap-5 mb-14">
+          <img
+            className="h-[550px]"
+            src="https://i.ibb.co/SQd718m/pexels-mchodakowski-693895.jpg"
+            alt=""
+          />
+          <img
+            className="h-[550px]"
+            src="https://i.ibb.co/6bwX62q/pexels-eduardo-romero-817034-3124079.jpg"
+            alt=""
+          />
+          <img
+            className="h-[550px]"
+            src="https://i.ibb.co/Zf4Pxg9/pexels-talksintheam-2263510.jpg"
+            alt=""
+          />
+        </div>
+        <Benefits></Benefits>
+      </div>
     </div>
   );
 };
 
-export default BasicModal;
+export default AboutUs;
