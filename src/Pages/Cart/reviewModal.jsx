@@ -22,47 +22,41 @@ const ReviewModal = ({ booking }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const { room_id } = booking;
+  const { _id } = booking;
 
   const { user } = useContext(AuthContext);
 
+  const [hasSubmittedFeedback, setHasSubmittedFeedback] = useState(false);
   const [reviews, setReviews] = useState([]);
-  const [roomDetails, setRoomDetails] = useState([]);
 
   useEffect(() => {
-    // Fetch reviews when component mounts
-    fetch("http://localhost:3000/reviews")
-      .then((response) => response.json())
-      .then((data) => {
-        const filteredReviews = reviews.filter(
-          (review) => review.review_id === room_id
-        );
-        setReviews(filteredReviews);
-        console.log("Reviews:", data); // Log reviews data
-      })
-      .catch((error) => {
-        console.error("Error fetching reviews:", error);
-      });
-  }, []);
-
-  // Fetch bookings for the current room
-  useEffect(() => {
-    fetch("http://localhost:3000/rooms")
-      .then((response) => response.json())
-      .then((data) => {
-        const filteredRoomDetails = roomDetails.filter(
-          (room) => room._id === room_id
-        );
-        setRoomDetails(filteredRoomDetails);
-        console.log("Room Details:", data); // Log room details data
-      })
-      .catch((error) => {
-        console.error("Error fetching room details:", error);
-      });
-  }, []);
+    if (user) {
+      // Fetch reviews when component mounts
+      fetch("http://localhost:3000/reviews")
+        .then((response) => response.json())
+        .then((data) => {
+          // Check if the user has already submitted feedback
+          const alreadySubmitted = data.some(
+            (review) => review.review_id === _id && review.email === user.email
+          );
+          setHasSubmittedFeedback(alreadySubmitted);
+          setReviews(data);
+        })
+        .catch((error) => {
+          console.error("Error fetching reviews:", error);
+        });
+    }
+  }, [_id, user]);
 
   return (
     <div>
+      <p>booking id : {_id}</p>
+      <p>
+        review id:
+        {reviews.map((review) => (
+          <span key={review._id}>{review.review_id} </span>
+        ))}
+      </p>
       <button
         onClick={handleOpen}
         className="btn btn-sm bg-secondary text-white"
@@ -77,12 +71,17 @@ const ReviewModal = ({ booking }) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          {user?.email &&
-          reviews.some((review) => review.email === user.email) ? (
-            <FromForFeedback booking={booking} />
+          {/* {user && hasBookedRoom ? (
+            hasSubmittedFeedback ? (
+              <Typography variant="h6">Already Submitted Feedback.</Typography>
+            ) : (
+              <FromForFeedback booking={booking} />
+            )
           ) : (
-            <Typography variant="h6">Already Submitted Feedback.</Typography>
-          )}
+            <Typography variant="h6">
+              You need to book a room to submit feedback.
+            </Typography>
+          )} */}
         </Box>
       </Modal>
     </div>

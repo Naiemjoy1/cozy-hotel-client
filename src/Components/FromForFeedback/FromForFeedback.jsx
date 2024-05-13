@@ -6,7 +6,7 @@ const FromForFeedback = ({ booking }) => {
   const [rating, setRating] = useState(1);
   const [reviewContent, setReviewContent] = useState("");
 
-  const { room_id } = booking;
+  const { _id } = booking;
 
   const handleRatingChange = (e) => {
     setRating(parseInt(e.target.value));
@@ -20,7 +20,7 @@ const FromForFeedback = ({ booking }) => {
       rating: rating,
       name: user ? user.displayName : "Guest",
       timestamp: timestamp,
-      review_id: room_id,
+      review_id: _id,
       image: user?.photoURL,
       email: user?.email,
     };
