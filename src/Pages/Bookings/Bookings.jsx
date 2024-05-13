@@ -1,6 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Components/FirebaseProvider/FirebaseProvider";
 import Cart from "../Cart/Cart";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Bookings = () => {
   const { user } = useContext(AuthContext);
@@ -27,7 +29,7 @@ const Bookings = () => {
       .then((data) => {
         console.log(data);
         if (data.deletedCount > 0) {
-          // alert("Deleted successfully");
+          alert("Deleted successfully");
           // Remove the deleted booking from the state
           const remaining = bookings.filter((booking) => booking._id !== id);
           setBookings(remaining);
@@ -36,6 +38,33 @@ const Bookings = () => {
       .catch((error) => {
         console.error("Error deleting booking:", error);
         alert("An error occurred while deleting the booking.");
+      });
+  };
+
+  const handleCancel = (id) => {
+    // Proceed with cancellation request
+    fetch(`http://localhost:3000/bookings/${id}/cancel`, {
+      method: "POST",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message === "Booking canceled successfully") {
+          // Update bookings state to remove canceled booking
+          const updatedBookings = bookings.filter(
+            (booking) => booking._id !== id
+          );
+          setBookings(updatedBookings);
+          // alert("Booking canceled successfully.");
+          toast.success("Booking cancel successfully");
+        } else {
+          // alert("Failed to cancel booking. Please try again later.");
+          toast.error("Failed to cancel booking");
+        }
+      })
+      .catch((error) => {
+        console.error("Error canceling booking:", error);
+        // alert("An error occurred while canceling the booking.");
+        toast.error("An error occurred while canceling the booking.");
       });
   };
 
@@ -72,6 +101,7 @@ const Bookings = () => {
                   key={booking._id}
                   booking={booking}
                   handleDelete={handleDelete}
+                  handleCancel={handleCancel}
                 ></Cart>
               ))}
             </tbody>
@@ -92,6 +122,7 @@ const Bookings = () => {
         </div>
         <div className="divider divider-secondary"></div>
       </div> */}
+      <ToastContainer />
     </div>
   );
 };

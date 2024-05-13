@@ -13,6 +13,7 @@ import PrivateRoute from "../Components/PrivateRoute/PrivateRoute";
 import BookRoom from "../Pages/BookRoom/BookRoom";
 import Cart from "../Pages/Cart/Cart";
 import BookingsUpdate from "../Components/update/BookingsUpdate";
+import BookingTestPage from "../Components/BookingTestPage/BookingTestPage";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
         path: "/room",
         element: <Room></Room>,
         loader: () => fetch("http://localhost:3000/rooms"),
+      },
+      {
+        path: "/testpage",
+        element: <BookingTestPage></BookingTestPage>,
       },
       {
         path: "/booking",

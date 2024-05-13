@@ -4,7 +4,7 @@ import ReviewModal from "./reviewModal";
 import { Link } from "react-router-dom";
 import UpdateModal from "../../Components/update/UpdateModal";
 
-const Cart = ({ booking, handleDelete }) => {
+const Cart = ({ booking, handleDelete, handleCancel }) => {
   const {
     _id,
     checkInDate,
@@ -53,6 +53,14 @@ const Cart = ({ booking, handleDelete }) => {
       <th>${totalCost}</th>
       <th>
         <ReviewModal booking={booking}></ReviewModal>
+      </th>
+      <th>
+        <button
+          onClick={() => handleCancel(_id)} // Call handleCancel function with booking ID
+          className="btn btn-sm bg-red-600 text-white"
+        >
+          Cancel
+        </button>
       </th>
       <th>
         {/* <UpdateModal booking={booking}></UpdateModal> */}
