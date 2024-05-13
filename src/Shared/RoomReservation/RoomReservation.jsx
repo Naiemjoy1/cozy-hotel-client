@@ -73,7 +73,7 @@ const RoomReservation = ({ roomDetails, bookings }) => {
     };
     console.log("Reservation Details:", reservationDetails);
 
-    fetch("https://hotel-booking-server-lake.vercel.app/bookings", {
+    fetch("http://localhost:3000/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",

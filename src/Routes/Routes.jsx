@@ -28,8 +28,7 @@ const router = createBrowserRouter([
       {
         path: "/room",
         element: <Room></Room>,
-        loader: () =>
-          fetch("https://hotel-booking-server-lake.vercel.app/rooms"),
+        loader: () => fetch("http://localhost:3000/rooms"),
       },
       {
         path: "/testpage",
@@ -42,16 +41,13 @@ const router = createBrowserRouter([
             <Bookings></Bookings>
           </PrivateRoute>
         ),
-        loader: () =>
-          fetch("https://hotel-booking-server-lake.vercel.app/rooms"),
+        loader: () => fetch("http://localhost:3000/rooms"),
       },
       {
         path: "/update/:id",
         element: <BookingsUpdate></BookingsUpdate>,
         loader: ({ params }) =>
-          fetch(
-            `https://hotel-booking-server-lake.vercel.app/bookings/${params.id}`
-          ),
+          fetch(`http://localhost:3000/bookings/${params.id}`),
       },
       {
         path: "/login",
@@ -77,33 +73,25 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(
-            `https://hotel-booking-server-lake.vercel.app/rooms/${params.id}`
-          ),
+          fetch(`http://localhost:3000/rooms/${params.id}`),
       },
       {
         path: "/details/:id",
         element: <RoomDetails></RoomDetails>,
         loader: ({ params }) =>
-          fetch(
-            `https://hotel-booking-server-lake.vercel.app/rooms/${params.id}`
-          ),
+          fetch(`http://localhost:3000/rooms/${params.id}`),
       },
       {
         path: "/bookroom/:id",
         element: <BookRoom></BookRoom>,
         loader: ({ params }) =>
-          fetch(
-            `https://hotel-booking-server-lake.vercel.app/rooms/${params.id}`
-          ),
+          fetch(`http://localhost:3000/rooms/${params.id}`),
       },
       {
         path: "/cart/:id",
         element: <Cart></Cart>,
         loader: ({ params }) =>
-          fetch(
-            `https://hotel-booking-server-lake.vercel.app/rooms/${params.id}`
-          ),
+          fetch(`http://localhost:3000/rooms/${params.id}`),
       },
     ],
   },

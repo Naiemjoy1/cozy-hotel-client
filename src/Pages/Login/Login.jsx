@@ -1,17 +1,20 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { IoIosEyeOff, IoMdEye } from "react-icons/io";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 import useAuth from "../../Components/hooks/useAuth";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
+import axios from "axios";
 
 const Login = () => {
   const { signInUser } = useAuth();
+  const location = useLocation();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  console.log(location);
 
   const {
     register,
@@ -25,10 +28,22 @@ const Login = () => {
     signInUser(email, password)
       .then((result) => {
         console.log(result.user);
+        const user = { email };
         toast.success("Login Successfully", {
           onClose: () => {
             reset();
-            navigate("/");
+            //
+            // get access token
+            axios
+              .post("http://localhost:3000/jwt", user, {
+                withCredentials: true,
+              })
+              .then((res) => {
+                console.log(res.data);
+                if (res.data.success) {
+                  navigate(location?.state ? location?.state : "/");
+                }
+              });
           },
         });
       })

@@ -28,7 +28,7 @@ const ReviewForm = ({ roomDetails }) => {
     console.log("Review:", review);
 
     // Submit the review to the server
-    fetch("https://hotel-booking-server-lake.vercel.app/reviews", {
+    fetch("http://localhost:3000/reviews", {
       method: "POST",
       headers: {
         "content-type": "application/json",

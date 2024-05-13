@@ -3,22 +3,26 @@ import { AuthContext } from "../../Components/FirebaseProvider/FirebaseProvider"
 import Cart from "../Cart/Cart";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 const Bookings = () => {
   const { user } = useContext(AuthContext);
   const [bookings, setBookings] = useState([]);
 
-  const url = `https://hotel-booking-server-lake.vercel.app/bookings?email=${user?.email}`;
+  const url = `http://localhost:3000/bookings?email=${user?.email}`;
 
   useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => setBookings(data));
+    axios.get(url, { withCredentials: true }).then((res) => {
+      setBookings(res.data);
+    });
+    // fetch(url)
+    //   .then((res) => res.json())
+    //   .then((data) => setBookings(data));
   }, [url]);
 
   const handleDelete = (id) => {
     // Proceed with deletion directly
-    fetch(`https://hotel-booking-server-lake.vercel.app/bookings/${id}`, {
+    fetch(`http://localhost:3000/bookings/${id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",
@@ -43,12 +47,9 @@ const Bookings = () => {
 
   const handleCancel = (id) => {
     // Proceed with cancellation request
-    fetch(
-      `https://hotel-booking-server-lake.vercel.app/bookings/${id}/cancel`,
-      {
-        method: "POST",
-      }
-    )
+    fetch(`http://localhost:3000/bookings/${id}/cancel`, {
+      method: "POST",
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.message === "Booking canceled successfully") {
