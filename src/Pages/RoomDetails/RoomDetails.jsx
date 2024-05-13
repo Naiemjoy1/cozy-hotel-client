@@ -55,7 +55,7 @@ const RoomDetails = () => {
 
   useEffect(() => {
     // Fetch reviews when component mounts
-    fetch("http://localhost:3000/reviews")
+    fetch("https://hotel-booking-server-lake.vercel.app/reviews")
       .then((response) => response.json())
       .then((data) => {
         const filteredReviews = data.filter(
@@ -70,7 +70,7 @@ const RoomDetails = () => {
 
   // Fetch bookings for the current room
   useEffect(() => {
-    fetch("http://localhost:3000/bookings")
+    fetch("https://hotel-booking-server-lake.vercel.app/bookings")
       .then((response) => response.json())
       .then((data) => {
         const submitReview = data.filter((roomID) => roomID.room_id === _id);

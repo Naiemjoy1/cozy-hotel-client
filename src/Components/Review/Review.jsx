@@ -23,7 +23,7 @@ const Review = () => {
   useEffect(() => {
     // Fetch reviews when component mounts
     fetch(
-      `http://localhost:3000/reviews?minRating=${selectedRating}&maxRating=${selectedRating}`
+      `https://hotel-booking-server-lake.vercel.app/reviews?minRating=${selectedRating}&maxRating=${selectedRating}`
     )
       .then((response) => response.json())
       .then((data) => {

@@ -28,7 +28,8 @@ const router = createBrowserRouter([
       {
         path: "/room",
         element: <Room></Room>,
-        loader: () => fetch("http://localhost:3000/rooms"),
+        loader: () =>
+          fetch("https://hotel-booking-server-lake.vercel.app/rooms"),
       },
       {
         path: "/testpage",
@@ -41,13 +42,16 @@ const router = createBrowserRouter([
             <Bookings></Bookings>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:3000/rooms"),
+        loader: () =>
+          fetch("https://hotel-booking-server-lake.vercel.app/rooms"),
       },
       {
         path: "/update/:id",
         element: <BookingsUpdate></BookingsUpdate>,
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/bookings/${params.id}`),
+          fetch(
+            `https://hotel-booking-server-lake.vercel.app/bookings/${params.id}`
+          ),
       },
       {
         path: "/login",
@@ -73,25 +77,33 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/rooms/${params.id}`),
+          fetch(
+            `https://hotel-booking-server-lake.vercel.app/rooms/${params.id}`
+          ),
       },
       {
         path: "/details/:id",
         element: <RoomDetails></RoomDetails>,
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/rooms/${params.id}`),
+          fetch(
+            `https://hotel-booking-server-lake.vercel.app/rooms/${params.id}`
+          ),
       },
       {
         path: "/bookroom/:id",
         element: <BookRoom></BookRoom>,
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/rooms/${params.id}`),
+          fetch(
+            `https://hotel-booking-server-lake.vercel.app/rooms/${params.id}`
+          ),
       },
       {
         path: "/cart/:id",
         element: <Cart></Cart>,
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/rooms/${params.id}`),
+          fetch(
+            `https://hotel-booking-server-lake.vercel.app/rooms/${params.id}`
+          ),
       },
     ],
   },
