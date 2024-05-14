@@ -2,11 +2,17 @@ import { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types"; // Import PropTypes for prop validation
 import { AuthContext } from "../../Components/FirebaseProvider/FirebaseProvider";
 
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
+
 const ReviewForm = ({ roomDetails }) => {
   const { user } = useContext(AuthContext);
   const [rating, setRating] = useState(1);
   const [reviewContent, setReviewContent] = useState("");
-  const [hasBookedRoom, setHasBookedRoom] = useState(false);
+  const [hasBookedRoom, setHasBookedRoom] = useState([]);
+  const [reviews, setReviews] = useState([]);
+  const [showToast, setShowToast] = useState(false); // State to track if toast is shown
 
   const { _id } = roomDetails;
 
@@ -16,18 +22,35 @@ const ReviewForm = ({ roomDetails }) => {
       fetch("http://localhost:3000/bookings")
         .then((response) => response.json())
         .then((data) => {
-          // Filter bookings by user email
+          // Filter bookings by user email and room_id
           const userBookings = data.filter(
-            (booking) => booking.email === user.email
+            (booking) => booking.email === user.email && booking.room_id === _id
           );
           setHasBookedRoom(userBookings);
         })
         .catch((error) => {
           console.error("Error fetching bookings:", error);
+          // Handle error
         });
     }
-  }, [user]);
-  console.log(hasBookedRoom);
+
+    // Fetch reviews
+    fetch("http://localhost:3000/reviews")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setReviews(data);
+        // Handle successful response
+      })
+      .catch((error) => {
+        console.error("Error fetching reviews:", error);
+        // Handle error
+      });
+  }, [user, _id]); // Add _id to the dependency array
 
   const handleRatingChange = (e) => {
     setRating(parseInt(e.target.value));
@@ -48,8 +71,6 @@ const ReviewForm = ({ roomDetails }) => {
         image: user?.photoURL,
         email: user?.email,
       };
-      console.log("Review:", review);
-      console.log("Room ID:", booking.room_id);
 
       // Submit the review to the server
       fetch("http://localhost:3000/reviews", {
@@ -63,12 +84,17 @@ const ReviewForm = ({ roomDetails }) => {
         .then((data) => {
           console.log(data);
           if (data.insertedId) {
-            alert("Review submitted successfully");
+            // alert("Review submitted successfully");
+            setShowToast(true); // Update state to show toast
+            toast.success("Review submitted successfully", {
+              onClose: () => setShowToast(false), // Hide toast and form after closing
+            });
           }
         })
         .catch((error) => {
           console.error("Error submitting review:", error);
-          alert("Failed to submit review");
+          // alert("Failed to submit review");
+          toast.error("Failed to submit review");
         });
     });
 
@@ -77,29 +103,18 @@ const ReviewForm = ({ roomDetails }) => {
     setRating(1);
   };
 
+  // Filter reviews based on conditions
+  const filteredReviews = reviews.filter(
+    (review) => review.details_id === _id && review.email === user?.email
+  );
+
+  // Render null if toast is shown
+  if (showToast) {
+    return null;
+  }
+
   return (
     <div>
-      <p>booking id:{_id}</p>
-      <p>
-        {hasBookedRoom.length > 0 && (
-          <p>
-            Booking IDs:
-            {hasBookedRoom.map((booking) => (
-              <span key={booking._id}>{booking._id}, </span>
-            ))}
-          </p>
-        )}
-      </p>
-      <p>
-        {hasBookedRoom.length > 0 && (
-          <p>
-            room_id :
-            {hasBookedRoom.map((booking) => (
-              <span key={booking._id}>{booking.room_id}, </span>
-            ))}
-          </p>
-        )}
-      </p>
       <h2 className="font-marcellus text-4xl">Write a review</h2>
       <form className="card-body p-0" onSubmit={handleSubmit}>
         <div className="form-control">
@@ -151,6 +166,7 @@ const ReviewForm = ({ roomDetails }) => {
           </button>
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 };

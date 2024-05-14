@@ -14,8 +14,23 @@ import { useLoaderData } from "react-router-dom";
 import RoomReservation from "../../Shared/RoomReservation/RoomReservation";
 import ReviewForm from "../../Shared/ReviewForm/ReviewForm";
 import { useContext, useEffect, useState } from "react";
+import {
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  Autoplay,
+} from "swiper/modules";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import "swiper/css/autoplay";
+import ReviewCards from "../../Components/Review/ReviewCards";
 import { AuthContext } from "../../Components/FirebaseProvider/FirebaseProvider";
-import ReviewSlider from "./ReviewSlider";
 
 const RoomDetails = () => {
   const roomDetails = useLoaderData();
@@ -35,9 +50,116 @@ const RoomDetails = () => {
     beds,
   } = roomDetails;
 
+  const [reviews, setReviews] = useState([]);
+  // const [bookings, setBookings] = useState([]);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isRoomBooked, setIsRoomBooked] = useState(false);
+  const [isFeedbackSubmitted, setIsFeedbackSubmitted] = useState(false);
+
+  useEffect(() => {
+    setIsAuthenticated(!!user);
+  }, [user]);
+
+  // useEffect(() => {
+  //   // Fetch reviews when component mounts
+  //   fetch("http://localhost:3000/reviews")
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       const filteredReviews = data.filter(
+  //         (review) => review.review_id === _id
+  //       );
+  //       setReviews(filteredReviews);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching reviews:", error);
+  //     });
+  // }, [_id]);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      // Fetch bookings for the current room
+      fetch(`http://localhost:3000/bookings/room/${_id}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setBookings(data);
+          console.log("room data", data);
+          // Check if the current user has booked the room
+          setIsRoomBooked(data.some((booking) => booking.email === user.email));
+        })
+        .catch((error) => {
+          console.error("Error fetching bookings:", error);
+        });
+    }
+  }, [isAuthenticated, _id, user]);
+
+  // Fetch bookings for the current room
+  // useEffect(() => {
+  //   fetch("http://localhost:3000/bookings")
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       const submitReview = data.filter((roomID) => roomID.room_id === _id);
+  //       setBookings(submitReview);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching bookings:", error);
+  //     });
+  // }, []);
+
+  useEffect(() => {
+    // Fetch reviews when component mounts
+    fetch("http://localhost:3000/reviews")
+      .then((response) => response.json())
+      .then((data) => {
+        const filteredReviews = data.filter(
+          (review) => review.review_id === _id
+        );
+        setReviews(filteredReviews);
+        // Check if the current user has submitted a review
+        setIsFeedbackSubmitted(
+          filteredReviews.some((review) => review.email === user.email)
+        );
+      })
+      .catch((error) => {
+        console.error("Error fetching reviews:", error);
+      });
+  }, [_id, user]);
+  console.log("review data", reviews);
+
+  // const isRoomBooked = bookings.some(
+  //   (booking) => booking.room_id === roomDetails._id
+  // );
+
+  // const isFeedback = reviews.some(
+  //   (review) => review.review_id === roomDetails._id
+  // );
+
+  // const isAuthenticated = !!user;
+
+  // const [hasBookedRoom, setHasBookedRoom] = useState(false);
+
+  // useEffect(() => {
+  //   if (user) {
+  //     // Fetch bookings when component mounts
+  //     fetch("http://localhost:3000/bookings")
+  //       .then((response) => response.json())
+  //       .then((data) => {
+  //         // Filter bookings by user email
+  //         const userBookings = data.filter(
+  //           (booking) => booking.email === user.email
+  //         );
+  //         setHasBookedRoom(userBookings);
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error fetching bookings:", error);
+  //       });
+  //   }
+  // }, [user]);
+  // console.log(hasBookedRoom);
+
   const [bookings, setBookings] = useState([]);
 
   useEffect(() => {
+    // Function to fetch bookings data
     const fetchBookings = async () => {
       try {
         const response = await fetch("http://localhost:3000/bookings");
@@ -45,55 +167,28 @@ const RoomDetails = () => {
           throw new Error("Failed to fetch bookings");
         }
         const data = await response.json();
-
-        // Filter bookings based on room ID and user email
-        const filteredBookings = data.filter(
-          (booking) => booking.room_id === _id && booking.email === user.email
-        );
-
-        setBookings(filteredBookings);
+        // Set the fetched bookings data to state
+        setBookings(data);
       } catch (error) {
         console.error("Error fetching bookings:", error.message);
       }
     };
 
+    // Call the fetchBookings function when component mounts
     fetchBookings();
 
-    return () => {};
-  }, [_id, user]);
-
-  const [reviews, setReviews] = useState([]);
-
-  useEffect(() => {
-    const fetchReviews = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/reviews");
-        if (!response.ok) {
-          throw new Error("Failed to fetch reviews");
-        }
-        const data = await response.json();
-        // Filter reviews based on matching _id and user email
-        const filteredReviews = data.filter(
-          (review) =>
-            review.details_id === roomDetails._id && review.email === user.email
-        );
-        setReviews(filteredReviews);
-        console.log("Filtered reviews data:", filteredReviews);
-      } catch (error) {
-        console.error("Error fetching reviews:", error.message);
-      }
+    // Clean up function
+    return () => {
+      // Any cleanup code if needed
     };
-
-    fetchReviews();
-
-    return () => {};
-  }, [roomDetails, user]);
+  }, []);
 
   return (
-    <div>
+    <div className="">
       <div>
         <img className="w-full h-96" src={image} alt="" />
       </div>
+
       <div className=" container mx-auto flex justify-between my-10">
         <div className="w-3/5 space-y-10 mr-24">
           <p className=" text-4xl font-marcellus font-light">{type}</p>
@@ -331,42 +426,60 @@ const RoomDetails = () => {
             <h3 className="text-4xl font-marcellus">
               Feedback from our Guests
             </h3>
-            <ReviewSlider
-              bookings={bookings}
-              reviews={reviews}
-              roomDetails={roomDetails}
-            ></ReviewSlider>
+            {reviews.length > 0 ? (
+              <p>Total Reviews: {reviews.length}</p>
+            ) : (
+              <p>No Review Yet!!</p>
+            )}
+            {reviews.length > 0 ? (
+              <Swiper
+                spaceBetween={20}
+                slidesPerView={1}
+                autoplay={{ delay: 6000 }}
+                loop={true}
+                modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+                className="mySwiper"
+              >
+                {reviews.map((review) => (
+                  <SwiperSlide key={review._id}>
+                    <ReviewCards key={review._id} review={review}></ReviewCards>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            ) : (
+              <p>No reviews yet</p>
+            )}
           </div>
           <div>
-            <div>
-              {user ? (
-                bookings.some(
-                  (booking) =>
-                    booking.room_id === roomDetails._id &&
-                    booking.email === user.email
+            {isAuthenticated ? (
+              isRoomBooked ? (
+                reviews.some(
+                  (review) =>
+                    review.room_id === _id && review.email === user.email
                 ) ? (
-                  reviews.some(
-                    (review) =>
-                      review.details_id === roomDetails._id &&
-                      review.email === user.email
-                  ) ? (
-                    <p className="font-marcellus text-4xl">
-                      You have already submitted a review for this room.
-                    </p>
-                  ) : (
-                    <ReviewForm roomDetails={roomDetails} />
-                  )
-                ) : (
                   <p className="font-marcellus text-4xl">
-                    To submit a review, you need to book the room first.
+                    You have already submitted a review for this room.
                   </p>
+                ) : (
+                  <ReviewForm roomDetails={roomDetails} />
                 )
               ) : (
                 <p className="font-marcellus text-4xl">
-                  Please log in to submit a review.
+                  To submit a review, you need to book the room first.
                 </p>
-              )}
-            </div>
+              )
+            ) : (
+              <p className="font-marcellus text-4xl">
+                Please log in to submit a review.
+              </p>
+            )}
+            {/* {bookings.length > 0 ? (
+              <ReviewForm roomDetails={roomDetails} />
+            ) : (
+              <p className=" font-marcellus text-4xl">
+                For Submit Review You Need To Book Room
+              </p>
+            )} */}
           </div>
         </div>
         <div className="w-2/5  font-marcellus">
@@ -381,9 +494,11 @@ const RoomDetails = () => {
               </p>
             </div>
             <RoomReservation
-              bookings={bookings}
+              pricePerNight={pricePerNight}
+              roomId={_id}
               roomDetails={roomDetails}
               reviews={reviews}
+              bookings={bookings}
             ></RoomReservation>
           </div>
         </div>

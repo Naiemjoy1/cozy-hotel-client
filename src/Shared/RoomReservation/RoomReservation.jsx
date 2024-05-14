@@ -1,11 +1,34 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { AuthContext } from "../../Components/FirebaseProvider/FirebaseProvider";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Modal from "react-modal";
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const RoomReservation = ({ roomDetails, bookings }) => {
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+import ReservationModal from "./ReservationModal";
+
+const RoomReservation = ({ roomDetails }) => {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -14,8 +37,6 @@ const RoomReservation = ({ roomDetails, bookings }) => {
   const [numChildren, setNumChildren] = useState(0);
   const { user } = useContext(AuthContext);
   const [reservationDetails, setReservationDetails] = useState(null);
-
-  console.log(bookings.length);
 
   const handleNumRoomsChange = (e) => {
     setNumRooms(parseInt(e.target.value));
@@ -29,7 +50,7 @@ const RoomReservation = ({ roomDetails, bookings }) => {
     setNumChildren(parseInt(e.target.value));
   };
 
-  const { type, image, roomSize } = roomDetails;
+  const { _id, type, image, roomSize } = roomDetails;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -52,6 +73,7 @@ const RoomReservation = ({ roomDetails, bookings }) => {
     setReservationDetails(details);
     setModalIsOpen(true);
   };
+  console.log(reservationDetails);
 
   const totalCost = roomDetails.pricePerNight * numRooms;
 
@@ -86,7 +108,9 @@ const RoomReservation = ({ roomDetails, bookings }) => {
       .then((data) => {
         console.log(data);
         if (data.insertedId) {
-          alert("room booked successfully");
+          // alert("room booked successfully");
+          toast.success("room booked successfully");
+          // toast.success("room booked successfully");
           setModalIsOpen(false); // Close the modal
           window.location.reload(); // Reload the page
         }
@@ -97,27 +121,40 @@ const RoomReservation = ({ roomDetails, bookings }) => {
   //   (booking) => booking.room_id === roomDetails._id
   // );
 
-  const isAuthenticated = !!user;
+  // const isAuthenticated = !!user;
 
-  const isRoomBooked = bookings.some(
-    (booking) => booking.room_id === roomDetails._id
-  );
+  // const isRoomBooked = bookings.some(
+  //   (booking) => booking.room_id === roomDetails._id
+  // );
 
   // Determine button color based on booking status
-  const buttonColor = isRoomBooked ? "bg-red-600" : "bg-green-600";
+
+  const [bookings, setBookings] = useState([]);
+
+  useEffect(() => {
+    const fetchBookings = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/bookings");
+        if (!response.ok) {
+          throw new Error("Failed to fetch bookings");
+        }
+        const data = await response.json();
+        setBookings(data);
+        console.log("Bookings data:", data);
+      } catch (error) {
+        console.error("Error fetching bookings:", error.message);
+      }
+    };
+
+    fetchBookings();
+
+    return () => {};
+  }, []);
 
   return (
     <div>
       <form onSubmit={handleSubmit} className="card-body">
-        <div className="form-control mt-6">
-          <button
-            className={`btn text-white ${buttonColor}`}
-            type="submit"
-            disabled={isRoomBooked} // Disable button if room is already booked
-          >
-            {isRoomBooked ? "Room Booked" : "Book Now"}
-          </button>
-        </div>
+        <div className="form-control mt-6"></div>
         <div className="form-control">
           <label className="label">
             <span className="label-text text-white">Check-in Date:</span>
@@ -224,17 +261,111 @@ const RoomReservation = ({ roomDetails, bookings }) => {
         </div>
 
         <div className="form-control mt-6">
-          {isRoomBooked ? (
-            <p className=" bg-red-600 text-center text-white py-2 rounded-lg">
-              unavailable
-            </p>
-          ) : (
-            <button className="btn btn-secondary text-white" type="submit">
+          <div>
+            {bookings.some((booking) => booking.room_id === roomDetails._id) ? (
+              <p className=" bg-red-600 text-center text-white py-2 rounded-lg">
+                unavailable
+              </p>
+            ) : (
+              <button
+                onClick={handleOpen}
+                className="btn w-full btn-secondary text-white"
+                type="submit"
+              >
+                Book Now
+              </button>
+            )}
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={style}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  Reservation Details
+                </Typography>
+                {reservationDetails && (
+                  <div>
+                    <img src={image} alt="" />
+                    <div className="flex mt-5 gap-4">
+                      <div className="w-1/2 border border-secondary px-2">
+                        <p>
+                          Check-in Date:{" "}
+                          {reservationDetails.checkInDate.toLocaleDateString()}
+                        </p>
+                      </div>
+                      <div className="w-1/2 border border-secondary px-2">
+                        <p>
+                          Check-out Date:{" "}
+                          {reservationDetails.checkOutDate.toLocaleDateString()}
+                        </p>
+                      </div>
+                    </div>
+                    <p>Number of Rooms: {reservationDetails.numRooms}</p>
+                    <p>Number of Adults: {reservationDetails.numAdults}</p>
+                    <p>Number of Children: {reservationDetails.numChildren}</p>
+                    <p>Total Cost: ${reservationDetails.totalCost}</p>
+                    <p>Type: {reservationDetails.type}</p>
+                    {/* <p>Email: {reservationDetails.email}</p> */}
+                    {/* <p>User Name: {reservationDetails.user}</p> */}
+                    {/* <p>Description: {reservationDetails.description}</p> */}
+                    {/* Add other properties as needed */}
+                  </div>
+                )}
+                <div className="flex justify-between mt-10">
+                  <button
+                    className="btn bg-red-600 text-white"
+                    onClick={handleClose}
+                  >
+                    Close
+                  </button>
+                  <button
+                    onClick={handleConfirm}
+                    className=" btn btn-primary text-white"
+                  >
+                    Confirm
+                  </button>
+                </div>
+              </Box>
+            </Modal>
+          </div>
+
+          <div>
+            {/* <Button>Open modal</Button> */}
+
+            {/* <button
+              onClick={handleOpen}
+              className="btn w-full btn-secondary text-white"
+              type="submit"
+            >
               Book Now
             </button>
-          )}
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={style}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  Text in a modal
+                </Typography>
+                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                  Duis mollis, est non commodo luctus, nisi erat porttitor
+                  ligula.
+                </Typography>
+              </Box>
+            </Modal> */}
+          </div>
         </div>
-        {isAuthenticated && (
+        {/* <ReservationModal
+          handleConfirm={handleConfirm}
+          reservationDetails={reservationDetails}
+          roomDetails={roomDetails}
+          bookings={bookings}
+        ></ReservationModal> */}
+        {/* {isAuthenticated && (
           <Modal
             isOpen={modalIsOpen}
             shouldCloseOnOverlayClick={false}
@@ -288,8 +419,9 @@ const RoomReservation = ({ roomDetails, bookings }) => {
               </button>
             </div>
           </Modal>
-        )}
+        )} */}
       </form>
+      <ToastContainer />
     </div>
   );
 };

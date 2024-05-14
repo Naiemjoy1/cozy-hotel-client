@@ -33,7 +33,8 @@ const Bookings = () => {
       .then((data) => {
         console.log(data);
         if (data.deletedCount > 0) {
-          alert("Deleted successfully");
+          // alert("Deleted successfully");
+          toast.success("Deleted successfully");
           // Remove the deleted booking from the state
           const remaining = bookings.filter((booking) => booking._id !== id);
           setBookings(remaining);
@@ -41,7 +42,8 @@ const Bookings = () => {
       })
       .catch((error) => {
         console.error("Error deleting booking:", error);
-        alert("An error occurred while deleting the booking.");
+        // alert("An error occurred while deleting the booking.");
+        toast.error("An error occurred while deleting the booking.");
       });
   };
 

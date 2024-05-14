@@ -22,12 +22,13 @@ const ReviewModal = ({ booking }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const { _id } = booking;
+  const { _id, room_id } = booking;
 
   const { user } = useContext(AuthContext);
 
-  const [hasSubmittedFeedback, setHasSubmittedFeedback] = useState(false);
   const [reviews, setReviews] = useState([]);
+  const [hasBookedRoom, setHasBookedRoom] = useState(false);
+  const [hasSubmittedFeedback, setHasSubmittedFeedback] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -35,28 +36,22 @@ const ReviewModal = ({ booking }) => {
       fetch("http://localhost:3000/reviews")
         .then((response) => response.json())
         .then((data) => {
-          // Check if the user has already submitted feedback
-          const alreadySubmitted = data.some(
-            (review) => review.review_id === _id && review.email === user.email
+          // Filter reviews by user email and matching booking ID
+          const userReviews = data.filter(
+            (review) => review.email === user.email && review.review_id === _id
           );
-          setHasSubmittedFeedback(alreadySubmitted);
-          setReviews(data);
+          setReviews(userReviews);
         })
         .catch((error) => {
           console.error("Error fetching reviews:", error);
         });
     }
-  }, [_id, user]);
+  }, [user, _id]);
 
   return (
     <div>
-      <p>booking id : {_id}</p>
-      <p>
-        review id:
-        {reviews.map((review) => (
-          <span key={review._id}>{review.review_id} </span>
-        ))}
-      </p>
+      {/* <p>booking id :{_id}</p>
+      <p>Review ID: {reviews.map((review) => review.review_id).join(", ")}</p> */}
       <button
         onClick={handleOpen}
         className="btn btn-sm bg-secondary text-white"
@@ -71,17 +66,11 @@ const ReviewModal = ({ booking }) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          {/* {user && hasBookedRoom ? (
-            hasSubmittedFeedback ? (
-              <Typography variant="h6">Already Submitted Feedback.</Typography>
-            ) : (
-              <FromForFeedback booking={booking} />
-            )
+          {reviews.length > 0 ? (
+            <Typography variant="h6">Already Submitted Feedback.</Typography>
           ) : (
-            <Typography variant="h6">
-              You need to book a room to submit feedback.
-            </Typography>
-          )} */}
+            <FromForFeedback booking={booking} />
+          )}
         </Box>
       </Modal>
     </div>

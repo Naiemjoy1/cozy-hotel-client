@@ -1,12 +1,16 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../FirebaseProvider/FirebaseProvider";
 
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
+
 const FromForFeedback = ({ booking }) => {
   const { user } = useContext(AuthContext);
   const [rating, setRating] = useState(1);
   const [reviewContent, setReviewContent] = useState("");
 
-  const { _id } = booking;
+  const { _id, room_id } = booking;
 
   const handleRatingChange = (e) => {
     setRating(parseInt(e.target.value));
@@ -20,7 +24,9 @@ const FromForFeedback = ({ booking }) => {
       rating: rating,
       name: user ? user.displayName : "Guest",
       timestamp: timestamp,
+      details_id: room_id,
       review_id: _id,
+      room_id: room_id,
       image: user?.photoURL,
       email: user?.email,
     };
@@ -38,12 +44,14 @@ const FromForFeedback = ({ booking }) => {
       .then((data) => {
         console.log(data);
         if (data.insertedId) {
-          alert("Review submitted successfully");
+          // alert("Review submitted successfully");
+          toast.success("Review submitted successfully");
         }
       })
       .catch((error) => {
         console.error("Error submitting review:", error);
-        alert("Failed to submit review");
+        // alert("Failed to submit review");
+        toast.error("Failed to submit review");
       });
 
     setReviewContent("");
@@ -102,6 +110,7 @@ const FromForFeedback = ({ booking }) => {
           </button>
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 };
