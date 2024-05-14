@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import useAuth from "../../Components/hooks/useAuth";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import axios from "axios";
+import PageTitle from "../../Components/PageTitle/PageTitle";
 
 const Login = () => {
   const { signInUser } = useAuth();
@@ -35,7 +36,7 @@ const Login = () => {
             //
             // get access token
             axios
-              .post("http://localhost:3000/jwt", user, {
+              .post("https://hotel-booking-server-lake.vercel.app/jwt", user, {
                 withCredentials: true,
               })
               .then((res) => {
@@ -54,14 +55,16 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-[calc(100vh-246px)] flex justify-center items-center my-10 container mx-auto">
-      <div className="w-1/2 ">
+    <div className="min-h-[calc(100vh-246px)] lg:flex justify-center items-center my-10 container mx-auto">
+      <PageTitle title="Login"></PageTitle>
+      <div className="lg:w-1/2 ">
         <img
+          className="h-[550px] w-full"
           src="https://i.ibb.co/0BsT0Fy/pexels-vaishnav-devadas-415764-2086676.jpg"
           alt=""
         />
       </div>
-      <div className="w-1/2">
+      <div className="lg:w-1/2">
         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
           <div className=" text-center">
             <p className=" font-robotoslab text-5xl font-light">Welcome Back</p>

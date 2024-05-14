@@ -4,12 +4,13 @@ import Cart from "../Cart/Cart";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import PageTitle from "../../Components/PageTitle/PageTitle";
 
 const Bookings = () => {
   const { user } = useContext(AuthContext);
   const [bookings, setBookings] = useState([]);
 
-  const url = `http://localhost:3000/bookings?email=${user?.email}`;
+  const url = `https://hotel-booking-server-lake.vercel.app/bookings?email=${user?.email}`;
 
   useEffect(() => {
     axios.get(url, { withCredentials: true }).then((res) => {
@@ -22,7 +23,7 @@ const Bookings = () => {
 
   const handleDelete = (id) => {
     // Proceed with deletion directly
-    fetch(`http://localhost:3000/bookings/${id}`, {
+    fetch(`https://hotel-booking-server-lake.vercel.app/bookings/${id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",
@@ -49,9 +50,12 @@ const Bookings = () => {
 
   const handleCancel = (id) => {
     // Proceed with cancellation request
-    fetch(`http://localhost:3000/bookings/${id}/cancel`, {
-      method: "POST",
-    })
+    fetch(
+      `https://hotel-booking-server-lake.vercel.app/bookings/${id}/cancel`,
+      {
+        method: "POST",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.message === "Booking canceled successfully") {
@@ -76,6 +80,7 @@ const Bookings = () => {
 
   return (
     <div className="min-h-[calc(100vh-327px)] my-20">
+      <PageTitle title="Bookings"></PageTitle>
       <div>
         <p className="text-4xl font-marcellus text-center">
           Your Bookings here

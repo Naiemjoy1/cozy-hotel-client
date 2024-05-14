@@ -1,8 +1,10 @@
 import Benefits from "../../Components/Benefits/Benefits";
+import PageTitle from "../../Components/PageTitle/PageTitle";
 
 const AboutUs = () => {
   return (
     <div>
+      <PageTitle title="About Us"></PageTitle>
       <div
         className="hero h-[450px]"
         style={{

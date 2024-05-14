@@ -3,6 +3,7 @@ import RoomCard from "./RoomCard";
 import { TiPlus } from "react-icons/ti";
 import PriceFilter from "./PriceFilter";
 import { useEffect, useState } from "react";
+import PageTitle from "../../Components/PageTitle/PageTitle";
 
 const Room = () => {
   // const rooms = useLoaderData();
@@ -15,9 +16,9 @@ const Room = () => {
   const fetchRooms = async (minPrice, maxPrice) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/rooms?minPrice=${minPrice || ""}&maxPrice=${
-          maxPrice || ""
-        }`
+        `https://hotel-booking-server-lake.vercel.app/rooms?minPrice=${
+          minPrice || ""
+        }&maxPrice=${maxPrice || ""}`
       );
       if (response.ok) {
         const data = await response.json();
@@ -36,6 +37,7 @@ const Room = () => {
 
   return (
     <div className="mb-14">
+      <PageTitle title="Room"></PageTitle>
       <div
         className="hero h-[550px]"
         style={{

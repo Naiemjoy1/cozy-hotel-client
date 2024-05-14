@@ -19,6 +19,7 @@ import ReviewSlider from "./ReviewSlider";
 import { ToastContainer, toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
+import PageTitle from "../../Components/PageTitle/PageTitle";
 
 const RoomDetails = () => {
   const roomDetails = useLoaderData();
@@ -43,7 +44,9 @@ const RoomDetails = () => {
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const response = await fetch("http://localhost:3000/bookings");
+        const response = await fetch(
+          "https://hotel-booking-server-lake.vercel.app/bookings"
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch bookings");
         }
@@ -70,7 +73,9 @@ const RoomDetails = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await fetch("http://localhost:3000/reviews");
+        const response = await fetch(
+          "https://hotel-booking-server-lake.vercel.app/reviews"
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch reviews");
         }
@@ -94,7 +99,7 @@ const RoomDetails = () => {
 
   // const handleCancel = (id) => {
   //   // Proceed with cancellation request
-  //   fetch(`http://localhost:3000/bookings/${id}/cancel`, {
+  //   fetch(`https://hotel-booking-server-lake.vercel.app/bookings/${id}/cancel`, {
   //     method: "POST",
   //   })
   //     .then((res) => res.json())
@@ -121,9 +126,12 @@ const RoomDetails = () => {
 
   const cancelBooking = (id) => {
     // Proceed with cancellation request
-    fetch(`http://localhost:3000/bookings/${id}/cancel`, {
-      method: "POST",
-    })
+    fetch(
+      `https://hotel-booking-server-lake.vercel.app/bookings/${id}/cancel`,
+      {
+        method: "POST",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.message === "Booking canceled successfully") {
@@ -148,6 +156,7 @@ const RoomDetails = () => {
 
   return (
     <div>
+      <PageTitle title="Room Details"></PageTitle>
       <div>
         <img className="w-full h-96" src={image} alt="" />
       </div>

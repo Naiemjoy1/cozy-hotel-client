@@ -1,8 +1,10 @@
 import LeafletMap from "../../Components/LeafletMap/LeafletMap";
+import PageTitle from "../../Components/PageTitle/PageTitle";
 
 const ContactUs = () => {
   return (
     <div>
+      <PageTitle title="Contact Us"></PageTitle>
       <div>
         <LeafletMap></LeafletMap>
       </div>

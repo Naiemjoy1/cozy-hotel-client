@@ -97,17 +97,25 @@ const FirebaseProvider = ({ children }) => {
       setLoading(false);
       if (currentUser) {
         axios
-          .post("http://localhost:3000/jwt", loggedUser, {
-            withCredentials: true,
-          })
+          .post(
+            "https://hotel-booking-server-lake.vercel.app/jwt",
+            loggedUser,
+            {
+              withCredentials: true,
+            }
+          )
           .then((res) => {
             console.log("token response", res.data);
           });
       } else {
         axios
-          .post("http://localhost:3000/logout", loggedUser, {
-            withCredentials: true,
-          })
+          .post(
+            "https://hotel-booking-server-lake.vercel.app/logout",
+            loggedUser,
+            {
+              withCredentials: true,
+            }
+          )
           .then((res) => {
             console.log(res.data);
           });

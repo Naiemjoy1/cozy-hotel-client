@@ -28,7 +28,7 @@ const Review = () => {
   }, [selectedRating]);
 
   const fetchReviews = (rating) => {
-    let url = "http://localhost:3000/reviews";
+    let url = "https://hotel-booking-server-lake.vercel.app/reviews";
     if (rating !== null) {
       url += `?minRating=${rating}&maxRating=${rating}`;
     }

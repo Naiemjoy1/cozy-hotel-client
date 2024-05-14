@@ -5,6 +5,7 @@ import { IoIosEyeOff, IoMdEye } from "react-icons/io";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../Components/FirebaseProvider/FirebaseProvider";
+import PageTitle from "../../Components/PageTitle/PageTitle";
 
 const Registration = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
@@ -60,14 +61,16 @@ const Registration = () => {
   };
 
   return (
-    <div className="min-h-[calc(100vh-246px)] flex justify-center items-center my-10 container mx-auto">
-      <div className="w-1/2">
+    <div className="min-h-[calc(100vh-246px)] lg:flex justify-center items-center my-10 container mx-auto">
+      <PageTitle title="Home"></PageTitle>
+      <div className="lg:w-1/2">
         <img
+          className="lg:h-[650px] md:h-[650px] h-[550px] w-full"
           src="https://i.ibb.co/yfnsfFy/pexels-nguyendesigner-244133.jpg"
           alt=""
         />
       </div>
-      <div className="w-1/2">
+      <div className="lg:w-1/2">
         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
           <div className=" text-center">
             <p className=" font-robotoslab text-5xl font-light">Welcome To</p>

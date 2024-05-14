@@ -37,5 +37,4 @@
 - tailwind
 - daisyui
 - cookie parser
-
-<p>Hello</p>
+- react helmaet
