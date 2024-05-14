@@ -16,9 +16,9 @@ const Room = () => {
   const fetchRooms = async (minPrice, maxPrice) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/rooms?minPrice=${minPrice || ""}&maxPrice=${
-          maxPrice || ""
-        }`
+        `https://hotel-booking-server-lake.vercel.app/rooms?minPrice=${
+          minPrice || ""
+        }&maxPrice=${maxPrice || ""}`
       );
       if (response.ok) {
         const data = await response.json();

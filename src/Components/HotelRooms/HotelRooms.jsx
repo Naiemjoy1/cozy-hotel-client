@@ -23,7 +23,7 @@ const HotelRooms = () => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch("http://localhost:3000/rooms")
+    fetch("https://hotel-booking-server-lake.vercel.app/rooms")
       .then((res) => res.json())
       .then((data) => setRooms(data));
   }, []);
