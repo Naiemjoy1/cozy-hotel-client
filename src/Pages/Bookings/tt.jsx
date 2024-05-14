@@ -75,25 +75,59 @@ const Bookings = () => {
   };
 
   return (
-    <div className="min-h-[calc(100vh-327px)] my-20">
-      <div>
-        <p className="text-4xl font-marcellus text-center">
-          Your Bookings here
-        </p>
-      </div>
-      <div className="container mx-auto my-8">
-        <div>
-          <div className="divider divider-secondary"></div>
-          {bookings.map((booking) => (
-            <Cart
-              key={booking._id}
-              booking={booking}
-              handleDelete={handleDelete}
-              handleCancel={handleCancel}
-            ></Cart>
-          ))}
+    <div className="min-h-[calc(100vh-327px)] flex justify-center gap-10 my-20">
+      <div className="">
+        <div className=" relative mb-10">
+          <img className="w-full" src="" alt="" />
+          <div className="absolute rounded-lg h-full flex items-center left-0 top-0 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0)]"></div>
+          <div className="absolute bottom-0 w-full pl-10"></div>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="table">
+            {/* head */}
+            <thead>
+              <tr className=" text-black">
+                <th>
+                  <label>
+                    {/* <input type="checkbox" className="checkbox" /> */}
+                  </label>
+                </th>
+                <th></th>
+                <th>BOOKING ROOM</th>
+                <th>PRICE</th>
+                <th>QUANTITY</th>
+                <th>SUBTOTAL</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {bookings.map((booking) => (
+                <Cart
+                  key={booking._id}
+                  booking={booking}
+                  handleDelete={handleDelete}
+                  handleCancel={handleCancel}
+                ></Cart>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
+      {/* <div className="w-1/4 bg-primary text-white  p-10">
+        <p className=" font-marcellus text-2xl">Cart totals</p>
+        <div className="divider divider-secondary"></div>
+        <div className="flex justify-between items-center">
+          <p>Subtotal</p>
+          <p>Subtotal</p>
+        </div>
+        <div className="divider divider-secondary"></div>
+        <div className="flex justify-between items-center">
+          <p>Subtotal</p>
+          <p>Subtotal</p>
+        </div>
+        <div className="divider divider-secondary"></div>
+      </div> */}
       <ToastContainer />
     </div>
   );

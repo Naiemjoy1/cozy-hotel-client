@@ -5,8 +5,8 @@ import { RiParkingBoxLine } from "react-icons/ri";
 
 const Benefits = () => {
   return (
-    <div className="container mx-auto flex justify-between my-10">
-      <div className="w-1/2 space-y-5">
+    <div className="container mx-auto lg:flex justify-between text-center my-10">
+      <div className="lg:w-1/2 mb-4 space-y-5">
         <p className=" font-roboto">DISCOVER THE SERVICES WE OFFERED</p>
         <p className=" font-marcellus text-5xl text-primary">
           Chalets With All the Benefits of a Hotel
@@ -70,7 +70,7 @@ const Benefits = () => {
           </li>
         </ul>
       </div>
-      <div className="w-1/2">
+      <div className="lg:w-1/2">
         <img
           className="h-[550px] w-full"
           src="https://i.ibb.co/zhjWssb/alev-takil-lw3-Lqe2-K7xc-unsplash.jpg"

@@ -39,15 +39,17 @@ const RoomCard = ({ room, alternateLayout }) => {
 
   if (alternateLayout) {
     return (
-      <div className="flex justify-between gap-10 h-[450px] items-center ">
-        <div className="w-1/3 space-y-14 ">
+      <div className="flex justify-between lg:gap-10 gap-2 h-[450px] items-center ">
+        <div className="lg:w-1/3 lg:space-y-14 ">
           <div>
             <p className=" text-sm text-primary font-medium font-jost">
               {roomSize} / {guests} Guests / {beds} Beds
             </p>
           </div>
           <div className=" font-jost space-y-2">
-            <p className="text-4xl font-marcellus font-light">{type}</p>
+            <p className="lg:text-4xl text-2xl font-marcellus font-light">
+              {type}
+            </p>
             <p className=" font-jost">{roomDetail}</p>
           </div>
           <div>
@@ -64,23 +66,17 @@ const RoomCard = ({ room, alternateLayout }) => {
               </ul>
             )}
           </div>
-          <div className="flex items-center gap-6">
+          <div className="lg:flex items-center mt-4 gap-6">
             {user ? (
               <Link to={`/roomdetails/${_id}`}>
                 <button className="btn btn-primary text-white font-marcellus">
                   Room Details
-                  <span className=" text-xl">
-                    <MdKeyboardDoubleArrowRight />
-                  </span>
                 </button>
               </Link>
             ) : (
               <Link to={`/details/${_id}`}>
                 <button className="btn btn-primary text-white font-marcellus">
                   Room Details
-                  <span className=" text-xl">
-                    <MdKeyboardDoubleArrowRight />
-                  </span>
                 </button>
               </Link>
             )}
@@ -89,7 +85,7 @@ const RoomCard = ({ room, alternateLayout }) => {
             </p>
           </div>
         </div>
-        <div className="w-2/3 ">
+        <div className="lg:w-2/3 w-1/2">
           <Swiper
             spaceBetween={20}
             slidesPerView={1}
@@ -130,8 +126,8 @@ const RoomCard = ({ room, alternateLayout }) => {
     );
   } else {
     return (
-      <div className="flex justify-between gap-10 h-[450px] items-center ">
-        <div className="w-2/3 ">
+      <div className="flex justify-between lg:gap-10 gap-2 h-[450px] items-center ">
+        <div className="lg:w-2/3 w-1/2 ">
           <Swiper
             spaceBetween={20}
             slidesPerView={1}
@@ -158,14 +154,16 @@ const RoomCard = ({ room, alternateLayout }) => {
             ))}
           </Swiper>
         </div>
-        <div className="w-1/3 space-y-14 ">
+        <div className="lg:w-1/3 w-1/2 lg:space-y-14 ">
           <div>
             <p className=" text-sm text-primary font-medium font-jost">
               {roomSize} / {guests} Guests / {beds} Beds
             </p>
           </div>
           <div className=" font-jost space-y-2">
-            <p className="text-4xl font-marcellus font-light">{type}</p>
+            <p className="lg:text-4xl text-2xl font-marcellus font-light">
+              {type}
+            </p>
             <p className=" font-jost">{roomDetail}</p>
           </div>
           <div>
@@ -182,13 +180,10 @@ const RoomCard = ({ room, alternateLayout }) => {
               </ul>
             )}
           </div>
-          <div className="flex items-center gap-6">
+          <div className="lg:flex items-center mt-4 gap-6">
             <Link to={`/roomdetails/${_id}`}>
               <button className="btn btn-primary text-white font-marcellus">
                 Room Details{" "}
-                <span className=" text-xl">
-                  <MdKeyboardDoubleArrowRight />
-                </span>
               </button>
             </Link>
 

@@ -151,8 +151,8 @@ const RoomDetails = () => {
       <div>
         <img className="w-full h-96" src={image} alt="" />
       </div>
-      <div className=" container mx-auto flex justify-between my-10">
-        <div className="w-3/5 space-y-10 mr-24">
+      <div className=" container mx-auto lg:flex justify-between my-10">
+        <div className="lg:w-3/5 space-y-10 lg:mr-24">
           <p className=" text-4xl font-marcellus font-light">{type}</p>
           <p className=" text-secondary text-xl">
             Special Offer:{" "}
@@ -223,7 +223,7 @@ const RoomDetails = () => {
             <p className=" font-marcellus font-light text-2xl">
               Family-friendly Amenities
             </p>
-            <div className="text-white grid grid-cols-3 gap-4">
+            <div className="text-white grid lg:grid-cols-3 gap-4">
               <div className="flex justify-center items-center gap-2 bg-secondary p-4 rounded-lg">
                 <p className=" text-2xl ">
                   <MdPool />
@@ -407,26 +407,26 @@ const RoomDetails = () => {
                       review.details_id === roomDetails._id &&
                       review.email === user.email
                   ) ? (
-                    <p className="font-marcellus text-4xl">
+                    <p className="font-marcellus lg:text-4xl">
                       You have already submitted a review for this room.
                     </p>
                   ) : (
                     <ReviewForm roomDetails={roomDetails} />
                   )
                 ) : (
-                  <p className="font-marcellus text-4xl">
+                  <p className="font-marcellus lg:text-4xl">
                     To submit a review, you need to book the room first.
                   </p>
                 )
               ) : (
-                <p className="font-marcellus text-4xl">
+                <p className="font-marcellus lg:text-4xl">
                   Please log in to submit a review.
                 </p>
               )}
             </div>
           </div>
         </div>
-        <div className="w-2/5  font-marcellus">
+        <div className="lg:w-2/5  font-marcellus">
           <div className=" bg-primary rounded-lg shadow-xl px-10 py-14">
             <div className="flex justify-between items-center">
               <p className=" font-marcellus text-2xl font-light text-white">

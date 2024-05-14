@@ -4,7 +4,7 @@ const Map = () => {
   return (
     <div className="container mx-auto my-10 space-y-5">
       <div className="w-3/5 mx-auto text-center space-y-5">
-        <p className=" font-marcellus text-5xl text-primary">
+        <p className=" font-marcellus lg:text-5xl text-primary">
           Discover Our Interactive Map
         </p>
         <p className=" font-roboto">

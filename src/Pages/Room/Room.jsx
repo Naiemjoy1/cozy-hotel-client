@@ -56,7 +56,7 @@ const Room = () => {
         </div>
       </div>
       <div>
-        <div className=" my-10 w-1/2 mx-auto text-center space-y-5">
+        <div className=" my-10 lg:w-1/2 mx-auto text-center space-y-5">
           <p className=" font-roboto">WELCOME TO COZYSTAY LODGE</p>
           <p className=" font-marcellus text-5xl">Select Your Cozy Room</p>
           <p className=" font-marcellus">
@@ -65,7 +65,7 @@ const Room = () => {
             harmonious and refined unit that affirms it’s purpose: to sublimate
             the stay of its guests by a tailor-made service.
           </p>
-          <div className="flex flex-col justify-center mt-5 w-full font-roboto lg:flex-row">
+          <div className="flex flex-col justify-center items-center mt-5 w-full font-roboto lg:flex-row">
             <p className="flex items-center gap-4">
               <span className="text-xl text-secondary">
                 <FaRegClock />
@@ -86,7 +86,7 @@ const Room = () => {
         <PriceFilter onFilterChange={handleFilterChange}></PriceFilter>
         {rooms.map((room, index) => {
           const alternateLayout = index % 2 === 0;
-          console.log("Alternate Layout:", alternateLayout);
+          // console.log("Alternate Layout:", alternateLayout);
           return (
             <RoomCard
               key={room.id}
@@ -96,21 +96,21 @@ const Room = () => {
           );
         })}
       </div>
-      <div className="flex justify-between items-center h-[650px]">
-        <div className="w-1/2  bg-primary h-full text-left p-24 text-white space-y-6">
-          <p className=" font-roboto font-medium">
+      <div className="lg:flex justify-between items-center lg:h-[650px]">
+        <div className="lg:w-1/2  bg-primary lg:h-full text-left lg:p-24 text-white lg:space-y-6">
+          <p className=" font-roboto font-medium text-center lg:text-left">
             COZY & COMFORTABLE STAY EXPERIENCE
           </p>
-          <p className=" font-marcellus text-5xl">
+          <p className=" font-marcellus text-2xl text-center lg:text-left lg:text-5xl">
             Complimentary Amenities In Your Suite
           </p>
-          <p className=" font-jost">
+          <p className=" font-jost text-center lg:text-left">
             All rooms have a bathroom with bathtub and/or shower, cable
             television/radio, free WIFI and mini bar. In addition, all rooms are
             equipped with a Nespresso coffee machine. Most rooms are carpeted,
             some have parquet flooring.
           </p>
-          <ul className=" grid grid-cols-2">
+          <ul className=" grid grid-cols-2 justify-center">
             <li className="flex items-center gap-2">
               <span className=" text-secondary">
                 <TiPlus />
@@ -161,16 +161,16 @@ const Room = () => {
             </li>
           </ul>
         </div>
-        <div className="w-1/2 ">
+        <div className="lg:w-1/2 ">
           <img
-            className="h-[650px] w-full"
+            className="lg:h-[650px] lg:w-full"
             src="https://i.ibb.co/Zf4Pxg9/pexels-talksintheam-2263510.jpg"
             alt=""
           />
         </div>
       </div>
-      <div className="container mx-auto flex justify-center gap-10 my-16">
-        <div className="w-1/2  space-y-5">
+      <div className="container mx-auto lg:flex justify-center gap-10 my-16">
+        <div className="lg:w-1/2  space-y-5">
           <p className=" font-jost text-primary ">
             START YOUR COMFORTABLE STAY
           </p>
@@ -183,7 +183,7 @@ const Room = () => {
             Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
           </p>
         </div>
-        <div className="w-1/2  space-y-5 text-lg">
+        <div className="lg:w-1/2  space-y-5 text-lg">
           <p className="flex items-center gap-2 font-jost">
             <span className=" text-secondary text-sm">
               <FaCircle />

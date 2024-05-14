@@ -72,26 +72,26 @@ const ReviewForm = ({ roomDetails }) => {
       };
 
       // Submit the review to the server
-      fetch("http://localhost:3000/reviews", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(review),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          if (data.insertedId) {
-            // alert("Review submitted successfully");
-            toast.success("Review submitted successfully");
-          }
-        })
-        .catch((error) => {
-          console.error("Error submitting review:", error);
-          // alert("Failed to submit review");
-          toast.error("Failed to submit review");
-        });
+      // fetch("http://localhost:3000/reviews", {
+      //   method: "POST",
+      //   headers: {
+      //     "content-type": "application/json",
+      //   },
+      //   body: JSON.stringify(review),
+      // })
+      //   .then((res) => res.json())
+      //   .then((data) => {
+      //     console.log(data);
+      //     if (data.insertedId) {
+      //       // alert("Review submitted successfully");
+      //       toast.success("Review submitted successfully");
+      //     }
+      //   })
+      //   .catch((error) => {
+      //     console.error("Error submitting review:", error);
+      //     // alert("Failed to submit review");
+      //     toast.error("Failed to submit review");
+      //   });
     });
 
     // Clear review content and rating after submission

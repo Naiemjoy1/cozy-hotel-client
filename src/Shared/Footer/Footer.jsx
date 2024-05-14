@@ -11,8 +11,8 @@ const Footer = () => {
   return (
     <div>
       <footer className="footer p-20 bg-primary text-white">
-        <div className="flex container mx-auto gap-10">
-          <div className="w-2/6 pr-10 ">
+        <div className="lg:flex container mx-auto gap-10">
+          <div className="lg:w-2/6 pr-10 ">
             <p className="text-3xl font-marcellus">COZYSTAY</p>
             <p className="mt-5 font-jost">
               Founded in 1998, CozyStay Resort is located on the hills of
@@ -23,7 +23,7 @@ const Footer = () => {
               <FaFacebook /> <FaTwitter /> <SiInstagram />
             </p>
           </div>
-          <div className="w-2/6  flex justify-between gap-10">
+          <div className="lg:w-2/6  flex justify-between gap-10">
             <div className="w-1/2 ">
               <p className="text-xl font-marcellus">About Us</p>
               <ul className="mt-5">
@@ -34,7 +34,7 @@ const Footer = () => {
                 <li className=" font-jost">Blog</li>
               </ul>
             </div>
-            <div className="w-1/2 ">
+            <div className="lg:w-1/2 ">
               <p className="text-xl font-marcellus">Experiences</p>
               <ul className="mt-5">
                 <li className=" font-jost">Our Story</li>
@@ -45,7 +45,7 @@ const Footer = () => {
               </ul>
             </div>
           </div>
-          <div className="w-2/6 ">
+          <div className="lg:w-2/6 ">
             <p className="text-xl font-marcellus">Reach Out</p>
             <ul className="mt-5 space-y-2">
               <li className=" font-jost items-center flex gap-2">

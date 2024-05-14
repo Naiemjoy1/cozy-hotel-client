@@ -23,7 +23,7 @@ const AboutUs = () => {
         </div>
       </div>
       <div className="container mx-auto">
-        <div className="text-center w-1/2 mx-auto space-y-5 my-14">
+        <div className="text-center lg:w-1/2 mx-auto space-y-5 my-14">
           <p>WELCOME TO COZYSTAY LODGE</p>
           <p className=" font-marcellus text-4xl ">
             Exceptional Chalets, tailored services and the experience of unique
@@ -37,19 +37,19 @@ const AboutUs = () => {
             and savor the best of Napa wine country at CozyStay.
           </p>
         </div>
-        <div className="grid grid-cols-3 h-[550px] items-center justify-center gap-5 mb-14">
+        <div className="grid lg:grid-cols-3 lg:h-[550px] items-center justify-center gap-5 mb-14">
           <img
-            className="h-[550px]"
+            className="lg:h-[550px]"
             src="https://i.ibb.co/SQd718m/pexels-mchodakowski-693895.jpg"
             alt=""
           />
           <img
-            className="h-[550px]"
+            className="lg:h-[550px]"
             src="https://i.ibb.co/6bwX62q/pexels-eduardo-romero-817034-3124079.jpg"
             alt=""
           />
           <img
-            className="h-[550px]"
+            className="lg:h-[550px]"
             src="https://i.ibb.co/Zf4Pxg9/pexels-talksintheam-2263510.jpg"
             alt=""
           />

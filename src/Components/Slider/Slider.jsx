@@ -19,7 +19,7 @@ const Slider = () => {
     <div>
       <Swiper
         spaceBetween={20}
-        slidesPerView={2}
+        slidesPerView={1}
         navigation={true}
         autoplay={{ delay: 2000 }}
         loop={true}
@@ -27,6 +27,16 @@ const Slider = () => {
         // scrollbar={{ draggable: true }}
         modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
         className="mySwiper"
+        breakpoints={{
+          // When window width is >= 768px
+          768: {
+            slidesPerView: 2,
+          },
+          // When window width is < 768px
+          0: {
+            slidesPerView: 1,
+          },
+        }}
         // onSwiper={(swiper) => console.log(swiper)}
         // onSlideChange={() => console.log("slide change")}
       >

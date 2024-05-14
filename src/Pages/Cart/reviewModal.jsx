@@ -48,6 +48,8 @@ const ReviewModal = ({ booking }) => {
     }
   }, [user, _id]);
 
+  console.log("review from bookings", reviews);
+
   return (
     <div>
       {/* <p>booking id :{_id}</p>

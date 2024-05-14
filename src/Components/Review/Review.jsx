@@ -54,7 +54,7 @@ const Review = () => {
       <div className="bg-primary py-20">
         <div className="container mx-auto space-y-10">
           <div className=" text-center w-3/5 mx-auto space-y-5 text-white">
-            <h3 className="text-4xl font-marcellus">
+            <h3 className="lg:text-4xl font-marcellus">
               Feedback from our Guests
             </h3>
             <p>
@@ -82,12 +82,22 @@ const Review = () => {
           <div>
             <Swiper
               spaceBetween={20}
-              slidesPerView={2}
+              slidesPerView={1}
               navigation={true}
               autoplay={{ delay: 4000 }}
               loop={true}
               modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
               className="mySwiper"
+              breakpoints={{
+                // When window width is >= 768px
+                768: {
+                  slidesPerView: 2,
+                },
+                // When window width is < 768px
+                0: {
+                  slidesPerView: 1,
+                },
+              }}
             >
               {reviews.map((review) => (
                 <SwiperSlide key={review._id}>

@@ -31,7 +31,7 @@ const HotelRooms = () => {
     <div className=" my-10">
       <div className=" text-center w-2/4 mx-auto space-y-5">
         <p className=" font-roboto font-semibold">WELCOME TO COZYSTAY LODGE</p>
-        <p className=" font-marcellus text-5xl text-primary">
+        <p className=" font-marcellus lg:text-5xl text-primary">
           Select Your Cozy Room
         </p>
         <p className=" font-roboto">
@@ -44,7 +44,7 @@ const HotelRooms = () => {
       <div className="container mx-auto my-10 ">
         <Swiper
           spaceBetween={20}
-          slidesPerView={3}
+          slidesPerView={1}
           navigation={true}
           autoplay={{ delay: 5000 }}
           loop={true}
@@ -52,6 +52,16 @@ const HotelRooms = () => {
           // scrollbar={{ draggable: true }}
           modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
           className="mySwiper"
+          breakpoints={{
+            // When window width is >= 768px
+            768: {
+              slidesPerView: 3,
+            },
+            // When window width is < 768px
+            0: {
+              slidesPerView: 1,
+            },
+          }}
           // onSwiper={(swiper) => console.log(swiper)}
           // onSlideChange={() => console.log("slide change")}
         >

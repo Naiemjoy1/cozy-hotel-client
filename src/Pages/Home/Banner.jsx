@@ -11,10 +11,10 @@ const Banner = () => {
         }}
       >
         <div className="hero-overlay bg-opacity-60"></div>
-        <div className=" flex justify-center items-center text-white container mx-auto gap-10 py-28">
-          <div className="w-1/2 space-y-5">
+        <div className=" lg:flex justify-center items-center text-white lg:container lg:mx-auto gap-10 py-28">
+          <div className="lg:w-1/2 space-y-5">
             <p className=" font-roboto font-semibold">BEST PLACE FOR RELAX</p>
-            <p className=" font-marcellus font-normal text-5xl">
+            <p className=" font-marcellus font-normal lg:text-5xl">
               Perfect Countryside Vacation at CozyStay Lodge
             </p>
             <p className=" font-roboto">
@@ -24,7 +24,7 @@ const Banner = () => {
               and restaurants.
             </p>
           </div>
-          <div className="w-1/2">
+          <div className="lg:w-1/2">
             <Slider></Slider>
           </div>
         </div>

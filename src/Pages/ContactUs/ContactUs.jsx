@@ -7,14 +7,14 @@ const ContactUs = () => {
         <LeafletMap></LeafletMap>
       </div>
       <div className="bg-gray-200">
-        <div className="flex p-14 justify-center items-center container mx-auto bg-white gap-14">
-          <div className="w-1/2">
+        <div className="lg:flex p-14 justify-center items-center container mx-auto bg-white gap-14">
+          <div className="lg:w-1/2">
             <img
               src="https://i.ibb.co/yfnsfFy/pexels-nguyendesigner-244133.jpg"
               alt=""
             />
           </div>
-          <div className="w-1/2">
+          <div className="lg:w-1/2 md:mt-5 mt-5">
             <p className="text-4xl font-marcellus">Contact Information</p>
             <div className="divider divider-secondary"></div>
             <p className=" font-jost">
