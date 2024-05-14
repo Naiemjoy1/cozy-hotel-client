@@ -16,6 +16,9 @@ import ReviewForm from "../../Shared/ReviewForm/ReviewForm";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Components/FirebaseProvider/FirebaseProvider";
 import ReviewSlider from "./ReviewSlider";
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 const RoomDetails = () => {
   const roomDetails = useLoaderData();
@@ -88,6 +91,60 @@ const RoomDetails = () => {
 
     return () => {};
   }, [roomDetails, user]);
+
+  // const handleCancel = (id) => {
+  //   // Proceed with cancellation request
+  //   fetch(`http://localhost:3000/bookings/${id}/cancel`, {
+  //     method: "POST",
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       if (data.message === "Booking canceled successfully") {
+  //         // Update bookings state to remove canceled booking
+  //         const updatedBookings = bookings.filter(
+  //           (booking) => booking._id !== id
+  //         );
+  //         setBookings(updatedBookings);
+  //         // alert("Booking canceled successfully.");
+  //         toast.success("Booking cancel successfully");
+  //       } else {
+  //         // alert("Failed to cancel booking. Please try again later.");
+  //         toast.error("Failed to cancel booking");
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error canceling booking:", error);
+  //       // alert("An error occurred while canceling the booking.");
+  //       toast.error("An error occurred while canceling the booking.");
+  //     });
+  // };
+
+  const cancelBooking = (id) => {
+    // Proceed with cancellation request
+    fetch(`http://localhost:3000/bookings/${id}/cancel`, {
+      method: "POST",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message === "Booking canceled successfully") {
+          // Update bookings state to remove canceled booking
+          const updatedBookings = bookings.filter(
+            (booking) => booking._id !== id
+          );
+          setBookings(updatedBookings);
+          // alert("Booking canceled successfully.");
+          toast.success("Booking cancel successfully");
+        } else {
+          // alert("Failed to cancel booking. Please try again later.");
+          toast.error("Failed to cancel booking");
+        }
+      })
+      .catch((error) => {
+        console.error("Error canceling booking:", error);
+        // alert("An error occurred while canceling the booking.");
+        toast.error("An error occurred while canceling the booking.");
+      });
+  };
 
   return (
     <div>
@@ -384,10 +441,12 @@ const RoomDetails = () => {
               bookings={bookings}
               roomDetails={roomDetails}
               reviews={reviews}
+              cancelBooking={cancelBooking}
             ></RoomReservation>
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

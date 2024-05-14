@@ -2,6 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import moment from "moment"; // Import moment library for date manipulation
 import { AuthContext } from "../../Components/FirebaseProvider/FirebaseProvider";
 
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
+
 const BookingTestPage = () => {
   const { user } = useContext(AuthContext);
   const [bookings, setBookings] = useState([]);
@@ -68,6 +72,7 @@ const BookingTestPage = () => {
           </table>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

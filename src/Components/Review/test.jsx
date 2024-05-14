@@ -19,28 +19,40 @@ import { AuthContext } from "../FirebaseProvider/FirebaseProvider";
 
 const Review = () => {
   const [reviews, setReviews] = useState([]);
-  const [selectedRating, setSelectedRating] = useState(null); // Default to null when no rating is selected
+  const [selectedRating, setSelectedRating] = useState(5);
   const { user } = useContext(AuthContext);
 
-  useEffect(() => {
-    // Fetch reviews when component mounts
-    fetchReviews(selectedRating);
-  }, [selectedRating]);
+  // useEffect(() => {
+  //   // Fetch reviews when component mounts
+  //   fetch(
+  //     `http://localhost:3000/reviews?minRating=${selectedRating}&maxRating=${selectedRating}`
+  //   )
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setReviews(data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching reviews:", error);
+  //     });
+  // }, [selectedRating]);
 
-  const fetchReviews = (rating) => {
-    let url = "http://localhost:3000/reviews";
-    if (rating !== null) {
-      url += `?minRating=${rating}&maxRating=${rating}`;
+  // console.log(reviews);
+
+  useEffect(() => {
+    if (user) {
+      // Fetch reviews when component mounts
+      fetch("http://localhost:3000/reviews")
+        .then((response) => response.json())
+        .then((data) => {
+          // Filter reviews by user email and matching booking ID
+
+          setReviews(data);
+        })
+        .catch((error) => {
+          console.error("Error fetching reviews:", error);
+        });
     }
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        setReviews(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching reviews:", error);
-      });
-  };
+  }, []);
 
   console.log("review from home", reviews);
 
@@ -68,9 +80,8 @@ const Review = () => {
               <select
                 className=" bg-secondary px-5 py-1 rounded-lg"
                 onChange={handleRatingChange}
-                value={selectedRating !== null ? selectedRating : ""}
+                value={selectedRating}
               >
-                <option value="">All</option> {/* Option to show all reviews */}
                 {[1, 2, 3, 4, 5].map((rating) => (
                   <option key={rating} value={rating}>
                     {rating}
@@ -84,7 +95,7 @@ const Review = () => {
               spaceBetween={20}
               slidesPerView={2}
               navigation={true}
-              autoplay={{ delay: 4000 }}
+              // autoplay={{ delay: 6000 }}
               loop={true}
               modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
               className="mySwiper"

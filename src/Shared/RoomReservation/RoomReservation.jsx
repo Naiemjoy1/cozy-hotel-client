@@ -23,8 +23,10 @@ const style = {
   p: 4,
 };
 import ReservationModal from "./ReservationModal";
+import { Link } from "react-router-dom";
+import UpdateEdit from "./UpdateEdit";
 
-const RoomReservation = ({ roomDetails }) => {
+const RoomReservation = ({ roomDetails, cancelBooking }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -261,6 +263,11 @@ const RoomReservation = ({ roomDetails }) => {
         </div>
 
         <div className="form-control mt-6">
+          <UpdateEdit
+            _id={_id}
+            bookings={bookings}
+            cancelBooking={cancelBooking}
+          ></UpdateEdit>
           <div>
             {bookings.some((booking) => booking.room_id === roomDetails._id) ? (
               <p className=" bg-red-600 text-center text-white py-2 rounded-lg">

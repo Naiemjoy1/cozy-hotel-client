@@ -12,7 +12,6 @@ const ReviewForm = ({ roomDetails }) => {
   const [reviewContent, setReviewContent] = useState("");
   const [hasBookedRoom, setHasBookedRoom] = useState([]);
   const [reviews, setReviews] = useState([]);
-  const [showToast, setShowToast] = useState(false); // State to track if toast is shown
 
   const { _id } = roomDetails;
 
@@ -85,10 +84,7 @@ const ReviewForm = ({ roomDetails }) => {
           console.log(data);
           if (data.insertedId) {
             // alert("Review submitted successfully");
-            setShowToast(true); // Update state to show toast
-            toast.success("Review submitted successfully", {
-              onClose: () => setShowToast(false), // Hide toast and form after closing
-            });
+            toast.success("Review submitted successfully");
           }
         })
         .catch((error) => {
@@ -107,11 +103,6 @@ const ReviewForm = ({ roomDetails }) => {
   const filteredReviews = reviews.filter(
     (review) => review.details_id === _id && review.email === user?.email
   );
-
-  // Render null if toast is shown
-  if (showToast) {
-    return null;
-  }
 
   return (
     <div>
