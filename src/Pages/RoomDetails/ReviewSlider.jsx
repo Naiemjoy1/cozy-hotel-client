@@ -24,9 +24,7 @@ const ReviewSlider = ({ roomDetails }) => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await fetch(
-          "https://hotel-booking-server-lake.vercel.app/reviews"
-        );
+        const response = await fetch("http://localhost:3000/reviews");
         if (!response.ok) {
           throw new Error("Failed to fetch reviews");
         }

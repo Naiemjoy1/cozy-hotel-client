@@ -62,7 +62,7 @@ const RoomDetails = () => {
 
   // useEffect(() => {
   //   // Fetch reviews when component mounts
-  //   fetch("https://hotel-booking-server-lake.vercel.app/reviews")
+  //   fetch("http://localhost:3000/reviews")
   //     .then((response) => response.json())
   //     .then((data) => {
   //       const filteredReviews = data.filter(
@@ -78,7 +78,7 @@ const RoomDetails = () => {
   useEffect(() => {
     if (isAuthenticated) {
       // Fetch bookings for the current room
-      fetch(`https://hotel-booking-server-lake.vercel.app/bookings/room/${_id}`)
+      fetch(`http://localhost:3000/bookings/room/${_id}`)
         .then((response) => response.json())
         .then((data) => {
           setBookings(data);
@@ -94,7 +94,7 @@ const RoomDetails = () => {
 
   // Fetch bookings for the current room
   // useEffect(() => {
-  //   fetch("https://hotel-booking-server-lake.vercel.app/bookings")
+  //   fetch("http://localhost:3000/bookings")
   //     .then((response) => response.json())
   //     .then((data) => {
   //       const submitReview = data.filter((roomID) => roomID.room_id === _id);
@@ -107,7 +107,7 @@ const RoomDetails = () => {
 
   useEffect(() => {
     // Fetch reviews when component mounts
-    fetch("https://hotel-booking-server-lake.vercel.app/reviews")
+    fetch("http://localhost:3000/reviews")
       .then((response) => response.json())
       .then((data) => {
         const filteredReviews = data.filter(
@@ -140,7 +140,7 @@ const RoomDetails = () => {
   // useEffect(() => {
   //   if (user) {
   //     // Fetch bookings when component mounts
-  //     fetch("https://hotel-booking-server-lake.vercel.app/bookings")
+  //     fetch("http://localhost:3000/bookings")
   //       .then((response) => response.json())
   //       .then((data) => {
   //         // Filter bookings by user email
@@ -162,9 +162,7 @@ const RoomDetails = () => {
     // Function to fetch bookings data
     const fetchBookings = async () => {
       try {
-        const response = await fetch(
-          "https://hotel-booking-server-lake.vercel.app/bookings"
-        );
+        const response = await fetch("http://localhost:3000/bookings");
         if (!response.ok) {
           throw new Error("Failed to fetch bookings");
         }

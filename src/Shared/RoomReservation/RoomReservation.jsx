@@ -99,7 +99,7 @@ const RoomReservation = ({ roomDetails, cancelBooking }) => {
     };
     console.log("Reservation Details:", reservationDetails);
 
-    fetch("https://hotel-booking-server-lake.vercel.app/bookings", {
+    fetch("http://localhost:3000/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -136,9 +136,7 @@ const RoomReservation = ({ roomDetails, cancelBooking }) => {
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const response = await fetch(
-          "https://hotel-booking-server-lake.vercel.app/bookings"
-        );
+        const response = await fetch("http://localhost:3000/bookings");
         if (!response.ok) {
           throw new Error("Failed to fetch bookings");
         }

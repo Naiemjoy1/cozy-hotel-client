@@ -75,7 +75,7 @@ const BookingsUpdate = () => {
     // Log the submitted data
     console.log("Submitted Data:", updatedDetails);
 
-    fetch(`https://hotel-booking-server-lake.vercel.app/bookings/${_id}`, {
+    fetch(`http://localhost:3000/bookings/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

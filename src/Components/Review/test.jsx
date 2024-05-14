@@ -25,7 +25,7 @@ const Review = () => {
   // useEffect(() => {
   //   // Fetch reviews when component mounts
   //   fetch(
-  //     `https://hotel-booking-server-lake.vercel.app/reviews?minRating=${selectedRating}&maxRating=${selectedRating}`
+  //     `http://localhost:3000/reviews?minRating=${selectedRating}&maxRating=${selectedRating}`
   //   )
   //     .then((response) => response.json())
   //     .then((data) => {
@@ -41,7 +41,7 @@ const Review = () => {
   useEffect(() => {
     if (user) {
       // Fetch reviews when component mounts
-      fetch("https://hotel-booking-server-lake.vercel.app/reviews")
+      fetch("http://localhost:3000/reviews")
         .then((response) => response.json())
         .then((data) => {
           // Filter reviews by user email and matching booking ID

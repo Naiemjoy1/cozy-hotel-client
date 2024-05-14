@@ -36,7 +36,7 @@ const Login = () => {
             //
             // get access token
             axios
-              .post("https://hotel-booking-server-lake.vercel.app/jwt", user, {
+              .post("http://localhost:3000/jwt", user, {
                 withCredentials: true,
               })
               .then((res) => {

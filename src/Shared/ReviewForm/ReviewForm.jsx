@@ -18,7 +18,7 @@ const ReviewForm = ({ roomDetails }) => {
   useEffect(() => {
     if (user) {
       // Fetch bookings when component mounts
-      fetch("https://hotel-booking-server-lake.vercel.app/bookings")
+      fetch("http://localhost:3000/bookings")
         .then((response) => response.json())
         .then((data) => {
           // Filter bookings by user email and room_id
@@ -34,7 +34,7 @@ const ReviewForm = ({ roomDetails }) => {
     }
 
     // Fetch reviews
-    fetch("https://hotel-booking-server-lake.vercel.app/reviews")
+    fetch("http://localhost:3000/reviews")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -72,7 +72,7 @@ const ReviewForm = ({ roomDetails }) => {
       };
 
       // Submit the review to the server
-      // fetch("https://hotel-booking-server-lake.vercel.app/reviews", {
+      // fetch("http://localhost:3000/reviews", {
       //   method: "POST",
       //   headers: {
       //     "content-type": "application/json",

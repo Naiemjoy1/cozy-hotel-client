@@ -9,7 +9,7 @@ const Bookings = () => {
   const { user } = useContext(AuthContext);
   const [bookings, setBookings] = useState([]);
 
-  const url = `https://hotel-booking-server-lake.vercel.app/bookings?email=${user?.email}`;
+  const url = `http://localhost:3000/bookings?email=${user?.email}`;
 
   useEffect(() => {
     axios.get(url, { withCredentials: true }).then((res) => {
@@ -22,7 +22,7 @@ const Bookings = () => {
 
   const handleDelete = (id) => {
     // Proceed with deletion directly
-    fetch(`https://hotel-booking-server-lake.vercel.app/bookings/${id}`, {
+    fetch(`http://localhost:3000/bookings/${id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",
@@ -49,12 +49,9 @@ const Bookings = () => {
 
   const handleCancel = (id) => {
     // Proceed with cancellation request
-    fetch(
-      `https://hotel-booking-server-lake.vercel.app/bookings/${id}/cancel`,
-      {
-        method: "POST",
-      }
-    )
+    fetch(`http://localhost:3000/bookings/${id}/cancel`, {
+      method: "POST",
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.message === "Booking canceled successfully") {
