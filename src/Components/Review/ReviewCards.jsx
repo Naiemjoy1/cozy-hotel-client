@@ -1,5 +1,8 @@
 import PropTypes from "prop-types";
 import { GoStarFill } from "react-icons/go";
+import Aos from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const ReviewCards = ({ review }) => {
   const { comment, rating, name, timestamp, image } = review;
@@ -12,11 +15,16 @@ const ReviewCards = ({ review }) => {
     date.getMonth() + 1
   }/${date.getFullYear()}`;
 
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+    Aos.refresh();
+  }, []);
+
   return (
-    <div>
+    <div data-aos="fade-up">
       <div className="container flex flex-col w-full py-14 px-6 mx-auto divide-y rounded-md bg-secondary h-[300px]">
         <div className="flex justify-between p-4">
-          <div className="flex space-x-4">
+          <div data-aos="fade-up" className="flex space-x-4">
             <div>
               <img
                 src={image}
@@ -29,12 +37,12 @@ const ReviewCards = ({ review }) => {
               <span className="text-xs ">{formattedDate}</span>
             </div>
           </div>
-          <div className="flex items-center space-x-2">
+          <div data-aos="fade-up" className="flex items-center space-x-2">
             <GoStarFill />
             <span className="text-xl font-bold">{rating}</span>
           </div>
         </div>
-        <div className="p-4 space-y-2 text-sm ">
+        <div data-aos="fade-up" className="p-4 space-y-2 text-sm ">
           <p>{comment}</p>
         </div>
       </div>

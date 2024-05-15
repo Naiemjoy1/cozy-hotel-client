@@ -9,8 +9,16 @@ import useAuth from "../../Components/hooks/useAuth";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import axios from "axios";
 import PageTitle from "../../Components/PageTitle/PageTitle";
+import Aos from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const Login = () => {
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+    Aos.refresh();
+  }, []);
+
   const { signInUser } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
@@ -57,14 +65,14 @@ const Login = () => {
   return (
     <div className="min-h-[calc(100vh-246px)] lg:flex justify-center items-center my-10 container mx-auto">
       <PageTitle title="Login"></PageTitle>
-      <div className="lg:w-1/2 ">
+      <div data-aos="fade-right" className="lg:w-1/2 ">
         <img
           className="h-[550px] w-full"
           src="https://i.ibb.co/0BsT0Fy/pexels-vaishnav-devadas-415764-2086676.jpg"
           alt=""
         />
       </div>
-      <div className="lg:w-1/2">
+      <div data-aos="fade-left" className="lg:w-1/2">
         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
           <div className=" text-center">
             <p className=" font-robotoslab text-5xl font-light">Welcome Back</p>

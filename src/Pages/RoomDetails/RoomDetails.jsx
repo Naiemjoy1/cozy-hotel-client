@@ -21,7 +21,18 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PageTitle from "../../Components/PageTitle/PageTitle";
 
+import Aos from "aos";
+import "aos/dist/aos.css";
+
 const RoomDetails = () => {
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
+
+  useEffect(() => {
+    Aos.refresh();
+  });
+
   const roomDetails = useLoaderData();
   const { user } = useContext(AuthContext);
 
@@ -97,33 +108,6 @@ const RoomDetails = () => {
     return () => {};
   }, [roomDetails, user]);
 
-  // const handleCancel = (id) => {
-  //   // Proceed with cancellation request
-  //   fetch(`https://hotel-booking-server-lake.vercel.app/bookings/${id}/cancel`, {
-  //     method: "POST",
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       if (data.message === "Booking canceled successfully") {
-  //         // Update bookings state to remove canceled booking
-  //         const updatedBookings = bookings.filter(
-  //           (booking) => booking._id !== id
-  //         );
-  //         setBookings(updatedBookings);
-  //         // alert("Booking canceled successfully.");
-  //         toast.success("Booking cancel successfully");
-  //       } else {
-  //         // alert("Failed to cancel booking. Please try again later.");
-  //         toast.error("Failed to cancel booking");
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error canceling booking:", error);
-  //       // alert("An error occurred while canceling the booking.");
-  //       toast.error("An error occurred while canceling the booking.");
-  //     });
-  // };
-
   const cancelBooking = (id) => {
     // Proceed with cancellation request
     fetch(
@@ -161,14 +145,19 @@ const RoomDetails = () => {
         <img className="w-full h-96" src={image} alt="" />
       </div>
       <div className=" container mx-auto lg:flex justify-between my-10">
-        <div className="lg:w-3/5 space-y-10 lg:mr-24">
-          <p className=" text-4xl font-marcellus font-light">{type}</p>
-          <p className=" text-secondary text-xl">
+        <div data-aos="fade-up" className="lg:w-3/5 space-y-10 lg:mr-24">
+          <p data-aos="fade-up" className=" text-4xl font-marcellus font-light">
+            {type}
+          </p>
+          <p data-aos="fade-up" className=" text-secondary text-xl">
             Special Offer:{" "}
             <span>{specialOffers ? specialOffers : "No Offers"}</span>
           </p>
           <div className=" flex justify-between">
-            <div className=" flex justify-start items-center gap-5 font-roboto">
+            <div
+              data-aos="fade-up"
+              className=" flex justify-start items-center gap-5 font-roboto"
+            >
               <p className="flex items-center gap-4">
                 <span className=" text-lg">
                   <SlSizeFullscreen />
@@ -191,14 +180,14 @@ const RoomDetails = () => {
           </div>
 
           <div className=" space-y-5 font-roboto">
-            <p>
+            <p data-aos="fade-up">
               <span className="font-semibold">
                 This room shows an example of the “Booking Rules”.
               </span>{" "}
               These information can be reflected in the calendar on the right or
               below the content.
             </p>
-            <ul className=" space-y-2">
+            <ul data-aos="fade-up" className=" space-y-2">
               <li className="flex items-center gap-4 ">
                 <span className="text-sm text-secondary">
                   <FaCircle />
@@ -225,14 +214,20 @@ const RoomDetails = () => {
               </li>
             </ul>
           </div>
-          <div>
+          <div data-aos="fade-up">
             <p className=" font-roboto">{description}</p>
           </div>
           <div className=" space-y-5">
-            <p className=" font-marcellus font-light text-2xl">
+            <p
+              data-aos="fade-up"
+              className=" font-marcellus font-light text-2xl"
+            >
               Family-friendly Amenities
             </p>
-            <div className="text-white grid lg:grid-cols-3 gap-4">
+            <div
+              data-aos="fade-up"
+              className="text-white grid lg:grid-cols-3 gap-4"
+            >
               <div className="flex justify-center items-center gap-2 bg-secondary p-4 rounded-lg">
                 <p className=" text-2xl ">
                   <MdPool />
@@ -254,77 +249,80 @@ const RoomDetails = () => {
             </div>
           </div>
           <div className=" space-y-5">
-            <p className=" font-marcellus font-light text-2xl">
+            <p
+              data-aos="fade-up"
+              className=" font-marcellus font-light text-2xl"
+            >
               Room Amenities
             </p>
             <div className="grid grid-cols-2 gap-3">
-              <p className="flex items-center gap-4">
+              <p data-aos="fade-up" className="flex items-center gap-4">
                 <span className="text-2xl text-secondary">
                   <TbAirConditioning />
                 </span>
                 Air conditioner
               </p>
-              <p className="flex items-center gap-4">
+              <p data-aos="fade-up" className="flex items-center gap-4">
                 <span className="text-2xl text-secondary">
                   <PiTelevisionSimple />
                 </span>
                 Cable TV
               </p>
-              <p className="flex items-center gap-4">
+              <p data-aos="fade-up" className="flex items-center gap-4">
                 <span className="text-2xl text-secondary">
                   <FaWifi />
                 </span>
                 Wifi & Internet
               </p>
-              <p className="flex items-center gap-4">
+              <p data-aos="fade-up" className="flex items-center gap-4">
                 <span className="text-2xl text-secondary">
                   <GiTowel />
                 </span>
                 Towels
               </p>
-              <p className="flex items-center gap-4">
+              <p data-aos="fade-up" className="flex items-center gap-4">
                 <span className="text-2xl text-secondary">
                   <GiSlippers />
                 </span>
                 Slippers
               </p>
-              <p className="flex items-center gap-4">
+              <p data-aos="fade-up" className="flex items-center gap-4">
                 <span className="text-2xl text-secondary">
                   <PiHairDryerFill />
                 </span>
                 Hair Dryer
               </p>
-              <p className="flex items-center gap-4">
+              <p data-aos="fade-up" className="flex items-center gap-4">
                 <span className="text-2xl text-secondary">
                   <FaBottleDroplet />
                 </span>
                 Shampoo
               </p>
-              <p className="flex items-center gap-4">
+              <p data-aos="fade-up" className="flex items-center gap-4">
                 <span className="text-2xl text-secondary">
                   <MdOutlineCoffeeMaker />
                 </span>
                 Espresso Machine
               </p>
-              <p className="flex items-center gap-4">
+              <p data-aos="fade-up" className="flex items-center gap-4">
                 <span className="text-2xl text-secondary">
                   <RiSafe2Fill />
                 </span>
                 Safe Box
               </p>
-              <p className="flex items-center gap-4">
+              <p data-aos="fade-up" className="flex items-center gap-4">
                 <span className="text-2xl text-secondary">
                   <BiSolidDrink />
                 </span>
                 Welcome Drinks
               </p>
-              <p className="flex items-center gap-4">
+              <p data-aos="fade-up" className="flex items-center gap-4">
                 <span className="text-2xl text-secondary">
                   <MdOutlinePets />
                 </span>
                 Pet Friendly
               </p>
-              <p className="flex items-center gap-4">
+              <p data-aos="fade-up" className="flex items-center gap-4">
                 <span className="text-2xl text-secondary">
                   <CgSmartHomeRefrigerator />
                 </span>
@@ -333,10 +331,13 @@ const RoomDetails = () => {
             </div>
           </div>
           <div className=" space-y-5">
-            <p className=" font-marcellus font-light text-2xl">
+            <p
+              data-aos="fade-up"
+              className=" font-marcellus font-light text-2xl"
+            >
               What’s included in this suite?
             </p>
-            <ul className=" space-y-2">
+            <ul data-aos="fade-up" className=" space-y-2">
               <li className="flex items-center gap-4 ">
                 <span className="text-sm text-secondary">
                   <FaCircle />
@@ -394,7 +395,7 @@ const RoomDetails = () => {
             </ul>
           </div>
           <div className=" space-y-5">
-            <h3 className="text-4xl font-marcellus">
+            <h3 data-aos="fade-up" className="text-4xl font-marcellus">
               Feedback from our Guests
             </h3>
             <ReviewSlider
@@ -404,7 +405,7 @@ const RoomDetails = () => {
             ></ReviewSlider>
           </div>
           <div>
-            <div>
+            <div data-aos="fade-up">
               {user ? (
                 bookings.some(
                   (booking) =>
@@ -435,13 +436,16 @@ const RoomDetails = () => {
             </div>
           </div>
         </div>
-        <div className="lg:w-2/5  font-marcellus">
+        <div data-aos="fade-up" className="lg:w-2/5  font-marcellus">
           <div className=" bg-primary rounded-lg shadow-xl px-10 py-14">
             <div className="flex justify-between items-center">
-              <p className=" font-marcellus text-2xl font-light text-white">
+              <p
+                data-aos="fade-up"
+                className=" font-marcellus text-2xl font-light text-white"
+              >
                 RESERVE:
               </p>
-              <p className=" font-jost text-white">
+              <p data-aos="fade-up" className=" font-jost text-white">
                 From <span className=" font-sm text-lg ">${pricePerNight}</span>{" "}
                 /night
               </p>

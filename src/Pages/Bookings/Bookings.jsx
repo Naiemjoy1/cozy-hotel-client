@@ -6,7 +6,15 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import PageTitle from "../../Components/PageTitle/PageTitle";
 
+import Aos from "aos";
+import "aos/dist/aos.css";
+
 const Bookings = () => {
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+    Aos.refresh();
+  }, []);
+
   const { user } = useContext(AuthContext);
   const [bookings, setBookings] = useState([]);
 
@@ -82,7 +90,7 @@ const Bookings = () => {
     <div className="min-h-[calc(100vh-327px)] my-20">
       <PageTitle title="Bookings"></PageTitle>
       <div>
-        <p className="text-4xl font-marcellus text-center">
+        <p data-aos="fade-down" className="text-4xl font-marcellus text-center">
           Your Bookings here
         </p>
       </div>

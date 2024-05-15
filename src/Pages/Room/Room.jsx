@@ -5,7 +5,18 @@ import PriceFilter from "./PriceFilter";
 import { useEffect, useState } from "react";
 import PageTitle from "../../Components/PageTitle/PageTitle";
 
+import Aos from "aos";
+import "aos/dist/aos.css";
+
 const Room = () => {
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }, []);
+
+  useEffect(() => {
+    Aos.refresh();
+  });
+
   // const rooms = useLoaderData();
   const [rooms, setRooms] = useState([]);
 
@@ -48,9 +59,13 @@ const Room = () => {
         <div className="hero-overlay bg-opacity-60"></div>
         <div className="hero-content text-center text-neutral-content">
           <div className="max-w-md text-white space-y-5">
-            <p className=" font-roboto font-semibold">OUR ACCOMMODATIONS</p>
-            <p className=" font-marcellus text-7xl">Stay With Us</p>
-            <p className=" font-roboto">
+            <p data-aos="fade-right" className=" font-roboto font-semibold">
+              OUR ACCOMMODATIONS
+            </p>
+            <p data-aos="fade-left" className=" font-marcellus text-7xl">
+              Stay With Us
+            </p>
+            <p data-aos="fade-up" className=" font-roboto">
               Spend your comfortable holiday in the heart of the beautiful Napa
               Valley.
             </p>
@@ -59,23 +74,27 @@ const Room = () => {
       </div>
       <div>
         <div className=" my-10 lg:w-1/2 mx-auto text-center space-y-5">
-          <p className=" font-roboto">WELCOME TO COZYSTAY LODGE</p>
-          <p className=" font-marcellus text-5xl">Select Your Cozy Room</p>
-          <p className=" font-marcellus">
+          <p data-aos="fade-up" className=" font-roboto">
+            WELCOME TO COZYSTAY LODGE
+          </p>
+          <p data-aos="fade-up" className=" font-marcellus text-5xl">
+            Select Your Cozy Room
+          </p>
+          <p data-aos="fade-up" className=" font-marcellus">
             In a new setting composed of exceptional hotels chalets, nestled in
             a forest of pine trees, the CozyStay Lodge is expanding into a
             harmonious and refined unit that affirms it’s purpose: to sublimate
             the stay of its guests by a tailor-made service.
           </p>
           <div className="flex flex-col justify-center items-center mt-5 w-full font-roboto lg:flex-row">
-            <p className="flex items-center gap-4">
+            <p data-aos="fade-right" className="flex items-center gap-4">
               <span className="text-xl text-secondary">
                 <FaRegClock />
               </span>
               CHECK IN: 3:00 PM
             </p>
             <div className="divider lg:divider-horizontal divider-secondary"></div>
-            <p className="flex items-center gap-4">
+            <p data-aos="fade-left" className="flex items-center gap-4">
               <span className="text-xl text-secondary">
                 <FaRegClock />
               </span>
@@ -100,19 +119,31 @@ const Room = () => {
       </div>
       <div className="lg:flex justify-between items-center lg:h-[650px]">
         <div className="lg:w-1/2  bg-primary lg:h-full text-left lg:p-24 text-white lg:space-y-6">
-          <p className=" font-roboto font-medium text-center lg:text-left">
+          <p
+            data-aos="fade-right"
+            className=" font-roboto font-medium text-center lg:text-left"
+          >
             COZY & COMFORTABLE STAY EXPERIENCE
           </p>
-          <p className=" font-marcellus text-2xl text-center lg:text-left lg:text-5xl">
+          <p
+            data-aos="fade-right"
+            className=" font-marcellus text-2xl text-center lg:text-left lg:text-5xl"
+          >
             Complimentary Amenities In Your Suite
           </p>
-          <p className=" font-jost text-center lg:text-left">
+          <p
+            data-aos="fade-right"
+            className=" font-jost text-center lg:text-left"
+          >
             All rooms have a bathroom with bathtub and/or shower, cable
             television/radio, free WIFI and mini bar. In addition, all rooms are
             equipped with a Nespresso coffee machine. Most rooms are carpeted,
             some have parquet flooring.
           </p>
-          <ul className=" grid grid-cols-2 justify-center">
+          <ul
+            data-aos="fade-right"
+            className=" grid grid-cols-2 justify-center"
+          >
             <li className="flex items-center gap-2">
               <span className=" text-secondary">
                 <TiPlus />
@@ -173,19 +204,19 @@ const Room = () => {
       </div>
       <div className="container mx-auto lg:flex justify-center gap-10 my-16">
         <div className="lg:w-1/2  space-y-5">
-          <p className=" font-jost text-primary ">
+          <p data-aos="fade-right" className=" font-jost text-primary ">
             START YOUR COMFORTABLE STAY
           </p>
-          <p className=" font-marcellus text-4xl">
+          <p data-aos="fade-right" className=" font-marcellus text-4xl">
             Hotel Rates, Information & Reservation Policies
           </p>
-          <p className=" font-jost">
+          <p data-aos="fade-right" className=" font-jost">
             Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
             Rhoncus ut, imperdiet a, venenatis vitae, justo. Cras dapibus.
             Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
           </p>
         </div>
-        <div className="lg:w-1/2  space-y-5 text-lg">
+        <div data-aos="fade-right" className="lg:w-1/2  space-y-5 text-lg">
           <p className="flex items-center gap-2 font-jost">
             <span className=" text-secondary text-sm">
               <FaCircle />

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import HotelRoomsCard from "./HotelRoomsCard";
 import {
   Navigation,
@@ -15,12 +15,20 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/autoplay";
-import { AuthContext } from "../FirebaseProvider/FirebaseProvider";
+
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const HotelRooms = () => {
-  const [rooms, setRooms] = useState([]);
+  useEffect(() => {
+    Aos.init({ duration: 3000 });
+  }, []);
 
-  const { user } = useContext(AuthContext);
+  useEffect(() => {
+    Aos.refresh();
+  });
+
+  const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
     fetch("https://hotel-booking-server-lake.vercel.app/rooms")
@@ -29,19 +37,24 @@ const HotelRooms = () => {
   }, []);
   return (
     <div className=" my-10">
-      <div className=" text-center w-2/4 mx-auto space-y-5">
-        <p className=" font-roboto font-semibold">WELCOME TO COZYSTAY LODGE</p>
-        <p className=" font-marcellus lg:text-5xl text-primary">
+      <div className=" text-center lg:w-2/4 md:w-3/5 mx-auto space-y-5">
+        <p data-aos="fade-down" className=" font-roboto font-medium">
+          WELCOME TO COZYSTAY LODGE
+        </p>
+        <p
+          data-aos="fade-right"
+          className=" font-marcellus md:text-2xl lg:text-5xl text-primary"
+        >
           Select Your Cozy Room
         </p>
-        <p className=" font-roboto">
+        <p data-aos="fade-up" className=" font-roboto">
           In a new setting composed of exceptional hotels chalets, nestled in a
           forest of pine trees, the CozyStay Lodge is expanding into a
           harmonious and refined unit that affirms it’s purpose: to sublimate
           the stay of its guests by a tailor-made service.
         </p>
       </div>
-      <div className="container mx-auto my-10 ">
+      <div data-aos="fade-up" className="container mx-auto my-10 ">
         <Swiper
           spaceBetween={20}
           slidesPerView={1}
@@ -53,17 +66,19 @@ const HotelRooms = () => {
           modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
           className="mySwiper"
           breakpoints={{
-            // When window width is >= 768px
-            768: {
+            // When window width is >= 769px
+            769: {
               slidesPerView: 3,
             },
-            // When window width is < 768px
+            // When window width is >= 426px and < 769px
+            426: {
+              slidesPerView: 2,
+            },
+            // When window width is < 426px
             0: {
               slidesPerView: 1,
             },
           }}
-          // onSwiper={(swiper) => console.log(swiper)}
-          // onSlideChange={() => console.log("slide change")}
         >
           {rooms.map((room) => (
             <SwiperSlide key={room._id}>

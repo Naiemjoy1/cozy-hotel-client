@@ -5,14 +5,16 @@ import { RiParkingBoxLine } from "react-icons/ri";
 
 const Benefits = () => {
   return (
-    <div className="container mx-auto lg:flex justify-between text-center my-10">
+    <div className="container mx-auto lg:flex justify-between my-10">
       <div className="lg:w-1/2 mb-4 space-y-5">
-        <p className=" font-roboto">DISCOVER THE SERVICES WE OFFERED</p>
-        <p className=" font-marcellus text-5xl text-primary">
+        <p data-aos="fade-up" className=" font-roboto">
+          DISCOVER THE SERVICES WE OFFERED
+        </p>
+        <p data-aos="fade-up" className=" font-marcellus text-5xl text-primary">
           Chalets With All the Benefits of a Hotel
         </p>
         <ul className="font-marcellus grid grid-cols-2 gap-4">
-          <li className="flex gap-4">
+          <li data-aos="fade-up" className="flex gap-4">
             <span className="text-4xl text-secondary">
               <FaCar></FaCar>
             </span>
@@ -23,7 +25,7 @@ const Benefits = () => {
               </p>
             </div>
           </li>
-          <li className="flex gap-4">
+          <li data-aos="fade-up" className="flex gap-4">
             <span className="text-4xl text-secondary">
               <FaHandsWash />
             </span>
@@ -32,7 +34,7 @@ const Benefits = () => {
               <p>Professional cleaning for a pristine and comfortable stay.</p>
             </div>
           </li>
-          <li className="flex gap-4">
+          <li data-aos="fade-up" className="flex gap-4">
             <span className="text-4xl text-secondary">
               <FaWifi />
             </span>
@@ -41,7 +43,7 @@ const Benefits = () => {
               <p>Seamless connectivity for work and entertainment needs.</p>
             </div>
           </li>
-          <li className="flex gap-4">
+          <li data-aos="fade-up" className="flex gap-4">
             <span className="text-4xl text-secondary">
               <GiWashingMachine />
             </span>
@@ -50,7 +52,7 @@ const Benefits = () => {
               <p>Convenient laundry facilities to keep your clothes fresh.</p>
             </div>
           </li>
-          <li className="flex gap-4">
+          <li data-aos="fade-up" className="flex gap-4">
             <span className="text-4xl text-secondary">
               <MdOutlineDinnerDining />
             </span>
@@ -59,7 +61,7 @@ const Benefits = () => {
               <p>Indulge in a delicious morning meal delivered to you.</p>
             </div>
           </li>
-          <li className="flex gap-4">
+          <li data-aos="fade-up" className="flex gap-4">
             <span className="text-4xl text-secondary">
               <RiParkingBoxLine />
             </span>
@@ -70,7 +72,7 @@ const Benefits = () => {
           </li>
         </ul>
       </div>
-      <div className="lg:w-1/2">
+      <div data-aos="fade-up" className="lg:w-1/2">
         <img
           className="h-[550px] w-full"
           src="https://i.ibb.co/zhjWssb/alev-takil-lw3-Lqe2-K7xc-unsplash.jpg"

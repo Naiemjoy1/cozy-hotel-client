@@ -1,5 +1,6 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect } from "react";
 import { TiPlus } from "react-icons/ti";
+import PropTypes from "prop-types";
 import {
   Navigation,
   Pagination,
@@ -16,10 +17,20 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/autoplay";
 import { Link } from "react-router-dom";
-import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { AuthContext } from "../../Components/FirebaseProvider/FirebaseProvider";
 
+import Aos from "aos";
+import "aos/dist/aos.css";
+
 const RoomCard = ({ room, alternateLayout }) => {
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
+
+  useEffect(() => {
+    Aos.refresh();
+  });
+
   const { user } = useContext(AuthContext);
   const {
     _id,
@@ -27,11 +38,7 @@ const RoomCard = ({ room, alternateLayout }) => {
     pricePerNight,
     roomSize,
     roomImages,
-    description,
     roomFacility,
-    availability,
-    image,
-    specialOffers,
     guests,
     beds,
     roomDetail,
@@ -40,7 +47,7 @@ const RoomCard = ({ room, alternateLayout }) => {
   if (alternateLayout) {
     return (
       <div className="flex justify-between lg:gap-10 gap-2 h-[450px] items-center ">
-        <div className="lg:w-1/3 lg:space-y-14 ">
+        <div data-aos="fade-right" className="lg:w-1/3 lg:space-y-14 ">
           <div>
             <p className=" text-sm text-primary font-medium font-jost">
               {roomSize} / {guests} Guests / {beds} Beds
@@ -85,7 +92,7 @@ const RoomCard = ({ room, alternateLayout }) => {
             </p>
           </div>
         </div>
-        <div className="lg:w-2/3 w-1/2">
+        <div data-aos="fade-left" className="lg:w-2/3 w-1/2">
           <Swiper
             spaceBetween={20}
             slidesPerView={1}
@@ -127,7 +134,7 @@ const RoomCard = ({ room, alternateLayout }) => {
   } else {
     return (
       <div className="flex justify-between lg:gap-10 gap-2 h-[450px] items-center ">
-        <div className="lg:w-2/3 w-1/2 ">
+        <div data-aos="fade-right" className="lg:w-2/3 w-1/2 ">
           <Swiper
             spaceBetween={20}
             slidesPerView={1}
@@ -154,7 +161,7 @@ const RoomCard = ({ room, alternateLayout }) => {
             ))}
           </Swiper>
         </div>
-        <div className="lg:w-1/3 w-1/2 lg:space-y-14 ">
+        <div data-aos="fade-left" className="lg:w-1/3 w-1/2 lg:space-y-14 ">
           <div>
             <p className=" text-sm text-primary font-medium font-jost">
               {roomSize} / {guests} Guests / {beds} Beds
@@ -195,6 +202,25 @@ const RoomCard = ({ room, alternateLayout }) => {
       </div>
     );
   }
+};
+
+RoomCard.propTypes = {
+  room: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    pricePerNight: PropTypes.number.isRequired, // Add validation for pricePerNight
+    roomSize: PropTypes.string.isRequired,
+    roomImages: PropTypes.arrayOf(PropTypes.string).isRequired,
+    description: PropTypes.string,
+    roomFacility: PropTypes.arrayOf(PropTypes.string),
+    availability: PropTypes.bool,
+    image: PropTypes.string,
+    specialOffers: PropTypes.bool,
+    guests: PropTypes.number.isRequired,
+    beds: PropTypes.number.isRequired,
+    roomDetail: PropTypes.string,
+  }),
+  alternateLayout: PropTypes.bool,
 };
 
 export default RoomCard;

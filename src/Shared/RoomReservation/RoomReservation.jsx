@@ -5,11 +5,13 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import * as React from "react";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const style = {
   position: "absolute",
@@ -22,8 +24,6 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-import ReservationModal from "./ReservationModal";
-import { Link } from "react-router-dom";
 import UpdateEdit from "./UpdateEdit";
 
 const RoomReservation = ({ roomDetails, cancelBooking }) => {
@@ -119,18 +119,6 @@ const RoomReservation = ({ roomDetails, cancelBooking }) => {
       });
   };
 
-  // const isRoomBooked = bookings.some(
-  //   (booking) => booking.room_id === roomDetails._id
-  // );
-
-  // const isAuthenticated = !!user;
-
-  // const isRoomBooked = bookings.some(
-  //   (booking) => booking.room_id === roomDetails._id
-  // );
-
-  // Determine button color based on booking status
-
   const [bookings, setBookings] = useState([]);
 
   useEffect(() => {
@@ -155,10 +143,15 @@ const RoomReservation = ({ roomDetails, cancelBooking }) => {
     return () => {};
   }, []);
 
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+    Aos.refresh();
+  }, []);
+
   return (
     <div>
       <form onSubmit={handleSubmit} className="card-body">
-        <div className="form-control mt-6"></div>
+        <div data-aos="fade-up" className="form-control mt-6"></div>
         <div className="form-control">
           <label className="label">
             <span className="label-text text-white">Check-in Date:</span>
@@ -171,7 +164,7 @@ const RoomReservation = ({ roomDetails, cancelBooking }) => {
           />
         </div>
 
-        <div className="form-control">
+        <div data-aos="fade-up" className="form-control">
           <label className="label">
             <span className="label-text text-white">Check-out Date:</span>
           </label>
@@ -183,7 +176,7 @@ const RoomReservation = ({ roomDetails, cancelBooking }) => {
           />
         </div>
 
-        <div className="form-control">
+        <div data-aos="fade-up" className="form-control">
           <label className="label">
             <span className="label-text text-white">Rooms:</span>
           </label>
@@ -200,7 +193,7 @@ const RoomReservation = ({ roomDetails, cancelBooking }) => {
             ))}
           </select>
         </div>
-        <div className="form-control">
+        <div data-aos="fade-up" className="form-control">
           <label className="label">
             <span className="label-text text-white">Adults:</span>
           </label>
@@ -217,7 +210,7 @@ const RoomReservation = ({ roomDetails, cancelBooking }) => {
             ))}
           </select>
         </div>
-        <div className="form-control">
+        <div data-aos="fade-up" className="form-control">
           <label className="label">
             <span className="label-text text-white">Children:</span>
           </label>
@@ -234,7 +227,7 @@ const RoomReservation = ({ roomDetails, cancelBooking }) => {
             ))}
           </select>
         </div>
-        <div className="form-control">
+        <div data-aos="fade-up" className="form-control">
           <label className="label">
             <span className="label-text text-white">Email</span>
           </label>
@@ -246,7 +239,7 @@ const RoomReservation = ({ roomDetails, cancelBooking }) => {
             readOnly
           />
         </div>
-        <div className="form-control">
+        <div data-aos="fade-up" className="form-control">
           <label className="label">
             <span className="label-text text-white">User Name</span>
           </label>
@@ -258,13 +251,16 @@ const RoomReservation = ({ roomDetails, cancelBooking }) => {
             readOnly
           />
         </div>
-        <div className="divider divider-secondary"></div>
-        <div className=" flex justify-between items-center text-2xl text-white">
+        <div data-aos="fade-up" className="divider divider-secondary"></div>
+        <div
+          data-aos="fade-up"
+          className=" flex justify-between items-center text-2xl text-white"
+        >
           <p>Total Cost:</p>
           <p className=" text-right">${totalCost}</p>
         </div>
 
-        <div className="form-control mt-6">
+        <div data-aos="fade-up" className="form-control mt-6">
           <UpdateEdit
             _id={_id}
             bookings={bookings}
@@ -340,95 +336,8 @@ const RoomReservation = ({ roomDetails, cancelBooking }) => {
             </Modal>
           </div>
 
-          <div>
-            {/* <Button>Open modal</Button> */}
-
-            {/* <button
-              onClick={handleOpen}
-              className="btn w-full btn-secondary text-white"
-              type="submit"
-            >
-              Book Now
-            </button>
-            <Modal
-              open={open}
-              onClose={handleClose}
-              aria-labelledby="modal-modal-title"
-              aria-describedby="modal-modal-description"
-            >
-              <Box sx={style}>
-                <Typography id="modal-modal-title" variant="h6" component="h2">
-                  Text in a modal
-                </Typography>
-                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                  Duis mollis, est non commodo luctus, nisi erat porttitor
-                  ligula.
-                </Typography>
-              </Box>
-            </Modal> */}
-          </div>
+          <div></div>
         </div>
-        {/* <ReservationModal
-          handleConfirm={handleConfirm}
-          reservationDetails={reservationDetails}
-          roomDetails={roomDetails}
-          bookings={bookings}
-        ></ReservationModal> */}
-        {/* {isAuthenticated && (
-          <Modal
-            isOpen={modalIsOpen}
-            shouldCloseOnOverlayClick={false}
-            onRequestClose={() => setModalIsOpen(false)}
-            style={{
-              content: {
-                padding: "60px",
-                // background: "#425340",
-              },
-            }}
-          >
-            {reservationDetails && (
-              <div className="flex">
-                <div className="w-1/2 ">
-                  <img src={image} alt="" />
-                </div>
-                <div className="w-1/2  p-10 grid grid-cols-2">
-                  <h2>Room Type: {type}</h2>
-                  <p>Total Cost: ${reservationDetails.totalCost}</p>
-                  <p>
-                    Check-in Date:{" "}
-                    {reservationDetails.checkInDate.toLocaleDateString()}
-                  </p>
-                  <p>
-                    Check-out Date:{" "}
-                    {reservationDetails.checkOutDate.toLocaleDateString()}
-                  </p>
-
-                  <p>Number of Rooms: {reservationDetails.numRooms}</p>
-                  <p>Number of Adults: {reservationDetails.numAdults}</p>
-                  <p>Number of Children: {reservationDetails.numChildren}</p>
-
-                  <p>Email: {reservationDetails.email}</p>
-                  <p>User Name: {reservationDetails.user}</p>
-                  <p>Room Size: {roomSize}</p>
-                </div>
-              </div>
-            )}
-            <div className="flex justify-between mt-10">
-              <button
-                className="btn bg-red-600 text-white"
-                onClick={() => setModalIsOpen(false)}
-              >
-                Close
-              </button>
-              <button
-                onClick={handleConfirm}
-                className=" btn btn-primary text-white"
-              >
-                Confirm
-              </button>
-            </div>
-          </Modal>
-        )} */}
       </form>
       <ToastContainer />
     </div>

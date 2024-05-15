@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types"; // Import PropTypes
 import { AuthContext } from "../../Components/FirebaseProvider/FirebaseProvider";
-import { toast } from "react-toastify";
 
-const UpdateEdit = ({ _id, cancelBooking }) => {
+const UpdateEdit = ({ _id }) => {
   const { user } = useContext(AuthContext);
 
   const [bookings, setBookings] = useState([]);
@@ -38,22 +38,24 @@ const UpdateEdit = ({ _id, cancelBooking }) => {
   return (
     <div>
       {isMatchingId && (
-        <div className="flex justify-between items-center gap-4">
+        <div
+          data-aos="fade-up"
+          className="flex justify-between items-center gap-4"
+        >
           <Link to={`/update/${_id}`}>
             <button className="btn btn-secondary text-white mb-5">
               Update
             </button>
           </Link>
-          {/* <button
-            onClick={() => cancelBooking(_id)}
-            className="btn btn-secondary bg-red-600 border-none text-white mb-5"
-          >
-            Cancel
-          </button> */}
         </div>
       )}
     </div>
   );
+};
+
+// Add PropTypes validation for _id
+UpdateEdit.propTypes = {
+  _id: PropTypes.string.isRequired,
 };
 
 export default UpdateEdit;

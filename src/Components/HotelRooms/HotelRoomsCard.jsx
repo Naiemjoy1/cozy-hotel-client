@@ -4,11 +4,19 @@ import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { SlSizeFullscreen } from "react-icons/sl";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import { useContext } from "react";
-import { AuthContext } from "../FirebaseProvider/FirebaseProvider";
+import { useEffect } from "react";
+
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const HotelRoomsCard = ({ room }) => {
-  const { user } = useContext(AuthContext);
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }, []);
+
+  useEffect(() => {
+    Aos.refresh();
+  });
 
   const {
     _id,
@@ -30,19 +38,24 @@ const HotelRoomsCard = ({ room }) => {
   };
 
   return (
-    <div>
+    <div data-aos="fade-up">
       <div className="card card-compact bg-primary text-white shadow-xl">
         <figure className=" relative">
           <img src={image} alt="Room" />
           <div className="absolute left-6 top-6 bg-primary p-2">
-            <p className=" text-sm">${pricePerNight} / NIGHT</p>
+            <p data-aos="fade-up" className=" text-sm">
+              ${pricePerNight} / NIGHT
+            </p>
           </div>
         </figure>
         <div className="card-body space-y-4">
-          <h2 className="card-title font-marcellus text-2xl font-light">
+          <h2
+            data-aos="fade-up"
+            className="card-title font-marcellus text-2xl font-light"
+          >
             {type}
           </h2>
-          <div className=" flex font-roboto">
+          <div data-aos="fade-up" className=" flex font-roboto">
             <p className="flex items-center gap-4">
               <span className=" text-lg">
                 <SlSizeFullscreen />
@@ -62,9 +75,12 @@ const HotelRoomsCard = ({ room }) => {
               {beds} Beds
             </p>
           </div>
-          <p>{truncateDescription(description)}</p>
+          <p data-aos="fade-up">{truncateDescription(description)}</p>
           <Link to={`/roomdetails/${_id}`}>
-            <button className="btn btn-secondary  text-white">
+            <button
+              data-aos="fade-up"
+              className="btn btn-secondary  text-white"
+            >
               Book Now
               <span className=" text-xl">
                 <MdKeyboardDoubleArrowRight />

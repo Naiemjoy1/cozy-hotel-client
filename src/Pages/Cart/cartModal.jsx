@@ -1,6 +1,6 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 
@@ -21,17 +21,7 @@ const CartModal = ({ booking, handleDelete }) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const {
-    _id,
-    checkInDate,
-    checkOutDate,
-    numRooms,
-    numAdults,
-    totalCost,
-    type,
-    image,
-    pricePerNight,
-  } = booking;
+  const { _id } = booking;
 
   return (
     <div>
@@ -66,6 +56,21 @@ const CartModal = ({ booking, handleDelete }) => {
       </Modal>
     </div>
   );
+};
+
+CartModal.propTypes = {
+  booking: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    checkInDate: PropTypes.string.isRequired,
+    checkOutDate: PropTypes.string.isRequired,
+    numRooms: PropTypes.number.isRequired,
+    numAdults: PropTypes.number.isRequired,
+    totalCost: PropTypes.number.isRequired,
+    type: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    pricePerNight: PropTypes.number.isRequired,
+  }),
+  handleDelete: PropTypes.func.isRequired,
 };
 
 export default CartModal;

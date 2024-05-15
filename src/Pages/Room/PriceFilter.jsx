@@ -1,6 +1,19 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
+
+import Aos from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const PriceFilter = ({ onFilterChange }) => {
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
+
+  useEffect(() => {
+    Aos.refresh();
+  });
+
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
 
@@ -11,7 +24,7 @@ const PriceFilter = ({ onFilterChange }) => {
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+    <div data-aos="fade-up" className="grid grid-cols-1 lg:grid-cols-3 gap-4">
       <input
         type="number"
         value={minPrice}
@@ -31,6 +44,10 @@ const PriceFilter = ({ onFilterChange }) => {
       </button>
     </div>
   );
+};
+
+PriceFilter.propTypes = {
+  onFilterChange: PropTypes.func.isRequired,
 };
 
 export default PriceFilter;

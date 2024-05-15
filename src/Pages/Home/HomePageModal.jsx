@@ -3,8 +3,9 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { red } from "@mui/material/colors";
 import { IoCloseCircleSharp } from "react-icons/io5";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const style = {
   position: "absolute",
@@ -35,6 +36,14 @@ const closeButtonStyle = {
 };
 
 const HomePageModal = () => {
+  useEffect(() => {
+    Aos.init({ duration: 3000 });
+  }, []);
+
+  useEffect(() => {
+    Aos.refresh();
+  });
+
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -55,7 +64,7 @@ const HomePageModal = () => {
           <IoCloseCircleSharp />
         </Button>
 
-        <div>
+        <div data-aos="fade-up">
           <Typography id="modal-modal-title" variant="h6" component="h2">
             <p className="text-2xl font-marcellus text-white">
               Special Offers and Promotions

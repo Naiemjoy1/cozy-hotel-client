@@ -5,9 +5,7 @@ import {
   A11y,
   Autoplay,
 } from "swiper/modules";
-
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -15,6 +13,7 @@ import "swiper/css/scrollbar";
 import "swiper/css/autoplay";
 import ReviewCards from "../../Components/Review/ReviewCards";
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types"; // Import PropTypes
 
 const ReviewSlider = ({ roomDetails }) => {
   const { _id } = roomDetails;
@@ -43,7 +42,7 @@ const ReviewSlider = ({ roomDetails }) => {
     fetchReviews();
 
     return () => {};
-  }, [roomDetails]);
+  }, [roomDetails, _id]); // Include _id in the dependency array
 
   console.log("show reviews by id ", reviews);
 
@@ -68,6 +67,11 @@ const ReviewSlider = ({ roomDetails }) => {
       ))}
     </Swiper>
   );
+};
+
+// Add PropTypes validation for roomDetails
+ReviewSlider.propTypes = {
+  roomDetails: PropTypes.object.isRequired,
 };
 
 export default ReviewSlider;

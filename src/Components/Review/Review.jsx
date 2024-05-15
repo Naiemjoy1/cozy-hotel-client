@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Navigation,
   Pagination,
@@ -15,12 +15,10 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/autoplay";
 import ReviewCards from "./ReviewCards";
-import { AuthContext } from "../FirebaseProvider/FirebaseProvider";
 
 const Review = () => {
   const [reviews, setReviews] = useState([]);
   const [selectedRating, setSelectedRating] = useState(null); // Default to null when no rating is selected
-  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     // Fetch reviews when component mounts
@@ -54,16 +52,16 @@ const Review = () => {
       <div className="bg-primary py-20">
         <div className="container mx-auto space-y-10">
           <div className=" text-center w-3/5 mx-auto space-y-5 text-white">
-            <h3 className="lg:text-4xl font-marcellus">
+            <h3 data-aos="fade-down" className="lg:text-4xl font-marcellus">
               Feedback from our Guests
             </h3>
-            <p>
+            <p data-aos="fade-right">
               Consectetur adipisicing elit. Nihil, illum voluptate eveniet ex
               fugit ea delectus, sed voluptatem. Laborum accusantium libero
               commodi id officiis itaque esse adipisci, necessitatibus
               asperiores, illo odio.
             </p>
-            <div className="flex justify-center mt-5">
+            <div data-aos="fade-up" className="flex justify-center mt-5">
               <label className="mr-3">Select Rating:</label>
               <select
                 className=" bg-secondary px-5 py-1 rounded-lg"
@@ -79,7 +77,7 @@ const Review = () => {
               </select>
             </div>
           </div>
-          <div>
+          <div data-aos="fade-up">
             <Swiper
               spaceBetween={20}
               slidesPerView={1}

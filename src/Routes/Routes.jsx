@@ -13,7 +13,6 @@ import PrivateRoute from "../Components/PrivateRoute/PrivateRoute";
 import BookRoom from "../Pages/BookRoom/BookRoom";
 import Cart from "../Pages/Cart/Cart";
 import BookingsUpdate from "../Components/update/BookingsUpdate";
-import BookingTestPage from "../Components/BookingTestPage/BookingTestPage";
 
 const router = createBrowserRouter([
   {
