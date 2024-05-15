@@ -23,7 +23,6 @@ import PageTitle from "../../Components/PageTitle/PageTitle";
 
 import Aos from "aos";
 import "aos/dist/aos.css";
-import Images from "../../Components/Images/Images";
 
 const RoomDetails = () => {
   useEffect(() => {

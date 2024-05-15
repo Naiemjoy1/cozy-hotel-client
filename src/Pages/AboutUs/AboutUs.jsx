@@ -17,8 +17,7 @@ const AboutUs = () => {
       <div
         className="hero h-[450px]"
         style={{
-          backgroundImage:
-            "url(https://i.ibb.co/Kzmm40K/pexels-quang-nguyen-vinh-222549-14036250.jpg)",
+          backgroundImage: "url(https://i.ibb.co/BKkgGmk/ballroom4.jpg)",
         }}
       >
         <div className="hero-overlay bg-opacity-60"></div>

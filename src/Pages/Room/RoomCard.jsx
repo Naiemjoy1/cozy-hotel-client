@@ -42,6 +42,7 @@ const RoomCard = ({ room, alternateLayout }) => {
     guests,
     beds,
     roomDetail,
+    image,
   } = room;
 
   if (alternateLayout) {
@@ -106,7 +107,10 @@ const RoomCard = ({ room, alternateLayout }) => {
             // onSwiper={(swiper) => console.log(swiper)}
             // onSlideChange={() => console.log("slide change")}
           >
-            {roomImages.map((imageUrl, index) => (
+            <SwiperSlide>
+              <img className="w-full h-[450px]" src={image} alt="" />
+            </SwiperSlide>
+            {/* {roomImages.map((imageUrl, index) => (
               <SwiperSlide key={index}>
                 {user ? (
                   <Link to={`/roomdetails/${_id}`}>
@@ -126,7 +130,7 @@ const RoomCard = ({ room, alternateLayout }) => {
                   </Link>
                 )}
               </SwiperSlide>
-            ))}
+            ))} */}
           </Swiper>
         </div>
       </div>
@@ -148,7 +152,10 @@ const RoomCard = ({ room, alternateLayout }) => {
             // onSwiper={(swiper) => console.log(swiper)}
             // onSlideChange={() => console.log("slide change")}
           >
-            {roomImages.map((imageUrl, index) => (
+            <SwiperSlide>
+              <img className="w-full h-[450px]" src={image} alt="" />
+            </SwiperSlide>
+            {/* {roomImages.map((imageUrl, index) => (
               <SwiperSlide key={index}>
                 <Link to={`/roomdetails/${_id}`}>
                   <img
@@ -158,7 +165,7 @@ const RoomCard = ({ room, alternateLayout }) => {
                   />
                 </Link>
               </SwiperSlide>
-            ))}
+            ))} */}
           </Swiper>
         </div>
         <div data-aos="fade-left" className="lg:w-1/3 w-1/2 lg:space-y-14 ">
