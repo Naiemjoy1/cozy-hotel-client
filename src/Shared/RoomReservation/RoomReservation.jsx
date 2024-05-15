@@ -75,7 +75,7 @@ const RoomReservation = ({ roomDetails, cancelBooking }) => {
     setReservationDetails(details);
     setModalIsOpen(true);
   };
-  console.log(reservationDetails);
+  // console.log(reservationDetails);
 
   const totalCost = roomDetails.pricePerNight * numRooms;
 
@@ -132,7 +132,7 @@ const RoomReservation = ({ roomDetails, cancelBooking }) => {
         }
         const data = await response.json();
         setBookings(data);
-        console.log("Bookings data:", data);
+        // console.log("Bookings data:", data);
       } catch (error) {
         console.error("Error fetching bookings:", error.message);
       }

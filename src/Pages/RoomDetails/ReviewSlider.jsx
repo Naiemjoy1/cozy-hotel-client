@@ -33,7 +33,7 @@ const ReviewSlider = ({ roomDetails }) => {
         // Filter reviews based on matching _id with room_id
         const filteredReviews = data.filter((review) => review.room_id === _id);
         setReviews(filteredReviews);
-        console.log("Filtered reviews data:", filteredReviews);
+        // console.log("slider reviews data:", filteredReviews);
       } catch (error) {
         console.error("Error fetching reviews:", error.message);
       }
@@ -44,14 +44,16 @@ const ReviewSlider = ({ roomDetails }) => {
     return () => {};
   }, [roomDetails, _id]); // Include _id in the dependency array
 
-  console.log("show reviews by id ", reviews);
+  // console.log("show reviews by id ", reviews);
+
+  // const allReviewIds = reviews.map((review) => review._id).join(", ");
 
   return (
     <Swiper
       spaceBetween={20}
       slidesPerView={1}
       navigation={true}
-      autoplay={{ delay: 4000 }}
+      // autoplay={{ delay: 4000 }}
       loop={true}
       // pagination={{ clickable: true }}
       // scrollbar={{ draggable: true }}
@@ -60,6 +62,7 @@ const ReviewSlider = ({ roomDetails }) => {
       // onSwiper={(swiper) => console.log(swiper)}
       // onSlideChange={() => console.log("slide change")}
     >
+      {/* <p>Reviews ID: {allReviewIds}</p> */}
       {reviews.map((review) => (
         <SwiperSlide key={review._id}>
           <ReviewCards key={review._id} review={review}></ReviewCards>

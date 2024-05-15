@@ -87,13 +87,31 @@ const Bookings = () => {
   };
 
   return (
-    <div className="min-h-[calc(100vh-327px)] my-20">
+    <div className="min-h-[calc(100vh-327px)] ">
       <PageTitle title="Bookings"></PageTitle>
-      <div>
-        <p data-aos="fade-down" className="text-4xl font-marcellus text-center">
-          Your Bookings here
-        </p>
+      <div
+        className="hero h-[450px]"
+        style={{
+          backgroundImage:
+            "url(https://i.ibb.co/Kzmm40K/pexels-quang-nguyen-vinh-222549-14036250.jpg)",
+        }}
+      >
+        <div className="hero-overlay bg-opacity-60"></div>
+        <div className="hero-content text-center text-neutral-content">
+          <div className="max-w-md">
+            <h1
+              data-aos="fade-right"
+              className="mb-5 text-5xl font-bold text-white font-marcellus"
+            >
+              Your Bookings Here
+            </h1>
+            <p data-aos="fade-left" className="mb-5 text-white font-jost">
+              A luxury boutique hotel in the heart of wine country
+            </p>
+          </div>
+        </div>
       </div>
+
       <div className="container mx-auto my-8">
         <div>
           <div className="divider divider-secondary"></div>

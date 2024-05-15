@@ -22,13 +22,11 @@ const ReviewModal = ({ booking }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const { _id, room_id } = booking;
+  const { _id } = booking;
 
   const { user } = useContext(AuthContext);
 
   const [reviews, setReviews] = useState([]);
-  const [hasBookedRoom, setHasBookedRoom] = useState(false);
-  const [hasSubmittedFeedback, setHasSubmittedFeedback] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -48,7 +46,7 @@ const ReviewModal = ({ booking }) => {
     }
   }, [user, _id]);
 
-  console.log("review from bookings", reviews);
+  // console.log("review from bookings", reviews);
 
   return (
     <div>

@@ -23,6 +23,7 @@ import PageTitle from "../../Components/PageTitle/PageTitle";
 
 import Aos from "aos";
 import "aos/dist/aos.css";
+import Images from "../../Components/Images/Images";
 
 const RoomDetails = () => {
   useEffect(() => {
@@ -97,7 +98,7 @@ const RoomDetails = () => {
             review.details_id === roomDetails._id && review.email === user.email
         );
         setReviews(filteredReviews);
-        console.log("Filtered reviews data:", filteredReviews);
+        // console.log("Filtered reviews data:", filteredReviews);
       } catch (error) {
         console.error("Error fetching reviews:", error.message);
       }
@@ -217,6 +218,7 @@ const RoomDetails = () => {
           <div data-aos="fade-up">
             <p className=" font-roboto">{description}</p>
           </div>
+          <div></div>
           <div className=" space-y-5">
             <p
               data-aos="fade-up"
