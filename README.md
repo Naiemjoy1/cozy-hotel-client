@@ -8,8 +8,8 @@ CozyStay is a hotel booking web application designed to allow users to book room
 
 ## GitHub Links
 
-- **Client-side Repository:** [GitHub Link](https://github.com/Porgramming-Hero-web-course/b9a11-client-side-Naiemjoy1)
-- **Server-side Repository:** [GitHub Link](https://github.com/Porgramming-Hero-web-course/b9a11-server-side-Naiemjoy1)
+- **Client-side Repository:** [GitHub Link](https://github.com/Naiemjoy1/cozy-hotel-client)
+- **Server-side Repository:** [GitHub Link](https://github.com/Naiemjoy1/cozy-hotel-server)
 
 ## Features
 
