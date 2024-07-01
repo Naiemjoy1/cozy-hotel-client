@@ -1,6 +1,6 @@
 # CozyStay
 
-CozyStay is a hotel booking web application designed to allow users to book rooms, submit reviews, manage bookings, and more.
+CozyStay is a sophisticated hotel booking web application designed to streamline the booking process, manage reservations, and enhance user experience with room reviews and real-time updates.
 
 ## Live Link
 
@@ -11,38 +11,64 @@ CozyStay is a hotel booking web application designed to allow users to book room
 - **Client-side Repository:** [GitHub Link](https://github.com/Naiemjoy1/cozy-hotel-client)
 - **Server-side Repository:** [GitHub Link](https://github.com/Naiemjoy1/cozy-hotel-server)
 
-## Features
+## Project Overview
 
-- User can book their desired room in a hotel.
-- Users can submit reviews for rooms.
-- Reviews can be sorted and viewed.
-- Users can update their bookings.
-- Users can cancel bookings if check-in is more than 24 hours away.
-- Users can delete bookings.
-- Users can view all their bookings.
-- Room availability updates in real-time when booked by other users.
-- Users must book a room before submitting a review.
+CozyStay aims to provide users with a seamless experience in booking hotel rooms, submitting reviews, and managing their bookings efficiently. It solves the problem of manual booking systems by automating the process and ensuring real-time availability updates.
 
-## Packages
+## Project Concept
 
-- **proptype:** Runtime type checking for React props and similar objects.
-- **react-icon:** Popular icon library for React.
-- **hook-form:** Performant, flexible, and extensible forms with easy-to-use validation.
-- **toast:** Toast notifications for React.
-- **swiper slider:** Modern touch slider.
-- **dotenv:** Loads environment variables from a .env file into process.env.
-- **leaflet:** Open-source JavaScript library for mobile-friendly interactive maps.
-- **datepicker:** React date picker component.
-- **modal:** React modal component.
-- **material-ui:** React components for faster and easier web development.
-- **axios:** Promise-based HTTP client for the browser and Node.js.
-- **moment.js:** Parse, validate, manipulate, and display dates and times in JavaScript.
-- **jsonwebtoken:** Implementation of JSON Web Tokens.
-- **react-router-dom:** Routing library for React applications.
-- **tailwindcss:** Utility-first CSS framework.
-- **daisyui:** Tailwind CSS components.
-- **cookie-parser:** Parse HTTP request cookies.
-- **react-helmet:** Reusable React component to manage changes to the document head.
+The primary goal of CozyStay is to simplify hotel room booking through an intuitive web interface. Users can browse available rooms, book them securely, manage their reservations, and provide feedback through reviews.
 
-## Topics
-`hotel-booking`,`room-reservation`,`user-reviews`,`booking-management`,`real-time-updates`,`react`,`nodejs`,`express`,`mongodb`,`firebase`,`authentication`,`stripe`,`tailwindcss`,`material-ui`,`leaflet`,`axios`,`jwt`,`react-router-dom`,`proptype`,`hook-form`,`dotenv`,`momentjs`,`cookie-parser`
+## Key Features
+
+1. **Real-time Room Availability**: Updates room availability instantly as other users make bookings.
+2. **Booking Management**: Users can update, cancel, or delete bookings based on predefined rules.
+3. **Review Submission**: Requires users to book a room before submitting a review, ensuring credibility and relevance.
+
+## Technologies Used
+
+- **Frontend**: React, React Router, Tailwind CSS, Axios, React-Icon, Moment.js, JWT, dotenv
+- **Backend**: Node.js, Express.js, MongoDB, Firebase Authentication
+- **Other Tools**: Material-UI, Leaflet, Stripe for payments, Cookie-parser, React-Helmet
+
+## Cloning and Running Locally
+
+### Prerequisites
+
+- Node.js
+- npm or yarn
+
+### Installation
+
+1. Clone the client-side repository:
+
+   ```sh
+   git clone https://github.com/Naiemjoy1/cozy-hotel-client
+   cd cozy-hotel-client
+   npm install
+   ```
+
+2. Clone the server-side repository:
+
+   ```sh
+   git clone https://github.com/Naiemjoy1/cozy-hotel-server
+   cd cozy-hotel-server
+   npm install
+   ```
+
+### Running the Application
+
+1. Start the client:
+
+   ```sh
+   cd cozy-hotel-client
+   npm start
+   ```
+
+2. Start the server:
+
+   ```sh
+   cd cozy-hotel-server
+   npm start
+   ```
+
