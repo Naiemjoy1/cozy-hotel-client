@@ -1,5 +1,6 @@
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import React from "react";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 
 const LeafletMap = () => {
   const center = [51.505, -0.09];

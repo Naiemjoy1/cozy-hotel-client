@@ -1,21 +1,22 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+
 import {
+  A11y,
+  Autoplay,
   Navigation,
   Pagination,
   Scrollbar,
-  A11y,
-  Autoplay,
 } from "swiper/modules";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
+import "swiper/css/autoplay";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import "swiper/css/autoplay";
-import ReviewCards from "./ReviewCards";
 import { AuthContext } from "../FirebaseProvider/FirebaseProvider";
+import ReviewCards from "./ReviewCards";
 
 const Review = () => {
   const [reviews, setReviews] = useState([]);

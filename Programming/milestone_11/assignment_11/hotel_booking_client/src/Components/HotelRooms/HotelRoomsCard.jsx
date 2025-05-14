@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { GoPeople } from "react-icons/go";
 import { IoBedOutline } from "react-icons/io5";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";

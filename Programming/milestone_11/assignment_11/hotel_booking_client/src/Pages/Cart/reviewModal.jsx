@@ -1,10 +1,9 @@
-import { useContext, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import FromForFeedback from "../../Components/FromForFeedback/FromForFeedback";
+import Typography from "@mui/material/Typography";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Components/FirebaseProvider/FirebaseProvider";
+import FromForFeedback from "../../Components/FromForFeedback/FromForFeedback";
 
 const style = {
   position: "absolute",

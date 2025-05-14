@@ -1,19 +1,21 @@
+import React from "react";
 import {
+  A11y,
+  Autoplay,
   Navigation,
   Pagination,
   Scrollbar,
-  A11y,
-  Autoplay,
 } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
+
+import PropTypes from "prop-types"; // Import PropTypes
+import { useEffect, useState } from "react";
 import "swiper/css";
+import "swiper/css/autoplay";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import "swiper/css/autoplay";
+import { Swiper, SwiperSlide } from "swiper/react";
 import ReviewCards from "../../Components/Review/ReviewCards";
-import { useEffect, useState } from "react";
-import PropTypes from "prop-types"; // Import PropTypes
 
 const ReviewSlider = ({ roomDetails }) => {
   const { _id } = roomDetails;

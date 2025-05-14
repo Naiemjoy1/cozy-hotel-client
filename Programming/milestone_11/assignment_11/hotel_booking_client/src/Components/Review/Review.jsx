@@ -7,6 +7,7 @@ import {
   Scrollbar,
 } from "swiper/modules";
 
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";

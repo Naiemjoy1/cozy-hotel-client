@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import Benefits from "../../Components/Benefits/Benefits";
 import HotelRooms from "../../Components/HotelRooms/HotelRooms";
 import Map from "../../Components/Map/Map";

@@ -1,18 +1,19 @@
+import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import Main from "../Layout/Main";
-import Home from "../Pages/Home/Home";
-import Error from "../Shared/Error/Error";
-import Login from "../Pages/Login/Login";
-import Registration from "../Pages/Registration/Registration";
-import AboutUs from "../Pages/AboutUs/AboutUs";
-import ContactUs from "../Pages/ContactUs/ContactUs";
-import Room from "../Pages/Room/Room";
-import Bookings from "../Pages/Bookings/Bookings";
-import RoomDetails from "../Pages/RoomDetails/RoomDetails";
 import PrivateRoute from "../Components/PrivateRoute/PrivateRoute";
+import BookingsUpdate from "../Components/update/BookingsUpdate";
+import Main from "../Layout/Main";
+import AboutUs from "../Pages/AboutUs/AboutUs";
+import Bookings from "../Pages/Bookings/Bookings";
 import BookRoom from "../Pages/BookRoom/BookRoom";
 import Cart from "../Pages/Cart/Cart";
-import BookingsUpdate from "../Components/update/BookingsUpdate";
+import ContactUs from "../Pages/ContactUs/ContactUs";
+import Home from "../Pages/Home/Home";
+import Login from "../Pages/Login/Login";
+import Registration from "../Pages/Registration/Registration";
+import Room from "../Pages/Room/Room";
+import RoomDetails from "../Pages/RoomDetails/RoomDetails";
+import Error from "../Shared/Error/Error";
 
 const router = createBrowserRouter([
   {

@@ -1,14 +1,13 @@
-import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import Aos from "aos";
+import "aos/dist/aos.css";
+import { React, useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { IoIosEyeOff, IoMdEye } from "react-icons/io";
+import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../Components/FirebaseProvider/FirebaseProvider";
 import PageTitle from "../../Components/PageTitle/PageTitle";
-import Aos from "aos";
-import "aos/dist/aos.css";
-import { useEffect } from "react";
 
 const Registration = () => {
   useEffect(() => {

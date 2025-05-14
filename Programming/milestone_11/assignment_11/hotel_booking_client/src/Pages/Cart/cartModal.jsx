@@ -1,8 +1,8 @@
-import PropTypes from "prop-types";
-import { useState } from "react";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import Typography from "@mui/material/Typography";
+import PropTypes from "prop-types";
+import React, { useState } from "react";
 
 const style = {
   position: "absolute",

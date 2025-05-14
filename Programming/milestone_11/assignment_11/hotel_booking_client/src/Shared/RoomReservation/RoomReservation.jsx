@@ -1,20 +1,19 @@
-import { useContext, useEffect, useState } from "react";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import Typography from "@mui/material/Typography";
 import PropTypes from "prop-types";
-import { AuthContext } from "../../Components/FirebaseProvider/FirebaseProvider";
+import React, { useContext, useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import * as React from "react";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AuthContext } from "../../Components/FirebaseProvider/FirebaseProvider";
 
-import { addMonths, addDays } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
 
 import Aos from "aos";
 import "aos/dist/aos.css";
+import UpdateEdit from "./UpdateEdit";
 
 const style = {
   position: "absolute",
@@ -27,7 +26,6 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-import UpdateEdit from "./UpdateEdit";
 
 const RoomReservation = ({ roomDetails, cancelBooking }) => {
   const [open, setOpen] = React.useState(false);

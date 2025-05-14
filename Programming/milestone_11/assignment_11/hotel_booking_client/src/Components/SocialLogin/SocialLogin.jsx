@@ -1,3 +1,4 @@
+import React from "react";
 import { FaGithub, FaGoogle, FaTwitter } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";

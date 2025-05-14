@@ -4,7 +4,7 @@ import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
 import Aos from "aos";
 import "aos/dist/aos.css";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoCloseCircleSharp } from "react-icons/io5";
 
 const style = {

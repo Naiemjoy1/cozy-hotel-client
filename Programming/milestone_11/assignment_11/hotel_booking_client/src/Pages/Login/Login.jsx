@@ -1,17 +1,17 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { IoIosEyeOff, IoMdEye } from "react-icons/io";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
-import "react-toastify/dist/ReactToastify.css";
-import useAuth from "../../Components/hooks/useAuth";
-import SocialLogin from "../../Components/SocialLogin/SocialLogin";
-import axios from "axios";
-import PageTitle from "../../Components/PageTitle/PageTitle";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import axios from "axios";
 import { useEffect } from "react";
+import "react-toastify/dist/ReactToastify.css";
+import useAuth from "../../Components/hooks/useAuth";
+import PageTitle from "../../Components/PageTitle/PageTitle";
+import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 
 const Login = () => {
   useEffect(() => {

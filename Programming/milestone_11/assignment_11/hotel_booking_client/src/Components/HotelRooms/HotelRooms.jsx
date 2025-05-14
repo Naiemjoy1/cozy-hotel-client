@@ -10,6 +10,7 @@ import HotelRoomsCard from "./HotelRoomsCard";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import React from "react";
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";

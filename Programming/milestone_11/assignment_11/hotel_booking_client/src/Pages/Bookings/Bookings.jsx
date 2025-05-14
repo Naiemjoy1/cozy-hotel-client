@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../Components/FirebaseProvider/FirebaseProvider";
-import Cart from "../Cart/Cart";
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import axios from "axios";
+import { AuthContext } from "../../Components/FirebaseProvider/FirebaseProvider";
 import PageTitle from "../../Components/PageTitle/PageTitle";
+import Cart from "../Cart/Cart";
 
 import Aos from "aos";
 import "aos/dist/aos.css";

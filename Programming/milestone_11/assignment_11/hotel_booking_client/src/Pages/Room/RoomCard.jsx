@@ -1,22 +1,23 @@
-import { useContext, useEffect } from "react";
-import { TiPlus } from "react-icons/ti";
 import PropTypes from "prop-types";
+import React, { useContext, useEffect } from "react";
+import { TiPlus } from "react-icons/ti";
+
 import {
+  A11y,
+  Autoplay,
   Navigation,
   Pagination,
   Scrollbar,
-  A11y,
-  Autoplay,
 } from "swiper/modules";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import { Link } from "react-router-dom";
 import "swiper/css";
+import "swiper/css/autoplay";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import "swiper/css/autoplay";
-import { Link } from "react-router-dom";
 import { AuthContext } from "../../Components/FirebaseProvider/FirebaseProvider";
 
 import Aos from "aos";
@@ -77,13 +78,13 @@ const RoomCard = ({ room, alternateLayout }) => {
           <div className="lg:flex items-center mt-4 gap-6">
             {user ? (
               <Link to={`/roomdetails/${_id}`}>
-                <button className="btn btn-primary text-white font-marcellus">
+                <button className="btn btn-primary text-white font-marcellus transition-transform duration-300 hover:scale-105">
                   Room Details
                 </button>
               </Link>
             ) : (
               <Link to={`/details/${_id}`}>
-                <button className="btn btn-primary text-white font-marcellus">
+                <button className="btn btn-primary text-white font-marcellus transition-transform duration-300 hover:scale-105">
                   Room Details
                 </button>
               </Link>

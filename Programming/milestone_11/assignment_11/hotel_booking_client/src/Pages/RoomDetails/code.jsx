@@ -1,3 +1,4 @@
+import React, { useContext, useEffect, useState } from "react";
 import { BiSolidDrink } from "react-icons/bi";
 import { CgSmartHomeRefrigerator } from "react-icons/cg";
 import { FaBed, FaCircle, FaWifi } from "react-icons/fa";
@@ -11,26 +12,26 @@ import { RiSafe2Fill } from "react-icons/ri";
 import { SlSizeFullscreen } from "react-icons/sl";
 import { TbAirConditioning } from "react-icons/tb";
 import { useLoaderData } from "react-router-dom";
-import RoomReservation from "../../Shared/RoomReservation/RoomReservation";
 import ReviewForm from "../../Shared/ReviewForm/ReviewForm";
-import { useContext, useEffect, useState } from "react";
+import RoomReservation from "../../Shared/RoomReservation/RoomReservation";
+
 import {
+  A11y,
+  Autoplay,
   Navigation,
   Pagination,
   Scrollbar,
-  A11y,
-  Autoplay,
 } from "swiper/modules";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
+import "swiper/css/autoplay";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import "swiper/css/autoplay";
-import ReviewCards from "../../Components/Review/ReviewCards";
 import { AuthContext } from "../../Components/FirebaseProvider/FirebaseProvider";
+import ReviewCards from "../../Components/Review/ReviewCards";
 
 const RoomDetails = () => {
   const roomDetails = useLoaderData();

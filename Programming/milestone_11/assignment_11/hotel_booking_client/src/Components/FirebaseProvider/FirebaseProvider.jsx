@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
+import React from "react";
 
+import axios from "axios";
 import {
   GithubAuthProvider,
   GoogleAuthProvider,
@@ -13,7 +15,6 @@ import {
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../../Firebase/firbaseConfig";
-import axios from "axios";
 
 export const AuthContext = createContext(null);
 

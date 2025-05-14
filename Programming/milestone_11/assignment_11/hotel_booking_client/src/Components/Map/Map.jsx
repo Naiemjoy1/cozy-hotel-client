@@ -1,7 +1,7 @@
-import LeafletMap from "../LeafletMap/LeafletMap";
 import Aos from "aos";
 import "aos/dist/aos.css";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import LeafletMap from "../LeafletMap/LeafletMap";
 
 const Map = () => {
   useEffect(() => {

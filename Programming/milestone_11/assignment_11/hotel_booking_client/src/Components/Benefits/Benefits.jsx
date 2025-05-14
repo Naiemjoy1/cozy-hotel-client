@@ -1,3 +1,4 @@
+import React from "react";
 import { FaCar, FaHandsWash, FaWifi } from "react-icons/fa";
 import { GiWashingMachine } from "react-icons/gi";
 import { MdOutlineDinnerDining } from "react-icons/md";

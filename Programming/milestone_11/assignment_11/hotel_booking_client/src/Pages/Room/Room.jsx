@@ -1,9 +1,9 @@
+import React, { useEffect, useState } from "react";
 import { FaCircle, FaRegClock } from "react-icons/fa";
-import RoomCard from "./RoomCard";
 import { TiPlus } from "react-icons/ti";
-import PriceFilter from "./PriceFilter";
-import { useEffect, useState } from "react";
 import PageTitle from "../../Components/PageTitle/PageTitle";
+import PriceFilter from "./PriceFilter";
+import RoomCard from "./RoomCard";
 
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -17,11 +17,10 @@ const Room = () => {
     Aos.refresh();
   });
 
-  // const rooms = useLoaderData();
   const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
-    fetchRooms(); // Fetch all rooms initially
+    fetchRooms();
   }, []);
 
   const fetchRooms = async (minPrice, maxPrice) => {
@@ -43,7 +42,7 @@ const Room = () => {
   };
 
   const handleFilterChange = async (minPrice, maxPrice) => {
-    fetchRooms(minPrice, maxPrice); // Fetch rooms with filter
+    fetchRooms(minPrice, maxPrice);
   };
 
   return (
@@ -216,7 +215,7 @@ const Room = () => {
             Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
           </p>
         </div>
-        <div data-aos="fade-right" className="lg:w-1/2  space-y-5 text-lg">
+        <div data-aos="fade-left" className="lg:w-1/2  space-y-5 text-lg">
           <p className="flex items-center gap-2 font-jost">
             <span className=" text-secondary text-sm">
               <FaCircle />

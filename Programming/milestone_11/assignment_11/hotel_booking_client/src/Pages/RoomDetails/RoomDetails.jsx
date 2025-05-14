@@ -1,3 +1,4 @@
+import React, { useContext, useEffect, useState } from "react";
 import { BiSolidDrink } from "react-icons/bi";
 import { CgSmartHomeRefrigerator } from "react-icons/cg";
 import { FaBed, FaCircle, FaWifi } from "react-icons/fa";
@@ -11,12 +12,11 @@ import { RiSafe2Fill } from "react-icons/ri";
 import { SlSizeFullscreen } from "react-icons/sl";
 import { TbAirConditioning } from "react-icons/tb";
 import { useLoaderData } from "react-router-dom";
-import RoomReservation from "../../Shared/RoomReservation/RoomReservation";
-import ReviewForm from "../../Shared/ReviewForm/ReviewForm";
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../Components/FirebaseProvider/FirebaseProvider";
-import ReviewSlider from "./ReviewSlider";
 import { ToastContainer, toast } from "react-toastify";
+import { AuthContext } from "../../Components/FirebaseProvider/FirebaseProvider";
+import ReviewForm from "../../Shared/ReviewForm/ReviewForm";
+import RoomReservation from "../../Shared/RoomReservation/RoomReservation";
+import ReviewSlider from "./ReviewSlider";
 
 import "react-toastify/dist/ReactToastify.css";
 import PageTitle from "../../Components/PageTitle/PageTitle";
