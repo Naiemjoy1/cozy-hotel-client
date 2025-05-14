@@ -61,20 +61,15 @@ const HotelRooms = () => {
           navigation={true}
           autoplay={{ delay: 5000 }}
           loop={true}
-          // pagination={{ clickable: true }}
-          // scrollbar={{ draggable: true }}
           modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
           className="mySwiper"
           breakpoints={{
-            // When window width is >= 769px
             769: {
               slidesPerView: 3,
             },
-            // When window width is >= 426px and < 769px
             426: {
               slidesPerView: 2,
             },
-            // When window width is < 426px
             0: {
               slidesPerView: 1,
             },

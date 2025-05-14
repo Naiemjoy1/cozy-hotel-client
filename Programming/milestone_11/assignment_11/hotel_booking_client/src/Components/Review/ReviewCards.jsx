@@ -7,10 +7,8 @@ import { GoStarFill } from "react-icons/go";
 const ReviewCards = ({ review }) => {
   const { comment, rating, name, timestamp, image } = review;
 
-  // Convert timestamp to Date object
   const date = new Date(timestamp);
 
-  // Format the date
   const formattedDate = `${date.getDate()}/${
     date.getMonth() + 1
   }/${date.getFullYear()}`;
