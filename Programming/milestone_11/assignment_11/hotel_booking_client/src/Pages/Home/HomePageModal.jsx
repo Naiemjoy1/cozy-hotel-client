@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { IoCloseCircleSharp } from "react-icons/io5";
+import Typography from "@mui/material/Typography";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import { useEffect, useState } from "react";
+import { IoCloseCircleSharp } from "react-icons/io5";
 
 const style = {
   position: "absolute",
@@ -47,7 +47,7 @@ const HomePageModal = () => {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    setOpen(true); // Open the modal when the component mounts
+    setOpen(true);
   }, []);
 
   const handleClose = () => setOpen(false);
